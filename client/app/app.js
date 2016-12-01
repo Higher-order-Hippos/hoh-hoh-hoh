@@ -1,10 +1,11 @@
 angular.module('hohhohhoh', [
+  'hohhohhoh.wishlist',
   'ngRoute'
 ])
 .config(function ($routeProvider) {
   $routeProvider
     .when('/', {
-      templateUrl: 'FILL_ME_IN',
+      templateUrl: 'wishlist/wishlist.html',
       controller: 'FILL_ME_IN',
     });
 });

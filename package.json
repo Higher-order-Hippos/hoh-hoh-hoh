@@ -1,0 +1,29 @@
+{
+  "name": "hoh-hoh-hoh",
+  "version": "1.0.0",
+  "description": "## Synopsis",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Higher-order-Hippos/hoh-hoh-hoh.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Higher-order-Hippos/hoh-hoh-hoh/issues"
+  },
+  "homepage": "https://github.com/Higher-order-Hippos/hoh-hoh-hoh#readme",
+  "dependencies": {
+    "angular": "^1.5.9",
+    "angular-route": "^1.5.9",
+    "body-parser": "^1.15.2",
+    "bookshelf": "^0.10.2",
+    "express": "^4.14.0",
+    "knex": "^0.12.6",
+    "path": "^0.12.7",
+    "request": "^2.79.0"
+  }
+}

@@ -1,13 +1,13 @@
 <div>
 
   <div>
-    <h1>ADD A WISHLIST!</h1>
-    <form name='wishlist' ng-submit="add()">
+    <h1>{{WISHLIST NAME FROM WISHLISTLIST.HTML via NG MODEL(?)}}</h1>
+    <form name='item' ng-submit="add(WISHLISTNAME)">
       <input
         type='text',
-        name='wishlist',
-        ng-model='wishlistName',
-        placeholder="Eg.) Birthday, Christmas"
+        name='item',
+        ng-model='newItem',
+        placeholder="Eg.) Wine, etc"
       />
       <button type="submit">Add</button>
     </form>

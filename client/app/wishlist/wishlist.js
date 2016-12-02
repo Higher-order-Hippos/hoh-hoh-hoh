@@ -10,7 +10,7 @@ angular.module('hoh.wishlist', [])
       });
   };
 
-  $scope.show = function() {
-    // TODO: MAKE A GET REQUEST TO BACKEND
-  }
+  $scope.show = function () {
+    Wishlist.getItemsfromWishList($scope.thisList);
+  };
 });

@@ -12,7 +12,7 @@ module.exports = function (app, express) {
   //requests for wishlists
   app.get('/api/wishlist', wishlistController.getAll);
   app.post('/api/wishlist', wishlistController.addOne);
-  //requests for items
+  // //requests for items
   app.get('/api/item', itemController.getAll);
   app.post('/api/item', itemController.addOne);
 };

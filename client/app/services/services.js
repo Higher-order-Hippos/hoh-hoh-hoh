@@ -1,6 +1,7 @@
 angular.module('hoh.services', [])
 
 .factory('Wishlist', function ($http) {
+
   var addList = function (name) {
     return $http({
       method: 'POST',
@@ -15,17 +16,17 @@ angular.module('hoh.services', [])
   };
 
   var getItemsfromWishList = function (list) {
-    // TODO: DFskdlakd;lask;dla
     return $http({
       method: 'GET',
-      url: '/api/items'
+      url: '/api/items',
       data: {
         list: list
       }
-    })
-  }
+    });
+  };
 
   return {
-    addList: addList
+    addList: addList,
+    getItemsfromWishList: getItemsfromWishList
   };
 });

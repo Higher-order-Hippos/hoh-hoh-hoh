@@ -7,6 +7,6 @@ angular.module('hoh', [
   $routeProvider
     .when('/', {
       templateUrl: 'wishlist/wishlist.html',
-      controller: 'FILL_ME_IN',
+      controller: 'WishlistController',
     });
 });

@@ -1,4 +1,4 @@
-var db = require('../db'); //TODO wherever our DB folder is set
+var db = require('../database/config');
 
 module.exports = {
   items: {

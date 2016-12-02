@@ -3,14 +3,14 @@ var db = require('../database/config');
 module.exports = {
   wishlists: {
     getAll: function(callback) {
-      var queryStr = 'select * from FILL_ME_IN'; // TODO whatever the table name is
+      var queryStr = 'select * from wishlists';
       db.query(queryStr, function(err, results){
         callback(err, results);
       });
     },
 
     addOne: function(params, callback) {
-      var queryStr = 'insert into FILL_ME_IN (FILL_ME_IN) value (?)'; // TODO
+      var queryStr = 'insert into wishlists (name) value (?)';
       db.query(queryStr, params, function(err, results) {
         callback(err, results);
       });

@@ -3,17 +3,24 @@ angular.module('hoh.wishlist', [])
 .controller('WishlistController', function ($scope, Wishlist) {
   $scope.data = {};
 
-  $scope.add = function() {
+  $scope.add = function () {
     Wishlist.addList($scope.wishlistName)
-      .then(function (lists) {
-        $scope.data.lists = lists;
+      .then(function (wishlists) {
+        $scope.data.wishlists = wishlists;
       });
   };
 
   $scope.show = function (list) {
     Wishlist.getItemsfromWishList($scope.thisList)
       .then(function (lists) {
-        $scope.data.list = lists
-      })
+        $scope.data.list = lists;
+      });
+  };
+
+  $scope.getAll = function () {
+    Wishlist.addList($scope.wishlistName)
+      .then(function (lists) {
+        $scope.data.lists = lists;
+      });
   };
 });

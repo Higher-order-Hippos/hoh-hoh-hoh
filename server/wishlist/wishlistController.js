@@ -4,22 +4,15 @@ module.exports = {
 
   wishlists: {
     get: function (req, res) {
-      wishlistModel.wishlists.getAll(function(err, results) {
-        if (err) {
-          console.log('Server-side GET request error : ', err);
-        } else {
-          res.json(results);
-        }
+      wishlistModel.wishlists.getAll(function(results) {
+        res.json(results);
       });
     },
+    
     post: function (req, res) {
-      var params = [req.body.name]; // TODO whatever wishlist data that are being posted
-      wishlistModel.wishlists.addOne(params, function(err, results) {
-        if (err) {
-          console.log('Server-side POST request error : ', err);
-        } else {
-          res.sendStatus(201);
-        }
+      var params = req.body.name; // TODO whatever wishlist data that are being posted
+      wishlistModel.wishlists.addOne(params, function() {
+        res.sendStatus(201);
       });
     }
   },

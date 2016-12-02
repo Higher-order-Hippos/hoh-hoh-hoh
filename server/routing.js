@@ -14,6 +14,6 @@ module.exports = function (app, express) {
   app.get('/api/wishlist', wishlistController.wishlists.get);
   app.post('/api/wishlist', wishlistController.wishlists.post);
   // //requests for items
-  app.get('/api/item', itemController.items.get);
+  app.post('/api/item/get', itemController.items.get);
   app.post('/api/item', itemController.items.post);
 };

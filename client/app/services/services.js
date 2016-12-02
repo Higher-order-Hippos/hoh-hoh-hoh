@@ -1,4 +1,4 @@
-angular.module('hohhohhoh.services', [])
+angular.module('hoh.services', [])
 
 .factory('Wishlist', function ($http) {
   var getWishlist = function (FILL_ME_IN) {

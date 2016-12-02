@@ -26,9 +26,10 @@ angular.module('hoh.services', [])
   };
 
   var getItemsfromWishList = function (list) {
+    console.log('passing listname to baackend: ', list.name);
     return $http({
-      method: 'GET',
-      url: '/api/item',
+      method: 'POST',
+      url: '/api/item/get',
       data: {
         list: list.name
       }

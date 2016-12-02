@@ -13,14 +13,7 @@
   </div>
 
   <div>
-    <h4><strong>SAMPLE WISHLIST1</strong></h4>
-    <h4><strong>SAMPLE WISHLIST2</strong></h4>
-    <h4><strong>SAMPLE WISHLIST3</strong></h4>
-    <!-- TODO: DELETE THIS SAMPLE LIST AFTER -->
-  </div>
-
-  <div>
-    <ul ng-repeat="wishlist in data.wishlists" ng-click="getItemsfromWishList(lists($index)) ">
+    <ul ng-repeat="wishlist in data.wishlists" ng-click="show(wishlist, $index)">
       <li><strong>{{wishlist.name}}</strong></li>
       <li ng-show="expand">
         <ul>

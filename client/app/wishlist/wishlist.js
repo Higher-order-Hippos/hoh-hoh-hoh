@@ -10,17 +10,16 @@ angular.module('hoh.wishlist', [])
       });
   };
 
-  $scope.show = function (list) {
-    Wishlist.getItemsfromWishList($scope.thisList)
-      .then(function (lists) {
-        $scope.data.list = lists;
+  $scope.show = function (list, index) {
+    Wishlist.getItemsfromWishList(list, list.$$hashKey)
+      .then(function (items) {
+        $scope.data.list = items;
       });
   };
 
   $scope.getAll = function () {
     Wishlist.getAllList()
       .then(function (wishlists) {
-        console.log(wishlists);
         $scope.data.wishlists = wishlists;
       });
   };

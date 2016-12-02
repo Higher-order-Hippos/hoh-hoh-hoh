@@ -1,6 +1,6 @@
-angular.module('hohhohhoh', [
-  'hohhohhoh.wishlist',
-  'hohhohhoh.services',
+angular.module('hoh', [
+  'hoh.wishlist',
+  'hoh.services',
   'ngRoute'
 ])
 .config(function ($routeProvider) {

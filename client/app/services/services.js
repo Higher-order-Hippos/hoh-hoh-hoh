@@ -1,12 +1,12 @@
 angular.module('hoh.services', [])
 
 .factory('Wishlist', function ($http) {
-  var getWishlist = function (FILL_ME_IN) {
+  var addList = function (name) {
     return $http({
       method: 'POST',
       url: '/api/wishlist',
       data: {
-        FILL_ME_IN: 'FILL_ME_IN',
+        name: name,
       }
     })
     .then(function (resp) {
@@ -15,6 +15,6 @@ angular.module('hoh.services', [])
   };
 
   return {
-    getWishlist: getWishlist
+    addList: addList
   };
 });

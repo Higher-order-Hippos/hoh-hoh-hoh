@@ -1,9 +1,22 @@
 <div>
-  <h1 class='header'>ADD A WISHLIST!</h1>
-<!-- TODO ng-model, ng-submit function or onsubmit needed -->
-  <form name='wishlist' method='POST'>
-    Title: <br>
-    <input type='type' name='title'> <br>
-    <input type='submit' value='submit'>
-  </form>
+
+  <div>
+    <h1>ADD A WISHLIST!</h1>
+    <form name='wishlist' ng-submit="add()">
+      <input
+        type='text',
+        name='wishlist',
+        ng-model='wishlistName',
+        placeholder="Eg.) Birthday, Christmas"
+      />
+      <button type="submit">Add</button>
+    </form>
+  </div>
+
+  <div>
+    <div ng-repeat="list in data.lists">
+      <h4><strong>{{FILL_ME_IN}}</strong></h4>
+    </div>
+  </div>
+
 <div>

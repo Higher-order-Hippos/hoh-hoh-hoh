@@ -4,7 +4,7 @@ angular.module('hoh.services', [])
   var getWishlist = function (FILL_ME_IN) {
     return $http({
       method: 'POST',
-      url: 'FILL_ME_IN',
+      url: '/api/wishlist',
       data: {
         FILL_ME_IN: 'FILL_ME_IN',
       }

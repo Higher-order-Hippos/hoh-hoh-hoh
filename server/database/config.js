@@ -2,8 +2,8 @@ var path = require('path');
 var knex = require('knex')({
   client: 'mysql',
   connection: {
-    host: ,
-    user: hohohadmin,
+    host: 'localhost',
+    user: 'hohohadmin',
     password: '!Qaz2wsx3edc',
     IP: 'mysqlcluster2.registeredsite.com',
     database: 'hohohoh'

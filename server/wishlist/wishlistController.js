@@ -26,7 +26,7 @@ module.exports = {
     delete: function(req, res) {
       var params = FILL_ME_IN; //TODO name of wishlist you want to delete
       wishlistModel.wishlists.deleteOne(params, function() {
-        res.sendStatus(201)l
+        res.sendStatus(201);
       })
     }
   },

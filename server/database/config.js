@@ -1,15 +1,18 @@
-var path = require('path');
-var knex = require('knex')({
-  client: 'mysql',
-  connection: {
-    host: 'mysqlcluster2.registeredsite.com',
-    user: 'hohohadmin',
-    password: '!Qaz2wsx3edc',
-    database: 'hohohoh'
-  },
-  useNullAsDefault: true
+var mysql = require('mysql');
+
+var connection = mysql.createConnection({
+  host: 'mysqlcluster2.registeredsite.com',
+  user: 'hohohadmin',
+  password: '!Qaz2wsx3edc',
+  database: 'hohohoh'
 });
-var db = require('bookshelf')(knex);
+
+connection.connect();
+
+module.exports = connection;
+
+
+/* old knex stuff
 
 db.knex.schema.hasTable('wishlists').then(function(exists) {
   if (!exists) {
@@ -51,4 +54,4 @@ db.knex.schema.hasTable('users').then(function(exists) {
   }
 });
 
-module.exports = db;
+*/

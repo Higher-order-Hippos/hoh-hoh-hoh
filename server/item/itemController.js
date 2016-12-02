@@ -9,7 +9,7 @@ module.exports = {
       });
     },
     post: function (req, res) {
-      var params = [FILL_ME_IN]; // TODO need variables that grab item name and wishlist ID from req.body
+      var params = [FILL_ME_IN]; //TODO item name and wishlist name
       itemModel.items.addOne(params, function(results) {
         res.sendStatus(201);
       });

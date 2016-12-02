@@ -1,7 +1,7 @@
 var db = require('../config');
 
 var Wishlist = db.Model.dextend({
-  tableName: 'wishlistsl',
+  tableName: 'wishlists',
   hasTimestamps: true
 
 })

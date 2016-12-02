@@ -40,6 +40,7 @@ angular.module('hoh.services', [])
 
   return {
     addList: addList,
-    getItemsfromWishList: getItemsfromWishList
+    getItemsfromWishList: getItemsfromWishList,
+    getAllList: getAllList
   };
 });

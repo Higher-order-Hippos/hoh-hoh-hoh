@@ -14,6 +14,17 @@ angular.module('hoh.services', [])
     });
   };
 
+  var getItemsfromWishList = function (list) {
+    // TODO: DFskdlakd;lask;dla
+    return $http({
+      method: 'GET',
+      url: '/api/items'
+      data: {
+        list: list
+      }
+    })
+  }
+
   return {
     addList: addList
   };

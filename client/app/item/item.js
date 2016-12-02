@@ -1,6 +1,6 @@
-angular.module('hoh.wishlist', [])
+angular.module('hoh.item', [])
 
-.controller('WishlistController', function ($scope, Wishlist) {
+.controller('ItemController', function ($scope, Wishlist) {
   $scope.data = {};
 
   $scope.add = function() {
@@ -9,8 +9,4 @@ angular.module('hoh.wishlist', [])
         $scope.data.lists = lists;
       });
   };
-
-  $scope.show = function() {
-    // TODO: MAKE A GET REQUEST TO BACKEND
-  }
 });

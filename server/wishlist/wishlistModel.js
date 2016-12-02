@@ -3,7 +3,7 @@ var db = require('../database/config');
 module.exports = {
   wishlists: {
     getAll: function(callback) {
-      var queryStr = 'select * from wishlists';
+      var queryStr = 'select name from wishlists';
       db.query(queryStr, function(err, results){
         callback(err, results);
       });

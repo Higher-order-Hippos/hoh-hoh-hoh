@@ -10,7 +10,7 @@ module.exports = {
     },
 
     addOne: function(params, callback) {
-      var queryStr = 'insert into wishlists (FILL_ME_IN) value (?)'; // TODO whatever the table colum name is
+      var queryStr = 'insert into FILL_ME_IN (FILL_ME_IN) value (?)'; // TODO
       db.query(queryStr, params, function(err, results) {
         callback(err, results);
       });

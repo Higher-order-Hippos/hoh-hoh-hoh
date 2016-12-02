@@ -2,14 +2,15 @@ var itemModel = require('./itemModel.js');
 
 module.exports = {
 
-  wishlists: {
+  items: {
     get: function (req, res) {
-      itemModel.items.getAll(function(results) {
+      var params = req.body.list;
+      itemModel.items.getAll(params, function(results) {
         res.json(results);
       });
     },
     post: function (req, res) {
-      var params = [FILL_ME_IN]; // TODO need variables that grab item name and wishlist ID from req.body
+      var params = []; //TODO item name and wishlist name
       itemModel.items.addOne(params, function(results) {
         res.sendStatus(201);
       });

@@ -28,12 +28,13 @@ angular.module('hoh.services', [])
   var getItemsfromWishList = function (list) {
     return $http({
       method: 'GET',
-      url: '/api/items',
+      url: '/api/item',
       data: {
-        list: list
+        list: list.name
       }
     })
     .then(function (resp) {
+      console.log(resp);
       return resp.data;
     });
   };

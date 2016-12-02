@@ -1,6 +1,6 @@
 angular.module('hoh.wishlist', [])
 
-.controller('WishlistController', function ($scope, Wishlist, Item) {
+.controller('WishlistController', function ($scope, Wishlist) {
   $scope.data = {};
 
   $scope.add = function() {
@@ -11,7 +11,7 @@ angular.module('hoh.wishlist', [])
   };
 
   $scope.show = function (list) {
-    Item.getItems($scope.thisList)
+    Wishlist.getItemsfromWishList($scope.thisList)
       .then(function (lists) {
         $scope.data.list = lists
       })

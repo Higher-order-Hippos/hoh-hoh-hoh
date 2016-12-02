@@ -2,8 +2,8 @@ var db = require('../database/config');
 
 module.exports = {
   items: {
-    getAll: function(callback) {
-      var queryStr = 'SELECT items.name FROM items INNER JOIN wishlists ON items.id_wishlists=wishlists.id';
+    getAll: function(params, callback) {
+      var queryStr = `SELECT items.name FROM items INNER JOIN wishlists ON wishlists.name = ${params}, items.id_wishlists=wishlists.id`;
       db.query(queryStr, function(err, results){
         callback(err, results);
       });

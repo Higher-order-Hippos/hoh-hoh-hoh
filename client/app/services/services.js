@@ -2,6 +2,16 @@ angular.module('hoh.services', [])
 
 .factory('Wishlist', function ($http) {
 
+  var getAllList = function () {
+    return $http({
+      method: 'GET',
+      url: '/api/wishlist',
+    })
+    .then(function(resp) {
+      return resp.data;
+    });
+  };
+
   var addList = function (name) {
     return $http({
       method: 'POST',
@@ -18,7 +28,7 @@ angular.module('hoh.services', [])
   var getItemsfromWishList = function (list) {
     return $http({
       method: 'GET',
-      url: '/api/wishlist',
+      url: '/api/items',
       data: {
         list: list
       }

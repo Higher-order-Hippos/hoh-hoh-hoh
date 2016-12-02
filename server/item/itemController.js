@@ -13,7 +13,7 @@ module.exports = {
       });
     },
     post: function (req, res) {
-      var params = [FILL_ME_IN]; // TODO whatever wishlist data that are being posted
+      var params = [FILL_ME_IN]; // TODO need variables that grab item name and wishlist ID from req.body
       itemModel.items.addOne(params, function(err, results) {
         if (err) {
           console.log('Server-side POST request error : ', err);

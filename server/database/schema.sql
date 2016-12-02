@@ -4,55 +4,62 @@
 CREATE DATABASE IF NOT EXISTS `hohohoh`;
 USE `hohohoh`;
 
--- --------------------------------------------------------
+-- ---
+-- Globals
+-- ---
 
+-- SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+-- SET FOREIGN_KEY_CHECKS=0;
+
+-- ---
+-- Table 'wishlists'
 --
--- Table structure for table `items`
---
+-- ---
 
-CREATE TABLE `items` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `id_wishlists` int NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-   PRIMARY KEY (ID)
-)
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
-CREATE TABLE `users` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `username` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `name` varchar(150) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-   PRIMARY KEY (ID)
-)
-
--- --------------------------------------------------------
-
---
--- Table structure for table `wishlists`
---
+DROP TABLE IF EXISTS `wishlists`;
 
 CREATE TABLE `wishlists` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `id_users` int NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-   PRIMARY KEY (ID)
-)
+  `id` INTEGER NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) NOT NULL,
+  `id_users` INTEGER NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+-- ---
+-- Table 'items'
+--
+-- ---
+
+DROP TABLE IF EXISTS `items`;
+
+CREATE TABLE `items` (
+  `id` INTEGER NOT NULL AUTO_INCREMENT,
+  `id_wishlists` INTEGER NOT NULL,
+  `name` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`id`)
+);
 
 -- ---
 -- Foreign Keys
 -- ---
 
-ALTER TABLE `wishlists` ADD FOREIGN KEY (id_users) REFERENCES `users` (`id`);
 ALTER TABLE `items` ADD FOREIGN KEY (id_wishlists) REFERENCES `wishlists` (`id`);
+
+-- ---
+-- Table Properties
+-- ---
+
+-- ALTER TABLE `wishlists` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `items` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `users` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ---
+-- Test Data
+-- ---
+
+-- INSERT INTO `wishlists` (`id`,`name`,`id_users`) VALUES
+-- ('','','');
+-- INSERT INTO `items` (`id`,`id_wishlists`,`name`) VALUES
+-- ('','','');
+-- INSERT INTO `users` (`id`,`username`,`password`,`name`) VALUES
+-- ('','','','');

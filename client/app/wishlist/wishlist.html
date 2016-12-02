@@ -20,8 +20,12 @@
   </div>
 
   <div>
-    <div ng-repeat="list in data.lists" ng-click="show(lists[$index])">
-      <h4><strong>{{FILL_ME_IN}}</strong></h4>
-    </div>
-  </div>
+    <ul ng-repeat="list in data.lists" ng-click="getItemsfromWishList(lists($index))">
+      <li><strong>{{FILL_ME_IN WISHLIST}}</strong></li>
+      <li ng-show="expand">
+        <ul>
+          <li ng-repeat="item in data.items">{{FILL_ME_IN ITEMS}}</li>
+        </ul>
+      </li>
+    </ul>
 <div>

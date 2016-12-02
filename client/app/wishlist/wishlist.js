@@ -5,8 +5,8 @@ angular.module('hoh.wishlist', [])
 
   $scope.add = function () {
     Wishlist.addList($scope.wishlistName)
-      .then(function (wishlists) {
-        $scope.data.wishlists = wishlists;
+      .then(function () {
+        $scope.getAll();
       });
   };
 
@@ -18,9 +18,12 @@ angular.module('hoh.wishlist', [])
   };
 
   $scope.getAll = function () {
-    Wishlist.addList($scope.wishlistName)
-      .then(function (lists) {
-        $scope.data.lists = lists;
+    Wishlist.getAllList()
+      .then(function (wishlists) {
+        console.log(wishlists);
+        $scope.data.wishlists = wishlists;
       });
   };
+
+  $scope.getAll();
 });

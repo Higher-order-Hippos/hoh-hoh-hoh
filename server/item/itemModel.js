@@ -3,11 +3,8 @@ var db = require('../database/config');
 module.exports = {
   items: {
     getAll: function(params, callback) {
-      // var queryStr = "SELECT * from items";
-      // db.query(queryStr, function(err, results){
-      //   callback(err, results);
-      // });
-      var queryStr = 'SELECT items.name FROM items INNER JOIN wishlists ON wishlists.name=? and wishlists.id=items.id_wishlists';
+      var queryStr = "SELECT items.name FROM items INNER JOIN wishlists ON wishlists.name=? and wishlists.id=items.id_wishlists";
+      // TODO In the future, may need to sanitize params to exclude special characters including double quotation marks
       db.query(queryStr, params, function(err, results) {
         if (err) {
           console.log('Error in server/wishlist/wishlistModels.js getAll : ', err);

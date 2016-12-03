@@ -12,7 +12,7 @@ module.exports = {
     },
     post: function (req, res) {
       var params = []; //TODO item name and wishlist name
-      itemModel.items.addOne(params, function(results) {
+      itemModel.items.addOne(params, function(err, results) {
         res.sendStatus(201);
       });
     }

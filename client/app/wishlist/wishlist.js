@@ -2,6 +2,7 @@ angular.module('hoh.wishlist', [])
 
 .controller('WishlistController', function ($scope, Wishlist) {
   $scope.data = {};
+  $scope.data.items = {};
 
   $scope.add = function () {
     Wishlist.addList($scope.wishlistName)
@@ -13,13 +14,15 @@ angular.module('hoh.wishlist', [])
   $scope.show = function (list, index) {
     Wishlist.getItemsfromWishList(list, list.$$hashKey)
       .then(function (items) {
-        $scope.data.list = items;
+        // TODO: USE AN UNIQUE KEY (WISHLIST ID FROM DATABASE) TO STORE.
+        $scope.data.items = items;
       });
   };
 
   $scope.getAll = function () {
     Wishlist.getAllList()
       .then(function (wishlists) {
+        console.log('receiving wishlist to FE: ', wishlists);
         $scope.data.wishlists = wishlists;
       });
   };

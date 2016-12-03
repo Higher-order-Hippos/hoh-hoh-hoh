@@ -2,6 +2,7 @@
 .DS_Store
 client/app/.DS_Store
 client/.DS_Store
+server/.DS_Store
 DS_Store
 
 ### Node ###

@@ -7,7 +7,7 @@ module.exports = {
       // db.query(queryStr, function(err, results){
       //   callback(err, results);
       // });
-      var queryStr = 'SELECT items.name FROM items INNER JOIN wishlists ON wishlists.name=? and wishlists.id=items.id_wishlists';
+      var queryStr = "SELECT items.name FROM items INNER JOIN wishlists ON wishlists.name=? and wishlists.id=items.id_wishlists";
       db.query(queryStr, params, function(err, results) {
         if (err) {
           console.log('Error in server/wishlist/wishlistModels.js getAll : ', err);

@@ -13,11 +13,11 @@
   </div>
 
   <div>
-    <ul ng-repeat="wishlist in data.wishlists" ng-click="show(wishlist, $index)">
+    <ul ng-repeat="wishlist in data.wishlists" ng-click="show(wishlist, $index); expand = !expand">
       <li><strong>{{wishlist.name}}</strong></li>
       <li ng-show="expand">
         <ul>
-          <li ng-repeat="item in data.items">{{FILL_ME_IN ITEMS}}</li>
+          <li ng-repeat="item in data.items">{{item.name}}</li>
         </ul>
       </li>
     </ul>

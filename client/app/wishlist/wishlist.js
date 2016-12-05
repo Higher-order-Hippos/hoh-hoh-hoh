@@ -12,7 +12,9 @@ angular.module('hoh.wishlist', [])
   $scope.show = (list) => {
     Item.getAllItems(list)
       .then((items) => {
-        $scope.data.items = items;
+        const id = list.id;
+        $scope.data.items[id] = items;
+        console.log($scope.data.items);
       });
   };
 

@@ -4,7 +4,7 @@ module.exports = {
 
   items: {
     get: function (req, res) {
-      var params = req.body.list;
+      var params = req.body.id;
       itemModel.items.getAll(params, function(results) {
         console.log('database query result: ', results);
         res.json(results);

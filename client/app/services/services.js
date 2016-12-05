@@ -25,14 +25,14 @@ angular.module('hoh.services', [])
 })
 
 .factory('Item', ($http) => {
-  const getAllItems = (list) => $http({
-    method: 'POST',
-    url: '/api/item/get',
-    data: {
-      list: list.name,
-    },
-  })
+  const getAllItems = ({ id }) => {
+    return $http({
+      method: 'POST',
+      url: '/api/item/get',
+      data: { id },
+    })
     .then((resp) => resp.data);
+  }
 
   return { getAllItems };
 });

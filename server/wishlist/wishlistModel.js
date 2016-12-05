@@ -37,7 +37,7 @@ module.exports = {
       })
     },
 
-    deleteOne: function(params, callback) {
+    deleteList: function(params, callback) {
       var queryStr = 'DELETE FROM wishlists WHERE name=?';
       db.query(queryStr, params, function(err, results) {
         if (err) {

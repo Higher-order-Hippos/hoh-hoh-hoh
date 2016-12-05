@@ -7,7 +7,7 @@ module.exports = {
       // TODO In the future, may need to sanitize params to exclude special characters including double quotation marks
       db.query(queryStr, params, function(err, results) {
         if (err) {
-          console.log('Error in server/wishlist/wishlistModels.js getAll : ', err);
+          console.log('Error in server/item/wishlistModels.js getAll : ', err);
         } else {
           callback(results);
         }
@@ -15,14 +15,32 @@ module.exports = {
   },
 
     addOne: function(params, callback) {
-      var queryStr = 'INSERT INTO items (name, wishlistId) VALUES (?, ?)'; //TODO how to convert wishlist name to wishlist ID??
+      var queryStr = 'INSERT INTO items (name, item_id) VALUES (?, ?)'; //TODO how to convert wishlist name to wishlist ID??
       db.query(queryStr, params, function(err, results) {
         callback(err, results);
       });
     },
 
-    deleteOne: function(params, callback) {
+    renameItem: function(params, callback) {
+      var queryStr = 'UPDATE items SET name=? WHERE name=?'; // TODO check please
+      db.query(queryStr, params, function(err, results) {
+        if (err) {
+          console.log('Error in server/item/wishlistModel.js renameList : ', err);
+        } else {
+          callback(results);
+        }
+      })
+    },
 
+    deleteItem: function(params, callback) {
+      var queryStr = 'DELETE FROM items WHERE name=?';
+      db.query(queryStr, params, function(err, results) {
+        if (err) {
+          console.log('Error in server/item/wishlistModel.js deleteOne : ', err);
+        } else {
+          callback(results);
+        }
+      })
     }
   }
 

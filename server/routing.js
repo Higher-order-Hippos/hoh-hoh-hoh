@@ -1,9 +1,9 @@
 var path = require('path');
 var wishlistController = require('./wishlist/wishlistController');
 var itemController = require('./item/itemController');
+var session = require('express-session');
 
 var passport = require('passport');
-var flash    = require('connect-flash');
 
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
@@ -22,7 +22,6 @@ module.exports = function (app, express) {
   app.use(session({ secret: 'hohlife' })); // session secret
   app.use(passport.initialize());
   app.use(passport.session()); // persistent login sessions
-  app.use(flash()); // use connect-flash for flash messages stored in session
 
   //requests for home page, with auth check
   app.get('/logout', function(req, res) {
@@ -63,7 +62,6 @@ module.exports = function (app, express) {
            }
        });
    }));
-};
 
   //requests for wishlists
   app.get('/api/wishlist', wishlistController.wishlists.get);

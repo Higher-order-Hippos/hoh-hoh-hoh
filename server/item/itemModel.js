@@ -15,7 +15,7 @@ module.exports = {
   },
 
     addOne: function(params, callback) {
-      var queryStr = 'INSERT INTO items (name, wishlistId) VALUES (?, ?)'; //TODO how to convert wishlist name to wishlist ID??
+      var queryStr = 'INSERT INTO items (name, wishlistId) VALUES (?, ?)';
       db.query(queryStr, params, function(err, results) {
         callback(err, results);
       });

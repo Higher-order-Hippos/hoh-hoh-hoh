@@ -1,10 +1,10 @@
-var mysql = require('mysql');
+const mysql = require('mysql');
 
-var connection = mysql.createConnection({
+const connection = mysql.createConnection({
   host: 'mysqlcluster2.registeredsite.com',
   user: 'hohohadmin',
   password: '!Qaz2wsx3edc',
-  database: 'hohohoh'
+  database: 'hohohoh',
 });
 
 connection.connect();

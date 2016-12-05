@@ -1,7 +1,6 @@
-var wishlistModel = require('./wishlistModel.js');
+const wishlistModel = require('./wishlistModel');
 
 module.exports = {
-
   wishlists: {
     get(req, res) {
       wishlistModel.wishlists.getAll((results) => {
@@ -9,26 +8,25 @@ module.exports = {
       });
     },
 
-    post(req, res) {
-      const params = req.body.name;
+    post({ body }, res) {
+      const params = body.name;
       wishlistModel.wishlists.addOne(params, () => {
         res.sendStatus(201);
       });
     },
 
-    rename(req, res) {
-      const params = [req.body.newName, req.body.list];
+    rename({ body }, res) {
+      const params = [body.newName, body.list];
       wishlistModel.wishlists.renameList(params, () => {
         res.sendStatus(201);
-      })
+      });
     },
 
-    delete(req, res) {
-      const params = req.body.wishlistId;
+    delete({ body }, res) {
+      const params = body.wishlistId;
       wishlistModel.wishlists.deleteList(params, () => {
         res.sendStatus(201);
-      })
-    }
-  }
-
-}
+      });
+    },
+  },
+};

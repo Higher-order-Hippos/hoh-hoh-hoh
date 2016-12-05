@@ -21,44 +21,49 @@ module.exports = (app, express) => {
   app.use(passport.session()); // persistent login sessions
 
   // requests for home page, with auth check
-  app.get('/logout', function(req, res) {
-      req.logout();
-      res.redirect('/');
+  app.get('/logout', (req, res) => {
+    req.logout();
+    res.redirect('/');
   });
+
   app.post('/signup', passport.authenticate('local-signup', {
-      successRedirect : '/', // redirect to the secure profile section
-      failureRedirect : '/signup', // redirect back to the signup page if there is an error
-      failureFlash : true // allow flash messages
+    successRedirect: '/', // redirect to the secure profile section
+    failureRedirect: '/signup', // redirect back to the signup page if there is an error
+    failureFlash: true, // allow flash messages
   }));
+
   app.post('/login', passport.authenticate('local-login', {
-      successRedirect : '/', // redirect to the secure profile section
-      failureRedirect : '/login', // redirect back to the signup page if there is an error
-      failureFlash : true // allow flash messages
+    successRedirect: '/', // redirect to the secure profile section
+    failureRedirect: '/login', // redirect back to the signup page if there is an error
+    failureFlash: true, // allow flash messages
   }));
 
   passport.use('local-signup', new LocalStrategy(
-   function(req, res, done) {
-       User.findOne({ 'username' :  username }, function(err, user) {
-           // if there are any errors, return the error
-           if (err)
-               return done(err);
-           // check to see if theres already a user
-           if (user) {
-               return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
-           } else {
-               var newUser = new User();
-               // set the user's local credentials
-               newUser.local.email    = email;
-               newUser.local.password = newUser.generateHash(password);
-               // save the user
-               newUser.save(function(err) {
-                   if (err)
-                       throw err;
-                   return done(null, newUser);
-               });
-           }
-       });
-   }));
+    function(req, res, done) {
+      User.findOne({ 'username': username }, (err, user) => {
+
+        // if there are any errors, return the error
+        if (err) return done(err);
+
+        // check to see if theres already a user
+        if (user) {
+          return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+        } else {
+          const newUser = new User();
+
+          // set the user's local credentials
+          newUser.local.email = email;
+          newUser.local.password = newUser.generateHash(password);
+
+          // save the user
+          newUser.save(function(err) {
+            if (err)
+              throw err;
+            return done(null, newUser);
+          });
+        }
+      });
+    }));
 
   app.get('/api/wishlist', wishlistController.wishlists.get);
   app.post('/api/wishlist', wishlistController.wishlists.post);
@@ -73,7 +78,6 @@ module.exports = (app, express) => {
 };
 
 function isLoggedIn(req, res, next) {
-    if (req.isAuthenticated())
-        return next();
-    res.redirect('/');
+  if (req.isAuthenticated()) return next();
+  res.redirect('/');
 }

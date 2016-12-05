@@ -17,7 +17,7 @@ module.exports = {
     },
 
     rename: function(req, res) {
-      var params = [req.body.itemvar, req.body.name]; //TODO need new name and old name
+      var params = [req.body.newName, req.body.list];
       wishlistModel.wishlists.renameList(params, function() {
         res.sendStatus(201);
       })

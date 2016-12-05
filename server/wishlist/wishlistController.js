@@ -17,18 +17,18 @@ module.exports = {
     },
 
     rename: function(req, res) {
-      var params = FILL_ME_IN; //TODO need new name and old name
+      var params = [req.body.itemvar, req.body.name]; //TODO need new name and old name
       wishlistModel.wishlists.renameList(params, function() {
         res.sendStatus(201);
       })
     },
 
     delete: function(req, res) {
-      var params = FILL_ME_IN; //TODO name of wishlist you want to delete
-      wishlistModel.wishlists.deleteOne(params, function() {
+      var params = req.body.name; //TODO name of wishlist you want to delete
+      wishlistModel.wishlists.deleteList(params, function() {
         res.sendStatus(201);
       })
     }
-  },
+  }
 
 }

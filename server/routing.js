@@ -13,7 +13,11 @@ module.exports = function (app, express) {
   //requests for wishlists
   app.get('/api/wishlist', wishlistController.wishlists.get);
   app.post('/api/wishlist', wishlistController.wishlists.post);
+  app.post('/api/wishlist/rename', wishlistController.wishlists.rename);
+  app.delete('/api/wishlist', wishlistController.wishlists.delete);
   // //requests for items
   app.post('/api/item/get', itemController.items.get);
   app.post('/api/item', itemController.items.post);
+  app.post('/api/item/rename', itemController.items.rename);
+  app.delete('/api/item', itemController.items.delete);
 };

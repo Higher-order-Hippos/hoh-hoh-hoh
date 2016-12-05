@@ -10,12 +10,27 @@ module.exports = {
         res.json(results);
       });
     },
+
     post: function (req, res) {
       var params = []; //TODO item name and wishlist name
       itemModel.items.addOne(params, function(err, results) {
         res.sendStatus(201);
       });
+    },
+
+    rename: function (req, res) {
+      var params = []; //TODO item name and wishlist name
+      itemModel.items.renameItem(params, function(err, results) {
+        res.sendStatus(201);
+      });
+    },
+
+    delete: function (req, res) {
+      var params = []; //TODO item name and wishlist name
+      itemModel.items.deleteItem(params, function(err, results) {
+        res.sendStatus(201);
+      });
     }
-  },
+  }
 
 }

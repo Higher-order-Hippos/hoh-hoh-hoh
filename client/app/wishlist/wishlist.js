@@ -14,7 +14,6 @@ angular.module('hoh.wishlist', [])
       .then((items) => {
         const id = list.id;
         $scope.data.items[id] = items;
-        console.log($scope.data.items);
       });
   };
 

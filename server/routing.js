@@ -1,21 +1,11 @@
-<<<<<<< HEAD
-var path = require('path');
-var wishlistController = require('./wishlist/wishlistController');
-var itemController = require('./item/itemController');
-var session = require('express-session');
-
-var passport = require('passport');
-
-var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
-
-var LocalStrategy = require('passport-local').Strategy;
-=======
-const bodyParser = require('body-parser');
 const path = require('path');
 const wishlistController = require('./wishlist/wishlistController');
 const itemController = require('./item/itemController');
->>>>>>> refactor01
+const session = require('express-session');
+const passport = require('passport');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const LocalStrategy = require('passport-local').Strategy;
 
 module.exports = (app, express) => {
   app.use(bodyParser.urlencoded({ extended: true }));
@@ -25,13 +15,12 @@ module.exports = (app, express) => {
   app.use(express.static(path.join(__dirname, '/../client/app')));
   app.use(express.static(path.join(__dirname, '/../node_modules')));
 
-<<<<<<< HEAD
-  //required for passport
+  // required for passport
   app.use(session({ secret: 'hohlife' })); // session secret
   app.use(passport.initialize());
   app.use(passport.session()); // persistent login sessions
 
-  //requests for home page, with auth check
+  // requests for home page, with auth check
   app.get('/logout', function(req, res) {
       req.logout();
       res.redirect('/');
@@ -71,10 +60,6 @@ module.exports = (app, express) => {
        });
    }));
 
-  //requests for wishlists
-=======
-  // requests for wishlists
->>>>>>> refactor01
   app.get('/api/wishlist', wishlistController.wishlists.get);
   app.post('/api/wishlist', wishlistController.wishlists.post);
   app.post('/api/wishlist/rename', wishlistController.wishlists.rename);

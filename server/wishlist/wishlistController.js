@@ -8,22 +8,22 @@ module.exports = {
       });
     },
 
-    post({ body }, res) {
-      const params = body.name;
+    post({ body: { name } }, res) {
+      const params = name;
       wishlistModel.wishlists.addOne(params, () => {
         res.sendStatus(201);
       });
     },
 
-    rename({ body }, res) {
-      const params = [body.newName, body.list];
+    rename({ body: { newName, list } }, res) {
+      const params = [newName, list];
       wishlistModel.wishlists.renameList(params, () => {
         res.sendStatus(201);
       });
     },
 
-    delete({ body }, res) {
-      const params = body.wishlistId;
+    delete({ body: { wishlistId } }, res) {
+      const params = wishlistId;
       wishlistModel.wishlists.deleteList(params, () => {
         res.sendStatus(201);
       });

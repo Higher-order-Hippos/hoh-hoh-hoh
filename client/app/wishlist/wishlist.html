@@ -1,7 +1,7 @@
 <div>
   <div>
     <h3>ADD A WISHLIST!</h3>
-    <form name='wishlist' ng-submit="add()">
+    <form name='wishlist' ng-submit="addList()">
       <input
         type='text',
         name='wishlist',
@@ -14,9 +14,7 @@
 
   <div>
     <ul ng-repeat="wishlist in data.wishlists">
-      <li ng-click="show(wishlist); expand = !expand"><strong>{{wishlist.name}}</strong></li>
-
-<!-- Edit list name button -->
+      <li ng-click="getAllItems(wishlist); expand = !expand"><strong>{{wishlist.name}}</strong></li>
       <button type='submit' ng-click='renaming = !renaming'>Edit</button>
         <div ng-show='renaming'>
           <form name='rename'>
@@ -28,7 +26,6 @@
             <button type="submit" ng-click="editListName(renameList, wishlist)">Submit</button>
           </form>
         </div>
-
       <li ng-show="expand">
         <ul>
           <form name='item' ng-submit="addItem(itemName, wishlist)">
@@ -39,7 +36,10 @@
             />
             <button type="submit">Add</button>
           </form>
-          <li ng-repeat="item in data.items[wishlist.id]">{{item.name}}</li>
+          <li ng-repeat="item in data.items[wishlist.id]">
+            {{item.name}}
+            <button type="button" ng-click='deleteItem(wishlist, item.id)'/> X </button>
+          </li>
         </ul>
       </li>
     </ul>

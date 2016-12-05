@@ -17,16 +17,14 @@ angular.module('hoh.services', [])
   const renameList = (newName, list) => $http({
     method: 'POST',
     url: '/api/wishlist/rename',
-    data: { newName, list }
+    data: { newName, list },
   })
-    .then(function(resp){
-      return resp.data
-    });
+    .then((resp) => resp.data);
 
-  const deleteList = (name) => $http({
-    method: 'DELETE',
-    url: '/api/wishlist',
-    data: { name },
+  const deleteList = (wishlistId) => $http({
+    method: 'POST',
+    url: '/api/wishlist/delete',
+    data: { wishlistId },
   })
     .then((resp) => resp.data);
 

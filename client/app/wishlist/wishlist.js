@@ -17,6 +17,13 @@ angular.module('hoh.wishlist', [])
       });
   };
 
+  $scope.deleteList = ({ id }) => {
+    Wishlist.deleteList(id)
+      .then(() => {
+        $scope.getAllList();
+      });
+  };
+
   $scope.getAllList = () => {
     Wishlist.getAllList()
       .then((wishlists) => {

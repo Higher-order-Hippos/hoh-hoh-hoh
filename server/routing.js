@@ -14,7 +14,7 @@ module.exports = function (app, express) {
   app.get('/api/wishlist', wishlistController.wishlists.get);
   app.post('/api/wishlist', wishlistController.wishlists.post);
   app.post('/api/wishlist/rename', wishlistController.wishlists.rename);
-  app.delete('/api/wishlist', wishlistController.wishlists.delete);
+  app.post('/api/wishlist/delete', wishlistController.wishlists.delete);
   // //requests for items
   app.post('/api/item/get', itemController.items.get);
   app.post('/api/item', itemController.items.post);

@@ -1,5 +1,9 @@
+.page-header {
+  font-family: 'Lobster';
+}
+
 body {
-  font-family: sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 @font-face {

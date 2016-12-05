@@ -13,14 +13,14 @@ module.exports = {
       });
     },
 
-    addOne (params, callback) {
+    addOne(params, callback) {
       const queryStr = 'INSERT INTO items (name, id_wishlists) VALUES (?, ?)';
       db.query(queryStr, params, (err, results) => {
         callback(err, results);
       });
     },
 
-    renameItem (params, callback) {
+    renameItem(params, callback) {
       const queryStr = 'UPDATE items SET name=? WHERE name=?'; // TODO check please
       db.query(queryStr, params, (err, results) => {
         if (err) {
@@ -31,7 +31,7 @@ module.exports = {
       });
     },
 
-    deleteItem (params, callback) {
+    deleteItem(params, callback) {
       const queryStr = 'DELETE FROM items WHERE name=?';
       db.query(queryStr, params, (err, results) => {
         if (err) {

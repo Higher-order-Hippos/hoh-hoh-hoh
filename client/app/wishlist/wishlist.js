@@ -20,9 +20,13 @@ angular.module('hoh.wishlist', [])
   $scope.getAll = () => {
     Wishlist.getAllList()
       .then((wishlists) => {
-        console.log('receiving wishlist to FE: ', wishlists);
         $scope.data.wishlists = wishlists;
       });
+  };
+
+  $scope.addItem = (name, wishlist) => {
+    Item.addItemToList(name, wishlist.id)
+      .then(() => $scope.show(wishlist));
   };
 
   $scope.getAll();

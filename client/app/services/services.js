@@ -38,9 +38,24 @@ angular.module('hoh.services', [])
     });
   };
 
+  var deleteList = function (name) {
+    return $http({
+      method: 'DELETE',
+      url: '/api/wishlist',
+      data: {
+        name: name,
+      }
+    })
+    .then(function(resp) {
+      return resp.data;
+    });
+  };
+
+
   return {
     addList: addList,
     getItemsfromWishList: getItemsfromWishList,
-    getAllList: getAllList
+    getAllList: getAllList,
+    deleteList: deleteList
   };
 });

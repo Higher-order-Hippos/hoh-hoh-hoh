@@ -21,7 +21,7 @@ module.exports = {
     },
 
     renameItem(params, callback) {
-      const queryStr = 'UPDATE items SET name=? WHERE name=?'; // TODO check please
+      const queryStr = 'UPDATE items SET name=? WHERE id=?';
       db.query(queryStr, params, (err, results) => {
         if (err) {
           console.log('Error in server/item/wishlistModel.js renameList : ', err);

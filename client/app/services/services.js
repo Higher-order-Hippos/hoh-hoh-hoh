@@ -48,8 +48,14 @@ angular.module('hoh.services', [])
     })
       .then((resp) => resp.data);
 
+  const editItem = (name, item) => $http({
+    method: 'POST',
+    url: '/api/item/rename',
+    data: { name, item }
+  })
+    .then((resp) => resp.data);
+
   const deleteItemFromList = (itemId) => {
-    console.log('++++++++++++', itemId);
     return $http({
         method: 'POST',
         url: '/api/item/delete',
@@ -61,5 +67,5 @@ angular.module('hoh.services', [])
         });
   };
 
-  return { getAllItems, addItemToList, deleteItemFromList };
+  return { getAllItems, addItemToList, editItem, deleteItemFromList };
 });

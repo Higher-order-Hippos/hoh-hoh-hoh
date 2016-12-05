@@ -12,7 +12,7 @@ angular.module('hoh.wishlist', [])
   };
 
   $scope.show = function (list, index) {
-    Wishlist.getItemsfromWishList(list, list.$$hashKey)
+    Wishlist.getItemsfromWishList(list, list.id)
       .then(function (items) {
         // TODO: USE AN UNIQUE KEY (WISHLIST ID FROM DATABASE) TO STORE.
         $scope.data.items = items;

@@ -17,6 +17,14 @@
       <li><strong>{{wishlist.name}}</strong></li>
       <li ng-show="expand">
         <ul>
+          <form name='item'>
+            <input
+              type='text',
+              name='item',
+              ng-model='item',
+            />
+            <button type="submit">Add</button>
+          </form>
           <li ng-repeat="item in data.items">{{item.name}}</li>
         </ul>
       </li>

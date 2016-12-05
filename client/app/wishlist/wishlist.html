@@ -26,9 +26,8 @@
   <div>
     <div name="wishlist" ng-repeat="wishlist in data.wishlists" class='well'>
       <div ng-click="getAllItems(wishlist); expand = !expand"><strong>{{wishlist.name}}</strong></div>
-      <button type='submit' ng-click='renaming = !renaming'>Edit</button>
-      <span class="glyphicons glyphicons-pencil" ng-click='renaming = !renaming'></span>
-      <button type="button" ng-click='deleteList(wishlist)'/> X </button>
+      <i class="fa fa-pencil-square-o" aria-hidden="true" ng-click='renaming = !renaming'></i>
+      <i class="fa fa-times" aria-hidden="true" ng-click='deleteList(wishlist)'></i>
         <div ng-show='renaming'>
           <form name='rename'>
             <input
@@ -41,17 +40,17 @@
         </div>
       <div ng-show="expand">
         <div>
-          <form name='item' ng-submit="addItem(itemName, wishlist)">
+          <form name='item'>
             <input
               type='text',
               name='item',
               ng-model='itemName',
             />
-            <button type="submit">Add</button>
+            <i class="fa fa-plus" aria-hidden="true" ng-click="addItem(itemName, wishlist)"></i>
           </form>
           <div ng-repeat="item in data.items[wishlist.id]">
             {{item.name}}
-            <button type='submit' ng-click='itemRenaming = !itemRenaming'>Edit</button>
+            <i class="fa fa-pencil-square-o" aria-hidden="true" ng-click='itemRenaming = !itemRenaming'></i>
               <div ng-show='itemRenaming'>
                 <form name='renameItem'>
                   <input
@@ -62,7 +61,7 @@
                   <button type="submit" ng-click="editItem(newItemName, item.id, wishlist)">Submit</button>
                 </form>
               </div>
-            <button type="button" ng-click='deleteItem(wishlist, item.id)'/> X </button>
+            <i class="fa fa-times" aria-hidden="true" ng-click='deleteItem(wishlist, item.id)'></i>
           </div>
         </div>
       </div>

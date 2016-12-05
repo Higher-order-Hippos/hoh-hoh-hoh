@@ -1,9 +1,10 @@
 angular.module('hoh', [
   'hoh.wishlist',
   'hoh.services',
-  'ngRoute'
+  'ngRoute',
 ])
-.config(function ($routeProvider) {
+
+.config(($routeProvider) => {
   $routeProvider
     .when('/', {
       templateUrl: 'wishlist/wishlist.html',

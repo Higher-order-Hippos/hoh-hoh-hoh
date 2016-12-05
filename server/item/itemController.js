@@ -11,7 +11,7 @@ module.exports = {
     },
 
     post(req, res) {
-      const params = []; //TODO item name and wishlist name
+      const params = [req.body.name, req.body.id]; //TODO item name and wishlist name
       itemModel.items.addOne(params, (err, results) => {
         res.sendStatus(201);
       });

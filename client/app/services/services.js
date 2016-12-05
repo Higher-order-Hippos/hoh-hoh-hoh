@@ -12,7 +12,10 @@ angular.module('hoh.services', [])
     url: '/api/wishlist',
     data: { name },
   })
-    .then((resp) => resp.data);
+    .then((resp) => {
+      console.log('adding list: ', resp.data);
+      return resp.data;
+    });
 
   const deleteList = (name) => $http({
     method: 'DELETE',
@@ -25,14 +28,19 @@ angular.module('hoh.services', [])
 })
 
 .factory('Item', ($http) => {
-  const getAllItems = ({ id }) => {
-    return $http({
-      method: 'POST',
-      url: '/api/item/get',
-      data: { id },
-    })
+  const getAllItems = ({ id }) => $http({
+    method: 'POST',
+    url: '/api/item/get',
+    data: { id },
+  })
     .then((resp) => resp.data);
-  }
 
-  return { getAllItems };
+  const addItemToList = (name, id) => $http({
+      method: 'POST',
+      url: '/api/item',
+      data: { name, id },
+    })
+      .then((resp) => resp.data);
+
+  return { getAllItems, addItemToList };
 });

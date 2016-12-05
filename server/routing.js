@@ -19,5 +19,5 @@ module.exports = function (app, express) {
   app.post('/api/item/get', itemController.items.get);
   app.post('/api/item', itemController.items.post);
   app.post('/api/item/rename', itemController.items.rename);
-  app.delete('/api/item', itemController.items.delete);
+  app.post('/api/item/delete', itemController.items.delete);
 };

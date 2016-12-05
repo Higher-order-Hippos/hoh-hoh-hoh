@@ -3,6 +3,7 @@ var itemModel = require('./itemModel.js');
 module.exports = {
   items: {
     get(req, res) {
+      console.log('getting items from wishlist id: ', req.body.id);
       const params = req.body.id;
       itemModel.items.getAll(params, (results) => {
         console.log('database query result: ', results);
@@ -25,7 +26,8 @@ module.exports = {
     },
 
     delete(req, res) {
-      const params = []; //TODO item name and wishlist name
+      console.log('passing item id: ', req.body.itemId, 'to delete');
+      const params = req.body.itemId;
       itemModel.items.deleteItem(params, (err, results) => {
         res.sendStatus(201);
       });

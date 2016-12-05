@@ -4,20 +4,20 @@ angular.module('hoh.wishlist', [])
   $scope.data = {};
   $scope.data.items = {};
 
-  $scope.add = () => {
+  $scope.addList = () => {
     Wishlist.addList($scope.wishlistName)
-      .then(() => $scope.getAll());
+      .then(() => $scope.getAllList());
   };
 
-  $scope.show = (list) => {
-    Item.getAllItems(list)
+  $scope.getAllItems = (wishlist) => {
+    Item.getAllItems(wishlist)
       .then((items) => {
-        const id = list.id;
+        const id = wishlist.id;
         $scope.data.items[id] = items;
       });
   };
 
-  $scope.getAll = () => {
+  $scope.getAllList = () => {
     Wishlist.getAllList()
       .then((wishlists) => {
         $scope.data.wishlists = wishlists;
@@ -31,8 +31,13 @@ angular.module('hoh.wishlist', [])
 
   $scope.addItem = (name, wishlist) => {
     Item.addItemToList(name, wishlist.id)
-      .then(() => $scope.show(wishlist));
+      .then(() => $scope.getAllItems(wishlist));
   };
 
-  $scope.getAll();
+  $scope.deleteItem = (wishlist, itemId) => {
+    Item.deleteItemFromList(itemId)
+      .then(() => $scope.getAllItems(wishlist));
+  };
+
+  $scope.getAllList();
 });

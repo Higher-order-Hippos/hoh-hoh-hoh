@@ -3,7 +3,7 @@ const db = require('../database/config');
 module.exports = {
   items: {
     getAll(params, callback) {
-      const queryStr = "SELECT name FROM items WHERE id_wishlists = ?";
+      const queryStr = "SELECT name, id FROM items WHERE id_wishlists = ?";
       db.query(queryStr, params, (err, results) => {
         if (err) {
           console.log('Error in server/item/wishlistModels.js getAll : ', err);
@@ -32,7 +32,7 @@ module.exports = {
     },
 
     deleteItem(params, callback) {
-      const queryStr = 'DELETE FROM items WHERE name=?';
+      const queryStr = 'DELETE FROM items WHERE id = ?';
       db.query(queryStr, params, (err, results) => {
         if (err) {
           console.log('Error in server/item/wishlistModel.js deleteOne : ', err);

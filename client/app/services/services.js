@@ -13,8 +13,16 @@ angular.module('hoh.services', [])
     data: { name },
   })
     .then((resp) => {
-      console.log('adding list: ', resp.data);
       return resp.data;
+    });
+
+  const renameList = (newName, list) => $http({
+    method: 'POST',
+    url: '/api/wishlist/rename',
+    data: { newName, list }
+  })
+    .then(function(resp){
+      return resp.data
     });
 
   const deleteList = (name) => $http({
@@ -24,7 +32,7 @@ angular.module('hoh.services', [])
   })
     .then((resp) => resp.data);
 
-  return { addList, getAllList, deleteList };
+  return { addList, getAllList, renameList, deleteList };
 })
 
 .factory('Item', ($http) => {

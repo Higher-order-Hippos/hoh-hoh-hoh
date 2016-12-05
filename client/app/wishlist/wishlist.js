@@ -24,6 +24,11 @@ angular.module('hoh.wishlist', [])
       });
   };
 
+  $scope.editListName = (newName, wishlist) => {
+    Wishlist.renameList(newName, wishlist.id)
+      .then(() => $scope.getAll());
+  };
+
   $scope.addItem = (name, wishlist) => {
     Item.addItemToList(name, wishlist.id)
       .then(() => $scope.show(wishlist));

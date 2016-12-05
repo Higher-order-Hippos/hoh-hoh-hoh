@@ -9,7 +9,6 @@ module.exports = {
         if (err) {
           console.log('Error in server/wishlist/wishlistModels.js getAll : ', err);
         } else {
-          console.log('RESULTS ON WISHLISTS GET ALL : ', results);
           callback(results);
         }
       })
@@ -28,7 +27,7 @@ module.exports = {
     },
 
     renameList: function(params, callback) {
-      var queryStr = 'UPDATE wishlists SET name=? WHERE name=?'; // TODO check please
+      var queryStr = 'UPDATE wishlists SET name=? WHERE id=?';
       db.query(queryStr, params, function(err, results) {
         if (err) {
           console.log('Error in server/wishlist/wishlistModel.js renameList : ', err);

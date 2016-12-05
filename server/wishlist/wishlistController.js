@@ -3,29 +3,29 @@ var wishlistModel = require('./wishlistModel.js');
 module.exports = {
 
   wishlists: {
-    get: function (req, res) {
-      wishlistModel.wishlists.getAll(function(results) {
+    get(req, res) {
+      wishlistModel.wishlists.getAll((results) => {
         res.json(results);
       });
     },
 
-    post: function (req, res) {
-      var params = req.body.name;
-      wishlistModel.wishlists.addOne(params, function() {
+    post(req, res) {
+      const params = req.body.name;
+      wishlistModel.wishlists.addOne(params, () => {
         res.sendStatus(201);
       });
     },
 
-    rename: function(req, res) {
-      var params = [req.body.newName, req.body.list];
-      wishlistModel.wishlists.renameList(params, function() {
+    rename(req, res) {
+      const params = [req.body.newName, req.body.list];
+      wishlistModel.wishlists.renameList(params, () => {
         res.sendStatus(201);
       })
     },
 
-    delete: function(req, res) {
-      var params = req.body.name; //TODO name of wishlist you want to delete
-      wishlistModel.wishlists.deleteList(params, function() {
+    delete(req, res) {
+      const params = req.body.wishlistId;
+      wishlistModel.wishlists.deleteList(params, () => {
         res.sendStatus(201);
       })
     }

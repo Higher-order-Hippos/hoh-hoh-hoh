@@ -38,15 +38,22 @@ module.exports = {
     },
 
     deleteList: function(params, callback) {
-      var queryStr = 'DELETE FROM wishlists WHERE name=?';
+      var queryStr = 'DELETE FROM items WHERE id_wishlists = ?';
+      var queryStr2 = 'DELETE FROM wishlists WHERE id = ?';
       db.query(queryStr, params, function(err, results) {
         if (err) {
           console.log('Error in server/wishlist/wishlistModel.js deleteOne : ', err);
         } else {
-          callback(results);
+          db.query(queryStr2, params, function(err, results) {
+            if (err) {
+              console.log('Error in server/wishlist/wishlistModel.js deleting wishlist: ', err)
+            } else {
+              callback(results);
+            }
+          });
         }
-      })
-    }
-  }
+      });
+    },
+  },
 
-}
+};

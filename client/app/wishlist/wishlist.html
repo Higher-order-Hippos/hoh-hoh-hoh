@@ -1,10 +1,10 @@
 <div>
   <div>
     <h3>ADD A WISHLIST!</h3>
-    <form name='wishlist' ng-submit="addList()">
+    <form name='addWishlist' ng-submit="addList()">
       <input
         type='text',
-        name='wishlist',
+        name='addWishlist',
         ng-model='wishlistName',
         placeholder="Eg.) Birthday, Christmas",
       />
@@ -13,9 +13,10 @@
   </div>
 
   <div>
-    <ul ng-repeat="wishlist in data.wishlists">
+    <ul name="wishlist" ng-repeat="wishlist in data.wishlists">
       <li ng-click="getAllItems(wishlist); expand = !expand"><strong>{{wishlist.name}}</strong></li>
       <button type='submit' ng-click='renaming = !renaming'>Edit</button>
+      <button type="button" ng-click='deleteList(wishlist)'/> X </button>
         <div ng-show='renaming'>
           <form name='rename'>
             <input

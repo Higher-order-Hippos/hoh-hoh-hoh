@@ -4,11 +4,12 @@ var db = require('../database/config');
 module.exports = {
   wishlists: {
     getAll: function(callback) {
-      var queryStr = 'SELECT name FROM wishlists'
+      var queryStr = 'SELECT name, id FROM wishlists'
       db.query(queryStr, function(err, results) {
         if (err) {
           console.log('Error in server/wishlist/wishlistModels.js getAll : ', err);
         } else {
+          console.log('RESULTS ON WISHLISTS GET ALL : ', results);
           callback(results);
         }
       })

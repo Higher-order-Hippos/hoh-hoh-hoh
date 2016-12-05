@@ -15,8 +15,6 @@
   <div>
     <ul ng-repeat="wishlist in data.wishlists">
       <li ng-click="getAllItems(wishlist); expand = !expand"><strong>{{wishlist.name}}</strong></li>
-
-<!-- Edit list name button -->
       <button type='submit' ng-click='renaming = !renaming'>Edit</button>
         <div ng-show='renaming'>
           <form name='rename'>
@@ -28,7 +26,6 @@
             <button type="submit" ng-click="editListName(renameList, wishlist)">Submit</button>
           </form>
         </div>
-
       <li ng-show="expand">
         <ul>
           <form name='item' ng-submit="addItem(itemName, wishlist)">

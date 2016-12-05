@@ -1,36 +1,34 @@
 var itemModel = require('./itemModel.js');
 
 module.exports = {
-
   items: {
-    get: function (req, res) {
-      var params = req.body.id;
-      itemModel.items.getAll(params, function(results) {
+    get(req, res) {
+      const params = req.body.id;
+      itemModel.items.getAll(params, (results) => {
         console.log('database query result: ', results);
         res.json(results);
       });
     },
 
-    post: function (req, res) {
-      var params = []; //TODO item name and wishlist name
-      itemModel.items.addOne(params, function(err, results) {
+    post(req, res) {
+      const params = []; //TODO item name and wishlist name
+      itemModel.items.addOne(params, (err, results) => {
         res.sendStatus(201);
       });
     },
 
-    rename: function (req, res) {
-      var params = []; //TODO item name and wishlist name
-      itemModel.items.renameItem(params, function(err, results) {
+    rename(req, res) {
+      const params = []; //TODO item name and wishlist name
+      itemModel.items.renameItem(params, (err, results) => {
         res.sendStatus(201);
       });
     },
 
-    delete: function (req, res) {
-      var params = []; //TODO item name and wishlist name
-      itemModel.items.deleteItem(params, function(err, results) {
+    delete(req, res) {
+      const params = []; //TODO item name and wishlist name
+      itemModel.items.deleteItem(params, (err, results) => {
         res.sendStatus(201);
       });
-    }
-  }
-
-}
+    },
+  },
+};

@@ -19,7 +19,7 @@ module.exports = {
     },
 
     rename(req, res) {
-      const params = []; //TODO item name and wishlist name
+      const params = [req.body.name, req.body.item];
       itemModel.items.renameItem(params, (err, results) => {
         res.sendStatus(201);
       });

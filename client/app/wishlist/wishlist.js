@@ -34,6 +34,11 @@ angular.module('hoh.wishlist', [])
       .then(() => $scope.getAllItems(wishlist));
   };
 
+  $scope.editItem = (name, item, wishlist) => {
+    Item.editItem(name, item)
+      .then(() => $scope.getAllItems(wishlist));
+  };
+
   $scope.deleteItem = (wishlist, itemId) => {
     Item.deleteItemFromList(itemId)
       .then(() => $scope.getAllItems(wishlist));

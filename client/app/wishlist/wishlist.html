@@ -38,6 +38,17 @@
           </form>
           <li ng-repeat="item in data.items[wishlist.id]">
             {{item.name}}
+            <button type='submit' ng-click='itemRenaming = !itemRenaming'>Edit</button>
+              <div ng-show='itemRenaming'>
+                <form name='renameItem'>
+                  <input
+                    type='text',
+                    name='renameItem',
+                    ng-model='newItemName'
+                  />
+                  <button type="submit" ng-click="editItem(newItemName, item.id, wishlist)">Submit</button>
+                </form>
+              </div>
             <button type="button" ng-click='deleteItem(wishlist, item.id)'/> X </button>
           </li>
         </ul>

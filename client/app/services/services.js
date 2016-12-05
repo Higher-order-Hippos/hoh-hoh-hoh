@@ -1,61 +1,38 @@
 angular.module('hoh.services', [])
 
-.factory('Wishlist', function ($http) {
+.factory('Wishlist', ($http) => {
+  const getAllList = () => $http({
+    method: 'GET',
+    url: '/api/wishlist',
+  })
+    .then((resp) => resp.data);
 
-  var getAllList = function () {
-    return $http({
-      method: 'GET',
-      url: '/api/wishlist',
-    })
-    .then(function(resp) {
-      return resp.data;
-    });
-  };
+  const addList = (name) => $http({
+    method: 'POST',
+    url: '/api/wishlist',
+    data: { name },
+  })
+    .then((resp) => resp.data);
 
-  var addList = function (name) {
-    return $http({
-      method: 'POST',
-      url: '/api/wishlist',
-      data: {
-        name: name,
-      }
-    })
-    .then(function (resp) {
-      return resp.data;
-    });
-  };
+  const deleteList = (name) => $http({
+    method: 'DELETE',
+    url: '/api/wishlist',
+    data: { name },
+  })
+    .then((resp) => resp.data);
 
-  var getItemsfromWishList = function (list) {
-    return $http({
-      method: 'POST',
-      url: '/api/item/get',
-      data: {
-        list: list.name
-      }
-    })
-    .then(function (resp) {
-      return resp.data;
-    });
-  };
+  return { addList, getAllList, deleteList };
+})
 
-  var deleteList = function (name) {
-    return $http({
-      method: 'DELETE',
-      url: '/api/wishlist',
-      data: {
-        name: name,
-      }
-    })
-    .then(function(resp) {
-      return resp.data;
-    });
-  };
+.factory('Item', ($http) => {
+  const getAllItems = (list) => $http({
+    method: 'POST',
+    url: '/api/item/get',
+    data: {
+      list: list.name,
+    },
+  })
+    .then((resp) => resp.data);
 
-
-  return {
-    addList: addList,
-    getItemsfromWishList: getItemsfromWishList,
-    getAllList: getAllList,
-    deleteList: deleteList
-  };
+  return { getAllItems };
 });

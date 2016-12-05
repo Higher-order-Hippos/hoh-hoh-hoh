@@ -49,21 +49,16 @@ angular.module('hoh.services', [])
   const editItem = (name, item) => $http({
     method: 'POST',
     url: '/api/item/rename',
-    data: { name, item }
+    data: { name, item },
   })
     .then((resp) => resp.data);
 
-  const deleteItemFromList = (itemId) => {
-    return $http({
-        method: 'POST',
-        url: '/api/item/delete',
-        data: { itemId },
-      })
-        .then((resp) => {
-          console.log(resp);
-          return resp.data;
-        });
-  };
+  const deleteItemFromList = (itemId) => $http({
+    method: 'POST',
+    url: '/api/item/delete',
+    data: { itemId },
+  })
+    .then((resp) => resp.data);
 
   return { getAllItems, addItemToList, editItem, deleteItemFromList };
 });

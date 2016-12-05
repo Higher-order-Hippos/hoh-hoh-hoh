@@ -33,7 +33,7 @@ angular.module('hoh.wishlist', [])
 
   $scope.editListName = (newName, wishlist) => {
     Wishlist.renameList(newName, wishlist.id)
-      .then(() => $scope.getAll());
+      .then(() => $scope.getAllList());
   };
 
   $scope.addItem = (name, wishlist) => {

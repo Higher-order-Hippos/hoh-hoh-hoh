@@ -16,7 +16,11 @@ module.exports = {
     addOne(params, callback) {
       const queryStr = 'INSERT INTO items (name, id_wishlists) VALUES (?, ?)';
       db.query(queryStr, params, (err, results) => {
-        callback(err, results);
+        if (err) {
+          console.log('Error in server/item/wishlistModel.js addOne : ', err);
+        } else {
+          callback(results);
+        }
       });
     },
 

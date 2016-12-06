@@ -96,7 +96,7 @@ angular.module('hoh.services', [])
 
   const signout = function () {
     $window.localStorage.removeItem('com.hohlife'); //TODO
-    $location.path('/signin');
+    $location.path('/login');
   };
 
 

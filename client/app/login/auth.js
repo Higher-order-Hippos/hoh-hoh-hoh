@@ -6,7 +6,7 @@ angular.module('hoh.auth', [])
   $scope.signin = function () {
     Auth.signin($scope.user)
       .then(function (token) {
-        $window.localStorage.setItem('FILL_ME_IN', token); //TODO
+        $window.localStorage.setItem('com.hohlife', token); //TODO
         $location.path('/');
       })
       .catch(function (error) {
@@ -17,7 +17,7 @@ angular.module('hoh.auth', [])
   $scope.signup = function () {
     Auth.signup($scope.user)
       .then(function (token) {
-        $window.localStorage.setItem('FILL_ME_IN', token); //TODO
+        $window.localStorage.setItem('com.hohlife', token); //TODO
         $location.path('/');
       })
       .catch(function (error) {

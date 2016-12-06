@@ -66,44 +66,27 @@ angular.module('hoh.services', [])
 })
 
 /* Auth Factory */
-.factory('Auth', function ($http, $location, $window) {
+.factory('Auth', ($http, $location, $window) => {
+  const signin = (user) => $http({
+    method: 'POST',
+    url: '/api/users/signin',
+    data: user,
+  })
+    .then((resp) => resp.data.token);
 
-  const signin = function (user) {
-    return $http({
-      method: 'POST',
-      url: '/api/users/signin',
-      data: user
-    })
-    .then(function (resp) {
-      return resp.data.token;
-    });
-  };
-
-  const signup = function (user) {
-    return $http({
+  const signup = (user) => $http({
       method: 'POST',
       url: '/api/users/signup',
-      data: user
+      data: user,
     })
-    .then(function (resp) {
-      return resp.data.token;
-    });
-  };
+    .then((resp) => resp.data.token);
 
-  const isAuth = function () {
-    return !!$window.localStorage.getItem('com.hohlife'); //TODO
-  };
+  const isAuth = () => !!$window.localStorage.getItem('com.hohlife'); //TODO
 
-  const signout = function () {
+  const signout = () => {
     $window.localStorage.removeItem('com.hohlife'); //TODO
     $location.path('/login');
   };
 
-
-  return {
-    signin: signin,
-    signup: signup,
-    isAuth: isAuth,
-    signout: signout
-  };
+  return { signin, signup, isAuth, signout };
 });

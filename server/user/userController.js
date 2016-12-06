@@ -1,7 +1,6 @@
 const userModel = require('./userModel');
 const jwt = require('jwt-simple');
 
-
 module.exports = {
   users: {
     signin({ body: { username } }, res, next) {

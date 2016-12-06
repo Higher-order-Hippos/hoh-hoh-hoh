@@ -38,7 +38,9 @@ angular.module('hoh.wishlist', [])
 
   $scope.addItem = (name, wishlist) => {
     Item.addItemToList(name, wishlist.id)
-      .then(() => $scope.getAllItems(wishlist));
+      .then(() => {
+        $scope.getAllItems(wishlist);
+      })
   };
 
   $scope.editItem = (name, item, wishlist) => {

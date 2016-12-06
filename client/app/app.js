@@ -10,7 +10,7 @@ angular.module('hoh', [
     .when('/', {
       templateUrl: 'wishlist/wishlist.html',
       controller: 'WishlistController',
-      authenticate: true
+      authenticate: false
     })
     .when('/signup', {
       templateUrl: 'login/signup.html',

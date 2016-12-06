@@ -1,0 +1,130 @@
+<div>
+  <h3>ADD A WISHLIST!</h3>
+  <div class='row'>
+    <div class="col-lg-6">
+      <div class="input-group">
+        <form name='wishlist'>
+          <input
+            type='text',
+            name='wishlist',
+            ng-model='wishlistName',
+            placeholder="e.g.) Birthday, Christmas",
+            class="form-control",
+          />
+        </form>
+        <span class="input-group-btn">
+          <button type="submit" class="btn btn-default" ng-click="addList()">Add</button>
+        </span>
+      </div> <!-- Closing input-group -->
+    </div> <!-- Closing col-lg-6 -->
+  </div> <!-- Closing row -->
+</div>
+
+<br>
+
+<div>
+    <input type="text" ng-model="search" placeholder="Search"/>
+    <div name="wishlist" ng-repeat="wishlist in data.wishlists | filter:search " class='well container-fluid'>
+    <div class='row'>
+      <div ng-click="getAllItems(wishlist); expand = !expand">
+        <strong>{{wishlist.name}}</strong>
+      </div>
+      <i class="fa fa-pencil-square-o" aria-hidden="true" ng-click='renaming = !renaming'></i>
+      <i class="fa fa-times" aria-hidden="true" ng-click='deleteList(wishlist)'></i>
+    </div> <!-- Closing line 27  <div class='row'> -->
+    <div ng-show='renaming'>
+      <form name='rename'>
+        <input
+          type='text',
+          name='rename',
+          ng-model='renameList'
+        />
+        <button type="submit" ng-click="editListName(renameList, wishlist)">Rename List</button>
+      </form>
+    </div> <!-- Closing <div ng-show='renaming'> -->
+    <div ng-show="expand">
+      <form name='item'>
+        <input
+          type='text',
+          name='item',
+          ng-model='itemName',
+        />
+        <i class="fa fa-plus" aria-hidden="true" ng-click="addItem(itemName, wishlist)"></i>
+      </form>
+      <div ng-repeat="item in data.items[wishlist.id]">
+        {{item.name}}
+        <i class="fa fa-pencil-square-o" aria-hidden="true" ng-click='itemRenaming = !itemRenaming'></i>
+          <div ng-show='itemRenaming'>
+            <form name='renameItem'>
+              <input
+                type='text',
+                name='renameItem',
+                ng-model='newItemName'
+              />
+              <button type="submit" ng-click="editItem(newItemName, item.id, wishlist)">Submit</button>
+            </form>
+<<<<<<< HEAD
+          </div> <!-- Closing <div ng-show='itemRenaming'> -->
+        <i class="fa fa-times" aria-hidden="true" ng-click='deleteItem(wishlist, item.id)'></i>
+      </div> <!-- Closing ng-repeat="item in data.items[wishlist.id]" -->
+    </div> <!-- Closing <div ng-show="expand"> -->
+  </div><!-- Closing row -->
+=======
+            <span class="input-group-btn">
+              <button type="submit" class="btn btn-default" ng-click="addList()">Add</button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<br>
+  <div>
+    <input type="text" ng-model="search" placeholder="Search"/>
+    <div name="wishlist" ng-repeat="wishlist in data.wishlists | filter:search " class='well container-fluid'>
+      <div class='row'>
+        <div ng-click="getAllItems(wishlist); expand = !expand"><strong>{{wishlist.name}}</strong>
+        <i class="fa fa-pencil-square-o" aria-hidden="true" ng-click='renaming = !renaming'></i>
+        <i class="fa fa-times" aria-hidden="true" ng-click='deleteList(wishlist)'></i>
+        </div>
+      </div>
+        <div ng-show='renaming'>
+          <form name='rename'>
+            <input
+              type='text',
+              name='rename',
+              ng-model='renameList'
+            />
+            <button type="submit" ng-click="editListName(renameList, wishlist)">Submit</button>
+          </form>
+        </div>
+      <div ng-show="expand">
+        <div>
+          <form name='item'>
+            <input
+              type='text',
+              name='item',
+              ng-model='itemName',
+            />
+            <i class="fa fa-plus" aria-hidden="true" ng-click="addItem(itemName, wishlist)"></i>
+          </form>
+          <div ng-repeat="item in data.items[wishlist.id]">
+            {{item.name}}
+            <i class="fa fa-pencil-square-o" aria-hidden="true" ng-click='itemRenaming = !itemRenaming'></i>
+              <div ng-show='itemRenaming'>
+                <form name='renameItem'>
+                  <input
+                    type='text',
+                    name='renameItem',
+                    ng-model='newItemName'
+                  />
+                  <button type="submit" ng-click="editItem(newItemName, item.id, wishlist)">Submit</button>
+                </form>
+              </div>
+            <i class="fa fa-times" aria-hidden="true" ng-click='deleteItem(wishlist, item.id)'></i>
+          </div>
+        </div>
+      </div>
+    </div>
+>>>>>>> Added a searchbar for searching wishlists
+</div>

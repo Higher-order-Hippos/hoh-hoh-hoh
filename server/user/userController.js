@@ -1,35 +1,22 @@
 const userModel = require('./userModel');
-const Q = require('q');
 const jwt = require('jwt-simple');
 
 
 module.exports = {
-  signin: function (req, res, next) {
-    var username = req.body.username;
+  users: {
+    signin: function (req, res, next) {
+      var username = req.body.username;
+      userModel.users.getPassword(username, (results) => {
+        console.log('USER CONTROLLER SIGNIN RESULTS : ', results);
+      })
+    },
 
-    userModel.user.getPassword(username, (password) => {
-      if(!password){
-        res.sendStatus(404);
-      } else {
-        res.JSON(password);
-      }
-    })
-  },
+    signup: function (req, res, next) {
+      const params = [req.body.username, req.body.password];
 
-  signup: function (req, res, next) {
-    var username = req.body.username;
-    var password = req.body.password;
-    var params = [username, password];
-
-    userModel.user.findOne(username, (user) => {
-      if(!user){
-        next(new Error('User does not exist'));
-      } else {
-        userModel.user.addOne(params, (added) => {
-
-        })
-      }
-    })
+      userModel.users.addOne(params, (user) => {
+        console.log('USER CONTROLLER SIGNUP RESULTS : ', user);
+      })
+    }
   }
-
 };

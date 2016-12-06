@@ -13,7 +13,6 @@ module.exports = {
           console.log('USER CONTROLLER SIGNIN RESULTS : ', results);
           var token = jwt.encode(username, 'secret');
           res.send({token: token});
-          // res.json(results);
         }
       })
     },

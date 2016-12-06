@@ -15,7 +15,7 @@ angular.module('hoh', [
       templateUrl: 'app/login/signup.html',
       controller: 'AuthController'
     })
-    .when('/login' {
+    .when('/login', {
       templateUrl: 'app/login/login.html',
       controller: 'AuthController'
     })

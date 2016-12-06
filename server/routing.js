@@ -1,11 +1,10 @@
 const path = require('path');
 const wishlistController = require('./wishlist/wishlistController');
 const itemController = require('./item/itemController');
-const userController = require('./user/userController')
+const userController = require('./user/userController');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-
 
 module.exports = (app, express) => {
   app.use(bodyParser.urlencoded({ extended: true }));
@@ -20,8 +19,8 @@ module.exports = (app, express) => {
   app.use(session({
     secret: 'hohlife',
     resave: false,
-    saveUninitialized: false
-   }));
+    saveUninitialized: false,
+  }));
 
   // requests for home page, with auth check
   app.post('/api/users/signin', userController.users.signin);

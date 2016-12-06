@@ -8,6 +8,7 @@ module.exports = {
       var username = req.body.username;
       userModel.users.getPassword(username, (results) => {
         console.log('USER CONTROLLER SIGNIN RESULTS : ', results);
+        res.json(results);
       })
     },
 

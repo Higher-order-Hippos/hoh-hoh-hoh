@@ -6,6 +6,7 @@ angular.module('hoh.auth', [])
   $scope.signin = function () {
     Auth.signin($scope.user)
       .then(function (token) {
+        console.log("We're here!!!! at the signin then")
         $window.localStorage.setItem('com.hohlife', token); //TODO
         $location.path('/');
       })

@@ -5,7 +5,7 @@ angular.module('hoh.wishlist', [])
   $scope.data.items = {};
 
   $scope.addList = () => {
-    Wishlist.addList($scope.wishlistName)
+    Wishlist.addList($scope.newWishlistName)
       .then(() => $scope.getAllList());
   };
 
@@ -40,7 +40,7 @@ angular.module('hoh.wishlist', [])
     Item.addItemToList(name, wishlist.id)
       .then(() => {
         $scope.getAllItems(wishlist);
-      })
+      });
   };
 
   $scope.editItem = (name, item, wishlist) => {

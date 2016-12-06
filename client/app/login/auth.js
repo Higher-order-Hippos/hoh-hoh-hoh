@@ -6,7 +6,7 @@ angular.module('hoh.auth', [])
   $scope.signin = () => {
     Auth.signin($scope.user)
       .then((token) => {
-        console.log("We're here!!!! at the signin then");
+        console.log(token);
         $window.localStorage.setItem('com.hohlife', token); //TODO
         $location.path('/');
       })
@@ -26,7 +26,7 @@ angular.module('hoh.auth', [])
       });
   };
 
-  $scope.signout = function () {
+  $scope.signout = () => {
     Auth.signout();
   };
 });

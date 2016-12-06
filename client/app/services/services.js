@@ -67,18 +67,17 @@ angular.module('hoh.services', [])
 
 /* Auth Factory */
 .factory('Auth', ($http, $location, $window) => {
-  const signin = (user) => $http({
+  const signin = ({ username, password }) => $http({
     method: 'POST',
     url: '/api/users/signin',
-    data: user,
+    data: { username, password },
   })
-    .then((resp) => resp.data.token);
 
-  const signup = (user) => $http({
-      method: 'POST',
-      url: '/api/users/signup',
-      data: user,
-    })
+  const signup = ({ username, password }) => $http({
+    method: 'POST',
+    url: '/api/users/signup',
+    data: { username, password },
+  })
     .then((resp) => resp.data.token);
 
   const isAuth = () => !!$window.localStorage.getItem('com.hohlife'); //TODO

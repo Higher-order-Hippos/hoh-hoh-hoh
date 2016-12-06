@@ -68,7 +68,7 @@ angular.module('hoh.services', [])
 /* Auth Factory */
 .factory('Auth', function ($http, $location, $window) {
 
-  var signin = function (user) {
+  const signin = function (user) {
     return $http({
       method: 'POST',
       url: '/api/users/signin',
@@ -79,7 +79,7 @@ angular.module('hoh.services', [])
     });
   };
 
-  var signup = function (user) {
+  const signup = function (user) {
     return $http({
       method: 'POST',
       url: '/api/users/signup',
@@ -90,12 +90,12 @@ angular.module('hoh.services', [])
     });
   };
 
-  var isAuth = function () {
-    return !!$window.localStorage.getItem('FILL_ME_IN'); //TODO
+  const isAuth = function () {
+    return !!$window.localStorage.getItem('com.hohlife'); //TODO
   };
 
-  var signout = function () {
-    $window.localStorage.removeItem('FILL_ME_IN'); //TODO
+  const signout = function () {
+    $window.localStorage.removeItem('com.hohlife'); //TODO
     $location.path('/signin');
   };
 

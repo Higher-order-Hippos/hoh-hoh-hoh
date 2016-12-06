@@ -1,5 +1,4 @@
 const userModel = require('./userModel');
-const Q = require('q');
 const jwt = require('jwt-simple');
 
 

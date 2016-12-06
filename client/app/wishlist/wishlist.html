@@ -15,7 +15,6 @@
             </form>
             <span class="input-group-btn">
               <button type="submit" class="btn btn-default" ng-click="addList()">Add</button>
-
             </span>
           </div>
         </div>
@@ -24,7 +23,8 @@
   </div>
 <br>
   <div>
-    <div name="wishlist" ng-repeat="wishlist in data.wishlists" class='well container-fluid'>
+    <input type="text" ng-model="search" placeholder="Search"/>
+    <div name="wishlist" ng-repeat="wishlist in data.wishlists | filter:search " class='well container-fluid'>
       <div class='row'>
         <div ng-click="getAllItems(wishlist); expand = !expand"><strong>{{wishlist.name}}</strong>
         <i class="fa fa-pencil-square-o" aria-hidden="true" ng-click='renaming = !renaming'></i>

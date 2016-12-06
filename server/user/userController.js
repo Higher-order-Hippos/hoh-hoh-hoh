@@ -3,14 +3,12 @@ const jwt = require('jwt-simple');
 
 module.exports = {
   users: {
-    signin({ body: { username } }, res, next) {
+    signin({ body: { username } }, res) {
       userModel.users.getPassword(username, (results) => {
         if (results.length === 0) {
           console.log('ERROR no password found');
         } else {
-          console.log('USER CONTROLLER SIGNIN RESULTS : ', results);
-          const token = jwt.encode(username, 'secret');
-          res.send({ token });
+          res.json(results);
         }
       });
     },

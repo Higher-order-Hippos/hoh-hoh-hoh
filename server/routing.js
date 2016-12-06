@@ -24,15 +24,8 @@ module.exports = (app, express) => {
    }));
 
   // requests for home page, with auth check
-  app.get('/');
-
-  app.get('/api/login');
-  app.post('/api/login');
-  app.get('/api/logout');
-
-  app.get('/api/signup');
-  app.post('/api/signup');
-
+  app.post('/api/login', userController.user.loginUser);
+  app.post('/api/signup', userController.user.signupUser);
 
   app.get('/api/wishlist', wishlistController.wishlists.get);
   app.post('/api/wishlist', wishlistController.wishlists.post);

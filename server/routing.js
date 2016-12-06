@@ -16,7 +16,11 @@ module.exports = (app, express) => {
   app.use(express.static(path.join(__dirname, '/../node_modules')));
 
   // required for passport
-  app.use(session({ secret: 'hohlife' })); // session secret
+  app.use(session({
+    secret: 'hohlife',
+    resave: false,
+    saveUninitialized: false
+   }));
   app.use(passport.initialize());
   app.use(passport.session()); // persistent login sessions
 

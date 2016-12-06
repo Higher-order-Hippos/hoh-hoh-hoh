@@ -1,5 +1,6 @@
 angular.module('hoh.services', [])
 
+/* Wishlist Factory */
 .factory('Wishlist', ($http) => {
   const getAllList = () => $http({
     method: 'GET',
@@ -31,6 +32,7 @@ angular.module('hoh.services', [])
   return { addList, getAllList, renameList, deleteList };
 })
 
+/* Item Factory */
 .factory('Item', ($http) => {
   const getAllItems = ({ id }) => $http({
     method: 'POST',
@@ -61,4 +63,74 @@ angular.module('hoh.services', [])
     .then((resp) => resp.data);
 
   return { getAllItems, addItemToList, editItem, deleteItemFromList };
+})
+
+.factory('Links', function ($http) {
+  // Your code here
+
+  var getAll = function () {
+    return $http({
+      method: 'GET',
+      url: '/api/links'
+    })
+    .then(function (resp) {
+      return resp.data;
+    });
+  };
+
+  var addOne = function (link) {
+    return $http({
+      method: 'POST',
+      url: '/api/links',
+      data: link
+    });
+  };
+
+  return {
+    getAll: getAll,
+    addOne: addOne
+  };
+  })
+
+/* Auth Factory */
+.factory('Auth', function ($http, $location, $window) {
+
+  var signin = function (user) {
+    return $http({
+      method: 'POST',
+      url: '/api/users/signin',
+      data: user
+    })
+    .then(function (resp) {
+      return resp.data.token;
+    });
+  };
+
+  var signup = function (user) {
+    return $http({
+      method: 'POST',
+      url: '/api/users/signup',
+      data: user
+    })
+    .then(function (resp) {
+      return resp.data.token;
+    });
+  };
+
+  var isAuth = function () {
+    return !!$window.localStorage.getItem('FILL_ME_IN'); //TODO
+  };
+
+  var signout = function () {
+    $window.localStorage.removeItem('FILL_ME_IN'); //TODO
+    $location.path('/signin');
+  };
+
+
+  return {
+    signin: signin,
+    signup: signup,
+    isAuth: isAuth,
+    signout: signout
+  };
 });

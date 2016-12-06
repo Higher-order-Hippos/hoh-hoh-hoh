@@ -7,8 +7,13 @@ module.exports = {
     signin: function (req, res, next) {
       var username = req.body.username;
       userModel.users.getPassword(username, (results) => {
-        console.log('USER CONTROLLER SIGNIN RESULTS : ', results);
-        res.json(results);
+        if(results.length === 0){
+          console.log('ERROR no password found');
+        } else {
+          console.log('USER CONTROLLER SIGNIN RESULTS : ', results);
+          var token = jwt.encode(username, 'secret');
+          res.send({token: token});
+        }
       })
     },
 

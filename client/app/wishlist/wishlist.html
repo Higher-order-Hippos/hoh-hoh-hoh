@@ -23,7 +23,7 @@
 
   <!-- Shows all wishlists -->
   <div name="wishlists" ng-repeat="wishlist in data.wishlists | filter:data.newWishlistName">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-8 col-md-offset-2 well">
       <div ng-click="getAllItems(wishlist); expand = !expand">
         <strong>{{wishlist.name}}</strong>
       </div>

@@ -26,7 +26,7 @@ angular.module('hoh', [
 .factory('AttachTokens', ($window) => {
   const attach = {
     request(object) {
-      const jwt = $window.localStorage.getItem('com.hohlife'); //TODO
+      const jwt = $window.localStorage.getItem('com.hohlife');
       if (jwt) {
         object.headers['x-access-token'] = jwt;
       }

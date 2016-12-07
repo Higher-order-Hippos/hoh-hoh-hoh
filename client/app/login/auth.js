@@ -27,10 +27,10 @@ angular.module('hoh.auth', [])
 
   $scope.signout = () => {
     Auth.signout();
-    $scope.isAuth = () => {
-      return !!$window.localStorage.getItem('com.hohlife');
+  };
 
-    };
+  $scope.isAuth = () => {
+      return !!$window.localStorage.getItem('com.hohlife');
   };
 
 });

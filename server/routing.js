@@ -14,7 +14,6 @@ module.exports = (app, express) => {
   app.use(express.static(path.join(__dirname, '/../node_modules')));
   app.use(cookieParser('shhhh, very secret'));
 
-
   // required for passport
   app.use(session({
     secret: 'hohlife',

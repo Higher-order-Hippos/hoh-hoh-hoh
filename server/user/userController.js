@@ -1,6 +1,8 @@
 const userModel = require('./userModel');
 const jwt = require('jwt-simple');
 
+// const bcrypt = require('bcrypt-nodejs');
+
 module.exports = {
   users: {
     signin({ body: { username } }, res) {
@@ -8,7 +10,8 @@ module.exports = {
         if (results.length === 0) {
           console.log('ERROR no password found');
         } else {
-          res.json(results);
+          const token = jwt.encode(username, 'secret');
+          res.json({ token });
         }
       });
     },

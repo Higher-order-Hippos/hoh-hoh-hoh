@@ -30,7 +30,7 @@ angular.module('hoh.auth', [])
   };
 
   $scope.isAuth = () => {
-      return !!$window.localStorage.getItem('com.hohlife');
+    return !!$window.localStorage.getItem('com.hohlife');
   };
 
 });

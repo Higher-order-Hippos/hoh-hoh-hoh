@@ -1,34 +1,52 @@
+<!-- This HTML uses functions from WishlistController.js -->
 <div>
-<!-- Input Field to Add A New Wishlist -->
+
+<!-- Input Field/Search Bar to add/search Wishlist -->
   <div class="col-md-8 col-md-offset-2">
     <form name='addNewWishlist' class="form-group">
       <label for ="addWishlist">Add a new Wishlist</label>
       <div class = "input-group">
+
+        <!-- Input Field / Search Bar  -->
         <input
           type='text',
           name='inputNewWishlist',
           ng-model='data.newWishlistName',
           placeholder="Type here to search or add a list",
           class="form-control"/>
+
+        <!-- 'Add' button: Calls addList -->
         <span class="input-group-btn">
           <button
             type="button",
             class="btn btn-default",
             ng-click="addList()",
           > Add </button>
+
         </span> <!-- Closing Span input-group-btn -->
       </div> <!-- Closing input-group -->
-    </form>
+    </form> <!-- Closing from group -->
   </div><!-- col-md-8 col-md-offset-2" -->
 
-  <!-- Shows all wishlists -->
+  <!-- Display All Wishlists -->
   <div name="wishlists" ng-repeat="wishlist in data.wishlists | filter:data.newWishlistName">
     <div class="col-md-8 col-md-offset-2 well">
+
+      <!--
+      //// Clicking wishlist calls getAllItems function, passes in wishlist that was clicked on
+      //// and toggles expands the wishlist to display all the items
+      /-->
       <div ng-click="getAllItems(wishlist); expand = !expand">
         <strong>{{wishlist.name}}</strong>
       </div>
+
+      <!-- Pencil Glyph that toggles the display of <div ng-show='remaining'> below -->
       <i class="fa fa-pencil-square-o" aria-hidden="true" ng-click='renaming = !renaming'></i>
+
+      <!-- X Glyph, when clicked calls deletelList and pass in the current wishlist -->
       <i class="fa fa-times" aria-hidden="true" ng-click='deleteList(wishlist)'></i>
+
+      <!-- Input field for editing wishlist name  -->
       <div ng-show='renaming'>
         <form name='rename'>
           <input
@@ -36,38 +54,63 @@
             name='rename',
             ng-model='data.renameList'
           />
+
+          <!--
+          //// Rename List button calls editListName, passes in new wishlist name from the input field
+          //// and the current wishlist (wishlist to be renamed)
+          /-->
           <button type="submit" ng-click="editListName(data.renameList, wishlist)">Rename List</button>
         </form>
       </div> <!-- Closing <div ng-show='renaming'> -->
 
-      <!-- Expands to show items -->
+      <!--
+      //// This div expands depends on the value of 'expand'
+      //// When it expands, it shows all the items in the wishlist
+      /-->
       <div ng-show="expand">
+
+        <!-- Input field to add an item to the wishlist & search items in the wishlist -->
         <form name='item'>
           <input
             type='text',
             name='item',
             ng-model='data.itemName',
           />
+
+          <!-- Plus button calls addItem, passes in the name of the item and the current wishlist -->
           <i class="fa fa-plus" aria-hidden="true" ng-click="addItem(data.itemName, wishlist)"></i>
         </form>
+
+        <!-- Displays items -->
         <div ng-repeat="item in data.items[wishlist.id] | filter:data.itemName">
           {{item.name}}
+
+          <!-- Pencil Glyph that toggles the display of <div ng-show='itemRemaning'> below -->
           <i class="fa fa-pencil-square-o" aria-hidden="true" ng-click='itemRenaming = !itemRenaming'></i>
 
-          <!-- Input field to edit item name -->
             <div ng-show='itemRenaming'>
+              <!-- Input field to edit item name -->
               <form name='renameItem'>
                 <input
                   type='text',
                   name='renameItem',
                   ng-model='data.newItemName'
                 />
+
+                <!--
+                //// Submit button calls editItem, passes in new item name from the input field
+                //// and the current item Id, and the current wishlist
+                /-->
                 <button type="submit" ng-click="editItem(data.newItemName, item.id, wishlist)">Submit</button>
               </form>
+
             </div> <!-- Closing <div ng-show='itemRenaming'> -->
+
+          <!-- X Glyph, when clicked calls deletelItem and pass in the current wishlist and current item ID -->
           <i class="fa fa-times" aria-hidden="true" ng-click='deleteItem(wishlist, item.id)'></i>
+
         </div> <!-- Closing ng-repeat="item in data.items[wishlist.id]" -->
       </div> <!-- Closing <div ng-show="expand"> -->
-    </div>
-  </div>
-</div> <!-- Closing ngController -->
+    </div> <!-- Closing col-md-8 col-md-offset-2 well -->
+  </div> <!-- Closing ng-repeat wishlist in data.wishlists -->
+</div>

@@ -5,7 +5,6 @@
   </div>
 
     <!-- Input Field to Add A New Wishlist -->
-    <div class='row'>
     <div class="col-lg-6">
       <div class="input-group">
         <form name='addNewWishlist'>
@@ -13,7 +12,7 @@
             type='text',
             name='inputNewWishlist',
             ng-model='data.newWishlistName',
-            placeholder="e.g.) Birthday, Christmas",
+            placeholder="Type here to search or add a list",
             class="form-control",
           />
         </form>
@@ -76,6 +75,5 @@
           <i class="fa fa-times" aria-hidden="true" ng-click='deleteItem(wishlist, item.id)'></i>
         </div> <!-- Closing ng-repeat="item in data.items[wishlist.id]" -->
       </div> <!-- Closing <div ng-show="expand"> -->
-  </div>
 </div> <!-- Closing row -->
 </div>

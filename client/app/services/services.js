@@ -72,6 +72,7 @@ angular.module('hoh.services', [])
     url: '/api/users/signin',
     data: { username, password },
   })
+    .then(({ data: { token } }) => token);
 
   const signup = ({ username, password }) => $http({
     method: 'POST',

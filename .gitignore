@@ -5,6 +5,7 @@ client/.DS_Store
 server/.DS_Store
 DS_Store
 
+
 ### Node ###
 node_modules
 
@@ -13,4 +14,6 @@ npm-debug.log
 
 ### Bower ###
 
-## API keys
+### API keys ###
+server/database/config.js
+server/database/pw.js

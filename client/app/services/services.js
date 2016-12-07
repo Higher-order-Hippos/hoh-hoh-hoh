@@ -1,5 +1,6 @@
 angular.module('hoh.services', [])
 
+/* Wishlist Factory */
 .factory('Wishlist', ($http) => {
   const getAllList = () => $http({
     method: 'GET',
@@ -31,6 +32,7 @@ angular.module('hoh.services', [])
   return { addList, getAllList, renameList, deleteList };
 })
 
+/* Item Factory */
 .factory('Item', ($http) => {
   const getAllItems = ({ id }) => $http({
     method: 'POST',
@@ -61,4 +63,30 @@ angular.module('hoh.services', [])
     .then((resp) => resp.data);
 
   return { getAllItems, addItemToList, editItem, deleteItemFromList };
+})
+
+/* Auth Factory */
+.factory('Auth', ($http, $location, $window) => {
+  const signin = ({ username, password }) => $http({
+    method: 'POST',
+    url: '/api/users/signin',
+    data: { username, password },
+  })
+    .then(({ data: { token } }) => token);
+
+  const signup = ({ username, password }) => $http({
+    method: 'POST',
+    url: '/api/users/signup',
+    data: { username, password },
+  })
+    .then((resp) => resp.data.token);
+
+  const isAuth = () => !!$window.localStorage.getItem('com.hohlife'); //TODO
+
+  const signout = () => {
+    $window.localStorage.removeItem('com.hohlife'); //TODO
+    $location.path('/login');
+  };
+
+  return { signin, signup, isAuth, signout };
 });

@@ -5,8 +5,11 @@ angular.module('hoh.wishlist', [])
   $scope.data.items = {};
 
   $scope.addList = () => {
-    Wishlist.addList($scope.wishlistName)
-      .then(() => $scope.getAllList());
+    Wishlist.addList($scope.data.newWishlistName)
+      .then(() => {
+        $scope.data.newWishlistName='';
+        $scope.getAllList();
+      });
   };
 
   $scope.getAllItems = (wishlist) => {
@@ -33,19 +36,26 @@ angular.module('hoh.wishlist', [])
 
   $scope.editListName = (newName, wishlist) => {
     Wishlist.renameList(newName, wishlist.id)
-      .then(() => $scope.getAllList());
+      .then(() => {
+        $scope.getAllList();
+        $scope.data.renameList = '';
+      });
   };
 
   $scope.addItem = (name, wishlist) => {
     Item.addItemToList(name, wishlist.id)
       .then(() => {
         $scope.getAllItems(wishlist);
-      })
+        $scope.data.itemName = '';
+      });
   };
 
   $scope.editItem = (name, item, wishlist) => {
     Item.editItem(name, item)
-      .then(() => $scope.getAllItems(wishlist));
+      .then(() => {
+        $scope.getAllItems(wishlist);
+        $scope.data.newItemName = '';
+      });
   };
 
   $scope.deleteItem = (wishlist, itemId) => {

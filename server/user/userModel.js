@@ -9,7 +9,6 @@ module.exports = {
           console.log('Error in server/userModel.js addOne : ', err);
         } else {
           callback(results);
-          // db.close();
         }
       });
     },
@@ -21,7 +20,6 @@ module.exports = {
           console.log('Error in server/userModel.js getPassword : ', err);
         } else {
           callback(results);
-          // db.close();
         }
       });
     },

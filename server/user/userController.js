@@ -27,7 +27,6 @@ module.exports = {
       bcrypt.hash(password, null, null, ((err, hash) => {
         const params = [username, hash];
         userModel.users.addOne(params, (response) => {
-          console.log('USER CONTROLLER SIGNUP RESULTS : ', response);
           if (!response) {
             console.log('Issue in adding to database');
             res.sendStatus(401);

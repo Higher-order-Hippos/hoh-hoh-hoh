@@ -1,5 +1,7 @@
 const db = require('../database/config_deploy');
 
+// Query in the wishlist table in the database to add, delete, rename, and get wishlist.
+
 module.exports = {
   wishlists: {
     getAll(callback) {
@@ -11,6 +13,9 @@ module.exports = {
           callback(results);
         }
       });
+      // The getAll function accepts a callback as a parameter.
+      // It makes a query to get the name and id from the wishlist table in the db
+      // and pass the result to the wishlist controller.
     },
 
     addOne(params, callback) {
@@ -22,6 +27,9 @@ module.exports = {
           callback(results);
         }
       });
+      // addOne takes a callback and params where params is the data that is
+      // entered by the user in the wishlist form.
+      // The function adds the information entered by the user in the database.
     },
 
     renameList(params, callback) {
@@ -33,6 +41,9 @@ module.exports = {
           callback(results);
         }
       });
+      // The renameList function allows the user to rename a list.
+      // The function makes a query to the database and updates the name of the list
+      // in the database with the params argument which is provided by the user.
     },
 
     deleteList(params, callback) {
@@ -51,6 +62,7 @@ module.exports = {
           });
         }
       });
+      // deleteList makes a query into the database and deletes a list that the user no longer wants.
     },
   },
 

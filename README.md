@@ -10,11 +10,11 @@ Brainstorming gift ideas can be time-consuming. Even in our best of efforts, it 
 
 ## That's the plan anyway.
 
-The app is still in its beta phase and needs a lot of work. So far, we have successfully linked our app to a MySQL database and added authentication. We have yet to personalize our user page and add social features (like being able to add friends, share wish-lists and offer to buy gifts for a friend). Those are what we will be working on next.
+The app is still in its beta phase and needs a lot of work. So far, we have successfully linked our app to a MySQL database and added authentication. We have yet to personalize our user page and add social features (like being able to add friends, share wish-lists and offer to buy gifts for a friend).
 
 ## Getting Started
 
-You will need a MySQL database to store user information including wish-lists and items. Simply `npm install` and add a pw.js file in the database folder containing your MySQL password like so:
+You will need a MySQL database to store user information including wish-lists and items. Simply `npm install` and add a `pw.js` file in the `server/database` folder containing your MySQL password like so:
 
 ```
 module.exports = 'your_password';

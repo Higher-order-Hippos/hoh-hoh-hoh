@@ -6,28 +6,28 @@ angular.module('hoh.services', [])
     method: 'GET',
     url: '/api/wishlist',
   })
-    .then((resp) => resp.data);
+    .then(({ data }) => data);
 
   const addList = (name) => $http({
     method: 'POST',
     url: '/api/wishlist',
     data: { name },
   })
-    .then((resp) => resp.data);
+    .then(({ data }) => data);
 
   const renameList = (newName, list) => $http({
     method: 'POST',
     url: '/api/wishlist/rename',
     data: { newName, list },
   })
-    .then((resp) => resp.data);
+    .then(({ data }) => data);
 
   const deleteList = (wishlistId) => $http({
     method: 'POST',
     url: '/api/wishlist/delete',
     data: { wishlistId },
   })
-    .then((resp) => resp.data);
+    .then(({ data }) => data);
 
   return { addList, getAllList, renameList, deleteList };
 })
@@ -39,28 +39,28 @@ angular.module('hoh.services', [])
     url: '/api/item/get',
     data: { id },
   })
-    .then((resp) => resp.data);
+    .then(({ data }) => data);
 
   const addItemToList = (name, id) => $http({
       method: 'POST',
       url: '/api/item',
       data: { name, id },
     })
-      .then((resp) => resp.data);
+      .then(({ data }) => data);
 
   const editItem = (name, item) => $http({
     method: 'POST',
     url: '/api/item/rename',
     data: { name, item },
   })
-    .then((resp) => resp.data);
+    .then(({ data }) => data);
 
   const deleteItemFromList = (itemId) => $http({
     method: 'POST',
     url: '/api/item/delete',
     data: { itemId },
   })
-    .then((resp) => resp.data);
+    .then(({ data }) => data);
 
   return { getAllItems, addItemToList, editItem, deleteItemFromList };
 })
@@ -79,7 +79,7 @@ angular.module('hoh.services', [])
     url: '/api/users/signup',
     data: { username, password },
   })
-    .then((resp) => resp.data.token);
+    .then(({ data: { token } }) => token);
 
   const isAuth = () => !!$window.localStorage.getItem('com.hohlife'); //TODO
 

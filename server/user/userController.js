@@ -3,7 +3,6 @@ const jwt = require('jwt-simple');
 const bcrypt = require('bcrypt-nodejs');
 const Promise = require('bluebird');
 
-
 module.exports = {
   users: {
     signin({ body: { username, password } }, res) {
@@ -13,14 +12,14 @@ module.exports = {
           res.sendStatus(401);
         } else {
           bcrypt.compare(password, results[0].password, ((err, response) => {
-            if(!response){
-              console.log("Password did not match in compare")
+            if (!response) {
+              console.log('Password did not match in compare');
               res.sendStatus(401);
             } else {
               const token = jwt.encode(username, 'secret');
               res.json({ token });
             }
-          }))
+          }));
         }
       });
     },

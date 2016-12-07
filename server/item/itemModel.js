@@ -3,7 +3,7 @@ const db = require('../database/config');
 module.exports = {
   items: {
     getAll(params, callback) {
-      const queryStr = "SELECT name, id FROM items WHERE id_wishlists = ?";
+      const queryStr = 'SELECT name, id FROM items WHERE id_wishlists = ?';
       db.query(queryStr, params, (err, results) => {
         if (err) {
           console.log('Error in server/item/wishlistModels.js getAll : ', err);

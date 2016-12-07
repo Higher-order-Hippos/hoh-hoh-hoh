@@ -1,7 +1,6 @@
 const userModel = require('./userModel');
 const jwt = require('jwt-simple');
 const bcrypt = require('bcrypt-nodejs');
-const Promise = require('bluebird');
 
 module.exports = {
   users: {

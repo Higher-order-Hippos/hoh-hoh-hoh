@@ -1,21 +1,24 @@
 <div ng-controller='AuthController'>
-  <div class='row'>
-      <div class='col-md-10'><h3>ADD A WISHLIST!</h3></div>
-      <div class='col-md-2'><button class='btn btn-danger' ng-click='signout()'>Sign Out</button></div>
+  <div class='col-md-offset-6 col-md-6'>
+    <button
+      type = "button"
+      class="btn btn-default btn-md"
+      ng-click='signout()'>
+      <span class="glyphicon glyphicon-log-out"></span> Log out
+    </button>
   </div>
 
-    <!-- Input Field to Add A New Wishlist -->
-    <div class="col-lg-6">
-      <div class="input-group">
-        <form name='addNewWishlist'>
-          <input
-            type='text',
-            name='inputNewWishlist',
-            ng-model='data.newWishlistName',
-            placeholder="Type here to search or add a list",
-            class="form-control",
-          />
-        </form>
+<!-- Input Field to Add A New Wishlist -->
+  <div class="col-md-8 col-md-offset-2">
+    <form name='addNewWishlist' class="form-group">
+      <label for ="addWishlist">Add a new Wishlist</label>
+      <div class = "input-group">
+        <input
+          type='text',
+          name='inputNewWishlist',
+          ng-model='data.newWishlistName',
+          placeholder="Type here to search or add a list",
+          class="form-control"/>
         <span class="input-group-btn">
           <button
             type="button",
@@ -24,17 +27,11 @@
           > Add </button>
         </span> <!-- Closing Span input-group-btn -->
       </div> <!-- Closing input-group -->
-    </div><!-- Closing col-lg-6" -->
+    </form>
+  </div><!-- col-md-8 col-md-offset-2" -->
 
-    <br />
-
-    <!-- Search bar: Searches wishlists and items -->
-    <!-- <input type="text" ng-model="data.searchQuery" placeholder="Search"/> -->
-    <br />
-    <br />
-
-    <!-- Wishlists -->
-    <div name="wishlists" ng-repeat="wishlist in data.wishlists | filter:data.newWishlistName " class='well container-fluid'>
+  <div name="wishlists" ng-repeat="wishlist in data.wishlists | filter:data.newWishlistName">
+    <div class="col-md-8 col-md-offset-2">
       <div ng-click="getAllItems(wishlist); expand = !expand">
         <strong>{{wishlist.name}}</strong>
       </div>
@@ -75,5 +72,6 @@
           <i class="fa fa-times" aria-hidden="true" ng-click='deleteItem(wishlist, item.id)'></i>
         </div> <!-- Closing ng-repeat="item in data.items[wishlist.id]" -->
       </div> <!-- Closing <div ng-show="expand"> -->
-</div> <!-- Closing row -->
-</div>
+    </div>
+  </div>
+</div> <!-- Closing ngController -->

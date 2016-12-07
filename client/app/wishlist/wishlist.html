@@ -50,7 +50,7 @@
           />
           <i class="fa fa-plus" aria-hidden="true" ng-click="addItem(data.itemName, wishlist)"></i>
         </form>
-        <div ng-repeat="item in data.items[wishlist.id] | filter:data.itemName">
+        <div ng-repeat="item in data.items[wishlist.id]">
           {{item.name}}
           <i class="fa fa-pencil-square-o" aria-hidden="true" ng-click='itemRenaming = !itemRenaming'></i>
 

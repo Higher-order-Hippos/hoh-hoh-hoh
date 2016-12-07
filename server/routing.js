@@ -11,17 +11,6 @@ module.exports = (app, express) => {
   app.use(express.static(path.join(__dirname, '/../client')));
   app.use(express.static(path.join(__dirname, '/../client/app')));
   app.use(express.static(path.join(__dirname, '/../node_modules')));
-<<<<<<< HEAD
-=======
-  app.use(cookieParser('shhhh, very secret'));
-
-  // required for passport
-  app.use(session({
-    secret: 'hohlife',
-    resave: false,
-    saveUninitialized: false,
-  }));
->>>>>>> [Refator] White space
 
   // requests for home page, with auth check
   app.post('/api/users/signin', userController.users.signin);

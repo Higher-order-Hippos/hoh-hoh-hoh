@@ -9,7 +9,7 @@ module.exports = {
           console.log('Error in server/item/wishlistModels.js getAll : ', err);
         } else {
           callback(results);
-          db.end();
+          // db.close();
         }
       });
     },
@@ -21,7 +21,7 @@ module.exports = {
           console.log('Error in server/item/wishlistModel.js addOne : ', err);
         } else {
           callback(results);
-          db.end();
+          // db.close();
         }
       });
     },
@@ -33,7 +33,7 @@ module.exports = {
           console.log('Error in server/item/wishlistModel.js renameList : ', err);
         } else {
           callback(results);
-          db.end();
+          // db.close();
         }
       });
     },
@@ -45,7 +45,7 @@ module.exports = {
           console.log('Error in server/item/wishlistModel.js deleteOne : ', err);
         } else {
           callback(results);
-          db.end();
+          // db.close();
         }
       });
     },

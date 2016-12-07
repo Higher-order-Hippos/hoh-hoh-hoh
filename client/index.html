@@ -10,12 +10,22 @@
   </head>
 
   <body>
-    <div class='container-fluid'>
-      <div align='center'>
-        <h1 class='page-header'>Hoh Hoh Hoh<img width='50' height='50'src="http://www.pngmart.com/files/3/Christmas-Tree-PNG-File.png" /></h1>
+    <div class='container-fluid' ng-controller="AuthController">
+      <div style='float:right; padding-top:10px; margin-bottom:-40px' ng-show='user.isLoggedIn'>
+        <button
+          type="button"
+          class="btn btn-default btn-md"
+          ng-click='signout()'>
+          <span class="glyphicon glyphicon-log-out"></span> Log out
+        </button>
       </div>
-      <div class="rows" ng-view></div>
     </div>
+    <div align='center'>
+      <div><h1 class='page-header'>Hoh Hoh Hoh<img width='50' height='50'src="./tree.png" /></h1></div>
+
+    </div>
+
+    <div class="rows" ng-view></div>
 
     <script src="angular/angular.js"></script>
     <script src="angular-route/angular-route.js"></script>

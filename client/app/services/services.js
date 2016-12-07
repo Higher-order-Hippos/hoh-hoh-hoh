@@ -81,10 +81,10 @@ angular.module('hoh.services', [])
   })
     .then(({ data: { token } }) => token);
 
-  const isAuth = () => !!$window.localStorage.getItem('com.hohlife'); //TODO
+  const isAuth = () => !!$window.localStorage.getItem('com.hohlife');
 
   const signout = () => {
-    $window.localStorage.removeItem('com.hohlife'); //TODO
+    $window.localStorage.removeItem('com.hohlife');
     $location.path('/login');
   };
 

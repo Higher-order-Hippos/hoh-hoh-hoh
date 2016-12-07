@@ -1,13 +1,4 @@
-<div ng-controller='AuthController'>
-  <div class='col-md-offset-6 col-md-6'>
-    <button
-      type = "button"
-      class="btn btn-default btn-md"
-      ng-click='signout()'>
-      <span class="glyphicon glyphicon-log-out"></span> Log out
-    </button>
-  </div>
-
+<div>
 <!-- Input Field to Add A New Wishlist -->
   <div class="col-md-8 col-md-offset-2">
     <form name='addNewWishlist' class="form-group">
@@ -30,6 +21,7 @@
     </form>
   </div><!-- col-md-8 col-md-offset-2" -->
 
+  <!-- Shows all wishlists -->
   <div name="wishlists" ng-repeat="wishlist in data.wishlists | filter:data.newWishlistName">
     <div class="col-md-8 col-md-offset-2">
       <div ng-click="getAllItems(wishlist); expand = !expand">
@@ -47,6 +39,8 @@
           <button type="submit" ng-click="editListName(data.renameList, wishlist)">Rename List</button>
         </form>
       </div> <!-- Closing <div ng-show='renaming'> -->
+
+      <!-- Expands to show items -->
       <div ng-show="expand">
         <form name='item'>
           <input
@@ -59,6 +53,8 @@
         <div ng-repeat="item in data.items[wishlist.id] | filter:data.itemName">
           {{item.name}}
           <i class="fa fa-pencil-square-o" aria-hidden="true" ng-click='itemRenaming = !itemRenaming'></i>
+
+          <!-- Input field to edit item name -->
             <div ng-show='itemRenaming'>
               <form name='renameItem'>
                 <input

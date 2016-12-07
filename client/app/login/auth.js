@@ -7,9 +7,6 @@ angular.module('hoh.auth', [])
     Auth.signin($scope.user)
       .then((token) => {
         $window.localStorage.setItem('com.hohlife', token);
-        isLoggedIn();
-        console.log("AFTER LOG INN: ", $scope.user.isLoggedIn)
-
         $location.path('/');
       })
       .catch((error) => {
@@ -21,8 +18,6 @@ angular.module('hoh.auth', [])
     Auth.signup($scope.user)
       .then((token) => {
         $window.localStorage.setItem('com.hohlife', token);
-        isLoggedIn();
-        console.log("AFTER LOG INN: ", $scope.user.isLoggedIn)
         $location.path('/');
       })
       .catch((error) => {
@@ -32,15 +27,10 @@ angular.module('hoh.auth', [])
 
   $scope.signout = () => {
     Auth.signout();
-<<<<<<< HEAD
-  };
+    $scope.isAuth = () => {
+      return !!$window.localStorage.getItem('com.hohlife');
 
-  $scope.isAuth = () => {
-    return !!$window.localStorage.getItem('com.hohlife');
-=======
-    isLoggedIn();
-    console.log("AFTER LOG OUT: ", $scope.user.isLoggedIn)
->>>>>>> temp
+    };
   };
 
 });

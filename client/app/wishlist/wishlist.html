@@ -30,10 +30,12 @@
     <br />
 
     <!-- Search bar: Searches wishlists and items -->
-    <input type="text" ng-model="data.searchQuery" placeholder="Search"/>
+    <!-- <input type="text" ng-model="data.searchQuery" placeholder="Search"/> -->
+    <br />
+    <br />
 
     <!-- Wishlists -->
-    <div name="wishlists" ng-repeat="wishlist in data.wishlists | filter:data.searchQuery " class='well container-fluid'>
+    <div name="wishlists" ng-repeat="wishlist in data.wishlists | filter:data.newWishlistName " class='well container-fluid'>
       <div ng-click="getAllItems(wishlist); expand = !expand">
         <strong>{{wishlist.name}}</strong>
       </div>
@@ -58,7 +60,7 @@
           />
           <i class="fa fa-plus" aria-hidden="true" ng-click="addItem(data.itemName, wishlist)"></i>
         </form>
-        <div ng-repeat="item in data.items[wishlist.id]">
+        <div ng-repeat="item in data.items[wishlist.id] | filter:data.itemName">
           {{item.name}}
           <i class="fa fa-pencil-square-o" aria-hidden="true" ng-click='itemRenaming = !itemRenaming'></i>
             <div ng-show='itemRenaming'>

@@ -6,8 +6,6 @@ A personalized app that allows you to share wish-lists with others. Named after 
 
 ## Motivation
 
-Figuring out what to get for your friend or that special someone will no longer feel so daunting!
-=======
 Brainstorming gift ideas can be time-consuming. Even in our best of efforts, it is never guaranteed our friends will like it. Hoh-hoh-hoh helps you pick out the perfect gift for your loved ones, allowing you to create wish-lists and share them with others.
 
 ## That's the plan anyway.

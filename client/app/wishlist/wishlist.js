@@ -46,12 +46,16 @@ angular.module('hoh.wishlist', [])
     Item.addItemToList(name, wishlist.id)
       .then(() => {
         $scope.getAllItems(wishlist);
+        $scope.data.itemName = '';
       });
   };
 
   $scope.editItem = (name, item, wishlist) => {
     Item.editItem(name, item)
-      .then(() => $scope.getAllItems(wishlist));
+      .then(() => {
+        $scope.getAllItems(wishlist);
+        $scope.data.newItemName = '';
+      });
   };
 
   $scope.deleteItem = (wishlist, itemId) => {

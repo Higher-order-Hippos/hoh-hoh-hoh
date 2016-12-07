@@ -1,20 +1,21 @@
-var jwt = require('jwt-simple');
+const jwt = require('jwt-simple');
 
 module.exports = {
-  errorLogger: function (error, req, res, next) {
+  errorLogger(error, req, res, next) {
     // log the error then send it to the next middleware in
     console.error(error.stack);
     next(error);
   },
-  errorHandler: function (error, req, res, next) {
+
+  errorHandler(error, req, res, next) {
     // send error message to client
     // message for gracefull error handling on app
-    res.status(500).send({error: error.message});
+    res.status(500).send({ error: error.message });
   },
 
-  decode: function (req, res, next) {
-    var token = req.headers['x-access-token'];
-    var user;
+  decode(req, res, next) {
+    const token = req.headers['x-access-token'];
+    let user;
 
     if (!token) {
       return res.send(403); // send forbidden if a token is not provided
@@ -29,6 +30,5 @@ module.exports = {
     } catch (error) {
       return next(error);
     }
-
-  }
+  },
 };

@@ -1,6 +1,22 @@
-<div class='container'>
+<div class='container' ng-controller='SantaController'>
   <h1>Secret Santa Rooms</h1>
   <button>Add Room</button>
+    <div id='create-room'>
+      <form>
+        <div>Room Name:
+          <div>
+            <input type='text' placeholder='Enter Room Name' ng-model='data.roomName'></input>
+          </div>
+        </div>
+        <div>Add Users:
+          <div id='add-users' ng-repeat='user in data.roomUsers'>
+            <p>{{user}}</p>
+            <input type='text' placeholder='Enter Username' ng-model='addUser'></input>
+            <button ng-click='addUserToRoom()'>Add</button>
+          </div>
+        </div>
+      </form>
+    </div>
   <ol>
     <!-- NG-REPEAT USER'S ROOMS HERE -->
     <li>LIST ROOMS HERE</li>

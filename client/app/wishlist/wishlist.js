@@ -1,8 +1,23 @@
+// Wishlist module
+
 angular.module('hoh.wishlist', [])
 
+/* Wishlist Controller
+ * Pass in scope from wishlist.html Wishlist and Item factories from services.js
+ */
+
 .controller('WishlistController', function ($scope, Wishlist, Item) {
-  $scope.data = {};
-  $scope.data.items = {};
+  $scope.data = {};                                // Main data object to store wishlists and items
+  $scope.data.items = {};                          // Items from wishlist are stored here.
+
+
+  /*
+   • Function: addList()
+   • Parameter: NONE
+   • It calls addList function in the Wishlist factory and
+   --- pass in the name of wishlist you want to create.
+   • It clears the input field and it calls getAllList function to re-render the page.
+   */
 
   $scope.addList = () => {
     Wishlist.addList($scope.data.newWishlistName)
@@ -12,6 +27,15 @@ angular.module('hoh.wishlist', [])
       });
   };
 
+  /*
+   • Function: getAllItems(wishlist)
+   • Parameters:
+   --1) wishlist: OBJECT. It contains wishlist data
+   • It calls getAllItems function in the Item factory.
+   • Once it receives items from the factory in a form of array,
+   --- store it in data.items object using id of wishlist as a key.
+   */
+
   $scope.getAllItems = (wishlist) => {
     Item.getAllItems(wishlist)
       .then((items) => {
@@ -20,6 +44,14 @@ angular.module('hoh.wishlist', [])
       });
   };
 
+  /*
+   • Function: deleteList({id})
+   • Parameters:
+   --1) id: OBJECT, it must contain 'id' key. Wishlist object that contains wishlist id.
+   • It calls deleteList function in the Wishlist factory.
+   • Once deleteList is resolved, it calls getAllList function to re-render the page.
+   */
+
   $scope.deleteList = ({ id }) => {
     Wishlist.deleteList(id)
       .then(() => {
@@ -27,12 +59,29 @@ angular.module('hoh.wishlist', [])
       });
   };
 
+  /*
+   • Function: getAllList()
+   • Parameters: None
+   • It calls getAllList function in the Wishlist factory.
+   • Once it receives wishlists from the factory in a form of array stores it in data object.
+   */
+
   $scope.getAllList = () => {
     Wishlist.getAllList()
       .then((wishlists) => {
         $scope.data.wishlists = wishlists;
       });
   };
+
+  /*
+   • Function: editListName(newName, wishlist)
+   • Parameters:
+   --1) newName: STRING, a name you want to use to update the name of wishlist.
+   --2) wishlist: Object, it contains wishlist data. The name of this wishlist will be updated.
+   • It calls renameList function in the Wishlist factory.
+   • Once renameList is resolved, it calls getAllList function to re-render the page, and
+   --- it clears the input field.
+   */
 
   $scope.editListName = (newName, wishlist) => {
     Wishlist.renameList(newName, wishlist.id)
@@ -42,6 +91,16 @@ angular.module('hoh.wishlist', [])
       });
   };
 
+  /*
+   • Function: addItem(name, wishlist)
+   • Parameters:
+   --1) name: STRING, a name of item to be added to the wishlist
+   --2) wishlist: Object, it contains wishlist data. Item will be added to this wishlist.
+   • It calls renameList function in the Item factory.
+   • Once renameList is resolved, it calls getAllList function to re-render the page, and
+   --- it clears the input field.
+   */
+
   $scope.addItem = (name, wishlist) => {
     Item.addItemToList(name, wishlist.id)
       .then(() => {
@@ -50,13 +109,34 @@ angular.module('hoh.wishlist', [])
       });
   };
 
-  $scope.editItem = (name, item, wishlist) => {
-    Item.editItem(name, item)
+  /*
+   • Function: editItem(name, item, wishlist)
+   • Parameters:
+   --1) name: STRING, a name to be use to update the name of the item with.
+   --2) itemId: INTEGER, id of item to be updated.
+   --3) wishlist: Object, containing wishlist data.
+   • It calls addItemToList function in the Item factory.
+   • Once editItem is resolved, it calls getAllItems passing wishlist to re-render the wishlist, and
+   --- clears the input field.
+   */
+
+  $scope.editItem = (name, itemId, wishlist) => {
+    Item.editItem(name, itemId)
       .then(() => {
         $scope.getAllItems(wishlist);
         $scope.data.newItemName = '';
       });
   };
+
+  /*
+   • Function: deleteItem(wishlist, itemId)
+   • Parameters:
+   --1) wishlist: Object, containing wishlist data.
+   --2) itemId: INTEGER, id of item to be updated.
+   • It calls deleteItem function in the Item factory.
+   • Once editItem is resolved, it calls getAllItems passing wishlist to re-render the wishlist, and
+   --- clears the input field.
+   */
 
   $scope.deleteItem = (wishlist, itemId) => {
     Item.deleteItemFromList(itemId)

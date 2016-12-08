@@ -16,4 +16,3 @@ npm-debug.log
 
 ### API keys ###
 server/database/config.js
-server/database/pw.js

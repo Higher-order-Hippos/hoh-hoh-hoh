@@ -54,7 +54,7 @@ module.exports = {
       //stacked queries for deleting an entire wishlist. Items that the wishlist contains must be deleted before the wishlist is dropped
       //or else you'll have issues with wishlistIds referring to a non existent wishlist.
       //delete items first, then delete wishlist.
-      const queryStr = 'DELETE FROM items WHERE id_wishlists = ?';
+      const queryStr = 'DELETE FROM items WHERE wishlists_id = ?';
       const queryStr2 = 'DELETE FROM wishlists WHERE id = ?';
       db.query(queryStr, params, (err) => {
         if (err) {

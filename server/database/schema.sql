@@ -49,11 +49,26 @@ CREATE TABLE `wishlists` (
 );
 
 -- ---
+-- Table 'sessions'
+--
+-- ---
+
+DROP TABLE IF EXISTS `sessions`;
+
+CREATE TABLE `sessions` (
+  `id` INTEGER NOT NULL AUTO_INCREMENT,
+  `token` VARCHAR(100) NULL DEFAULT NULL,
+  `user_id` INTEGER NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+-- ---
 -- Foreign Keys
 -- ---
 
-ALTER TABLE `items` ADD FOREIGN KEY (wishlists_id) REFERENCES `wishlists` (`id`);
+ALTER TABLE `items` ADD FOREIGN KEY (wishlist_id) REFERENCES `wishlists` (`id`);
 ALTER TABLE `wishlists` ADD FOREIGN KEY (user_id) REFERENCES `users` (`id`);
+ALTER TABLE `sessions` ADD FOREIGN KEY (user_id) REFERENCES `users` (`id`);
 
 -- ---
 -- Table Properties
@@ -62,3 +77,4 @@ ALTER TABLE `wishlists` ADD FOREIGN KEY (user_id) REFERENCES `users` (`id`);
 -- ALTER TABLE `users` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE `items` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE `wishlists` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `sessions` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;

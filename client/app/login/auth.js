@@ -4,8 +4,10 @@ angular.module('hoh.auth', [])
   $scope.user = {};
 
   $scope.signin = () => {
-    Auth.signin($scope.user)    //pass entire user scope down
-      .then((token) => {        //receives jwt encoded username after backend query resolves
+    //pass entire user scope down
+    //receives jwt encoded username after backend query resolves
+    Auth.signin($scope.user)
+      .then((token) => {
         $window.localStorage.setItem('com.hohlife', token);
         $location.path('/');
       })
@@ -15,8 +17,10 @@ angular.module('hoh.auth', [])
   };
 
   $scope.signup = () => {
-    Auth.signup($scope.user)    //pass entire user scope down
-      .then((token) => {        //receives jwt encoded username after backend query to add user resolves
+    //pass entire user scope down
+    //receives jwt encoded username after backend query to add user resolves
+    Auth.signup($scope.user)
+      .then((token) => {
         $window.localStorage.setItem('com.hohlife', token);
         $location.path('/');
       })

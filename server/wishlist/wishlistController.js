@@ -15,8 +15,8 @@ module.exports = {
       });
     },
 
-    rename({ body: { newName, list } }, res) {
-      const params = [newName, list];
+    rename({ body: { newName, wishlistId } }, res) {
+      const params = [newName, wishlistId];
       wishlistModel.wishlists.renameList(params, () => {
         res.sendStatus(201);
       });

@@ -1,12 +1,36 @@
+// Wishlist and Item factory
+
 angular.module('hoh.services', [])
 
-/* Wishlist Factory */
+/* Wishlist Factory
+ * Read, write, update, and delete wishlist
+ */
+
 .factory('Wishlist', ($http) => {
+  /*
+   • Function: getAllList()
+   • Invoked by: WishlistController - getAllList, addList, editListName, deleteList
+   • Parameters: NONE
+   • It calls $http function that makes a GET request to /api/wishlist.
+   • $http function resolves into data which gets returned back to the WishlistController
+   */
+
   const getAllList = () => $http({
     method: 'GET',
     url: '/api/wishlist',
   })
     .then(({ data }) => data);
+
+  /*
+   • Function: addList(name)
+   • Invoked by: WishlistController - addList
+   • Parameters
+   --1) name: STRING, a name of wishlist to be added.
+   • It calls $http function that makes a POST request to /api/wishlist.
+   --- It passes name in the request body.
+   • $http function resolves into data which gets returned and becomes available to
+   --- WishlistController - addList
+   */
 
   const addList = (name) => $http({
     method: 'POST',
@@ -15,12 +39,35 @@ angular.module('hoh.services', [])
   })
     .then(({ data }) => data);
 
-  const renameList = (newName, list) => $http({
+  /*
+   • Function: renameList(newName, list))
+   • Invoked by: WishlistController - editListName
+   • Parameters
+   --1) newName: STRING, a name to be use to update the name of the wishlist.
+   --2) wishlistId: INTEGER, id of the wishlist to be updated
+   • It calls $http function that makes a POST request to /api/wishlist/rename
+   --- It passes newName, wishlistId in the request body.
+   • $http function resolves into data which gets returned and becomes available to
+   --- WishlistController - editListName
+   */
+
+  const renameList = (newName, wishlistId) => $http({
     method: 'POST',
     url: '/api/wishlist/rename',
-    data: { newName, list },
+    data: { newName, wishlistId },
   })
     .then(({ data }) => data);
+
+  /*
+   • Function: deleteList(wishlistId)
+   • Invoked by: WishlistController - deleteList
+   • Parameters
+   --1) wishlistId: INTEGER, id of the wishlist to be deleted
+   • It calls $http function that makes a POST request to /api/wishlist/delete
+   --- It passes wishlistId in the request body.
+   • $http function resolves into data which gets returned and becomes available to
+   --- WishlistController - deleteList
+   */
 
   const deleteList = (wishlistId) => $http({
     method: 'POST',
@@ -32,7 +79,10 @@ angular.module('hoh.services', [])
   return { addList, getAllList, renameList, deleteList };
 })
 
-/* Item Factory */
+/* Item Factory
+ * Read, write, update, and delete item
+ */
+
 .factory('Item', ($http) => {
   const getAllItems = ({ id }) => $http({
     method: 'POST',

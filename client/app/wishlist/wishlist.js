@@ -10,7 +10,6 @@ angular.module('hoh.wishlist', [])
   $scope.data = {};                                // Main data object to store wishlists and items
   $scope.data.items = {};                          // Items from wishlist are stored here.
 
-
   /*
    • Function: addList()
    • Parameter: NONE
@@ -47,7 +46,7 @@ angular.module('hoh.wishlist', [])
   /*
    • Function: deleteList({id})
    • Parameters:
-   --1) id: OBJECT, it must contain 'id' key. Wishlist object that contains wishlist id.
+   --1) { id }: destrctured OBJECT, it must contain 'id' key of a wishlist.
    • It calls deleteList function in the Wishlist factory.
    • Once deleteList is resolved, it calls getAllList function to re-render the page.
    */
@@ -77,14 +76,14 @@ angular.module('hoh.wishlist', [])
    • Function: editListName(newName, wishlist)
    • Parameters:
    --1) newName: STRING, a name you want to use to update the name of wishlist.
-   --2) wishlist: Object, it contains wishlist data. The name of this wishlist will be updated.
+   --2) { id }: destrctured OBJECT, it must contain 'id' key of a wishlist.
    • It calls renameList function in the Wishlist factory.
    • Once renameList is resolved, it calls getAllList function to re-render the page, and
    --- it clears the input field.
    */
 
-  $scope.editListName = (newName, wishlist) => {
-    Wishlist.renameList(newName, wishlist.id)
+  $scope.editListName = (newName, { id }) => {
+    Wishlist.renameList(newName, id)
       .then(() => {
         $scope.getAllList();
         $scope.data.renameList = '';
@@ -112,7 +111,7 @@ angular.module('hoh.wishlist', [])
   /*
    • Function: editItem(name, item, wishlist)
    • Parameters:
-   --1) name: STRING, a name to be use to update the name of the item with.
+   --1) name: STRING, a name to be use to update the name of the item.
    --2) itemId: INTEGER, id of item to be updated.
    --3) wishlist: Object, containing wishlist data.
    • It calls addItemToList function in the Item factory.
@@ -143,5 +142,6 @@ angular.module('hoh.wishlist', [])
       .then(() => $scope.getAllItems(wishlist));
   };
 
+  // When the Wishlist.hmtl page loads it invokes getAllList to populate the wishlists.
   $scope.getAllList();
 });

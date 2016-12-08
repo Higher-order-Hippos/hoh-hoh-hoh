@@ -14,8 +14,4 @@ The app is still in its beta phase and needs a lot of work. So far, we have succ
 
 ## Getting Started
 
-You will need a MySQL database to store user information including wish-lists and items. Simply `npm install` and add a `pw.js` file in the `server/database` folder containing your MySQL password like so:
-
-```
-module.exports = 'your_password';
-```
+You will need a MySQL database to store user information including wish-lists and items. Simply `npm install` and `cp server/database/config.js.example server/database/config.js` in the project root, then fill in the blanks

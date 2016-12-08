@@ -18,5 +18,4 @@ You will need a MySQL database to store user information including wish-lists an
 
 ```
 module.exports = 'your_password';
-
 ```

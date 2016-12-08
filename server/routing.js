@@ -25,4 +25,7 @@ module.exports = (app, express) => {
   app.post('/api/item', itemController.items.post);
   app.post('/api/item/rename', itemController.items.rename);
   app.post('/api/item/delete', itemController.items.delete);
+
+  // requests for secret santa
+  // app.get('/api/santa');
 };

@@ -21,7 +21,7 @@ angular.module('hoh.wishlist', [])
   $scope.addList = () => {
     Wishlist.addList($scope.data.newWishlistName)
       .then(() => {
-        $scope.data.newWishlistName='';
+        $scope.data.newWishlistName = '';
         $scope.getAllList();
       });
   };

@@ -92,10 +92,10 @@ angular.module('hoh.services', [])
     .then(({ data }) => data);
 
   const addItemToList = (name, id) => $http({
-      method: 'POST',
-      url: '/api/item',
-      data: { name, id },
-    })
+    method: 'POST',
+    url: '/api/item',
+    data: { name, id },
+  })
       .then(({ data }) => data);
 
   const editItem = (name, item) => $http({

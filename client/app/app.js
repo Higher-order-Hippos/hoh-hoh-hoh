@@ -1,26 +1,30 @@
+// Our main front-end JS file. //
+
+// Our angualr modules //
+
 angular.module('hoh', [
-  'hoh.wishlist',
-  'hoh.services',
-  'hoh.auth',
+  'hoh.wishlist',                              // Re: wishlists and items
+  'hoh.services',                              // All of our services/factories except AttachTokens
+  'hoh.auth',                                  // Re: Authentication
   'ngRoute',
 ])
 
 .config(($routeProvider) => {
   $routeProvider
-    .when('/', {
-      templateUrl: 'wishlist/wishlist.html',
-      controller: 'WishlistController',
-      authenticate: true,
+    .when('/', {                                     // Routing requests made to '/' end point
+      templateUrl: 'wishlist/wishlist.html',         // Render using wishlist.html
+      controller: 'WishlistController',              // Use WishlistController
+      authenticate: true,                            // Protected route, requires authentication
     })
-    .when('/signup', {
-      templateUrl: 'login/signup.html',
-      controller: 'AuthController',
+    .when('/signup', {                               // Routing requests made to '/signup' end point
+      templateUrl: 'login/signup.html',              // Render using singup.html
+      controller: 'AuthController',                  // Use AuthController
     })
-    .when('/login', {
-      templateUrl: 'login/login.html',
-      controller: 'AuthController',
+    .when('/login', {                                // Routing request made to 'login' end point
+      templateUrl: 'login/login.html',               // Render using login.html
+      controller: 'AuthController',                  // Use AuthController
     })
-    .otherwise({ redirectTo: '/' });
+    .otherwise({ redirectTo: '/' });                 // All other request redirect to '/'
 })
 
 .factory('AttachTokens', ($window) => {

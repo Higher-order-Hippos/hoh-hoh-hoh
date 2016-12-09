@@ -19,6 +19,7 @@ var search = function(query, callback) {
 
 var modifiedResult = function(body) {
   console.log('typeof body', typeof body);
+  // body = body.slice(0, 3);
   return body.items.map(function(product) {
     console.log("PRODUCT", product)
     return {

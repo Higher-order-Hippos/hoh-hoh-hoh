@@ -1,7 +1,10 @@
 angular.module('hoh.auth', [])
 
 .controller('AuthController', function ($scope, $window, $location, Auth) {
-  $scope.user = {};
+  $scope.user = Auth.user;
+  if ($window.localStorage.getItem('com.hohlife')) {
+    Auth.getSessionData();
+  }
 
   $scope.signin = () => {
     //pass entire user scope down
@@ -9,6 +12,7 @@ angular.module('hoh.auth', [])
     Auth.signin($scope.user)
       .then((token) => {
         $window.localStorage.setItem('com.hohlife', token);
+        Auth.getSessionData();
         $location.path('/');
       })
       .catch((error) => {
@@ -22,6 +26,7 @@ angular.module('hoh.auth', [])
     Auth.signup($scope.user)
       .then((token) => {
         $window.localStorage.setItem('com.hohlife', token);
+        Auth.getSessionData();
         $location.path('/');
       })
       .catch((error) => {

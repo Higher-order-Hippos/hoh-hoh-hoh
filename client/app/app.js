@@ -1,3 +1,4 @@
+//First Commit!
 // Our main front-end JS file. //
 
 // Our angualr modules //

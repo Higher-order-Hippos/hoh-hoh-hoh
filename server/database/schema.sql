@@ -78,6 +78,7 @@ ALTER TABLE `wishlists` ADD FOREIGN KEY (user_id) REFERENCES `users` (`id`);
 ALTER TABLE `users_rooms` ADD FOREIGN KEY (user_id) REFERENCES `users` (`id`);
 ALTER TABLE `users_rooms` ADD FOREIGN KEY (room_id) REFERENCES `rooms` (`id`);
 
+--- ---
 -- Table Properties
 -- ---
 

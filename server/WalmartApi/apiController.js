@@ -1,23 +1,30 @@
 
-// var request = require('request');
-// var publicApi = 'http://api.walmartlabs.com/v1/search?query=' + req.body.query + '&apiKey=yq5uv9adz2wm8yxqttgd9tqp';
+var request = require('request');
+var publicApi = 'http://api.walmartlabs.com/v1/search?query=' + req.body.query + '&apiKey=yq5uv9adz2wm8yxqttgd9tqp';
 
 
-// function walmart(req, res) {
-//  return public.search({ term: req.body.query}) //req.body.value
-//   .then(function (data) {
-//     console.log("+++++++++++++++++DA++++TA", data )
-//      return data;
-//   })
-//   .catch(function (err) {
-//   console.error("ERROR", err);
-//   });
-// }
+ var exportAPI = {
+   walmart: 'http://api.walmartlabs.com/v1/search?query=',
+   query: 'req.body.query',
+   wholeLink: this.walmart + this.query + '&apiKey=yq5uv9adz2wm8yxqttgd9tqp'
+ }
 
-// module.exports = {
-//  walmartApi: publicApi,
-//  search: walmart
-// }
+function walmart(req, res) {
+ return public.search({ term: req.body.query}) //req.body.value
+  .then(function (data) {
+    console.log("+++++++++++++++++DA++++TA", data )
+     return data;
+  })
+  .catch(function (err) {
+  console.error("ERROR", err);
+  });
+}
+
+module.exports = {
+ walmartApi: publicApi,
+ search: walmart,
+ exportAPI: exportAPI
+}
 
 
 // {query: "ipod"}

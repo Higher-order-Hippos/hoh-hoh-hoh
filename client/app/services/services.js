@@ -133,7 +133,9 @@ angular.module('hoh.services', [])
     url: '/api/session'
   })
     .then(({ data: userData }) => {
-      user = userData;
+      for (var prop in userData) {
+        user[prop] = userData[prop];
+      }
     })
     .catch(() => signout());
 

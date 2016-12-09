@@ -1,6 +1,26 @@
 
-// Querry Parameters
-// apiKey	Your API access key.
+// var request = require('request');
+// var publicApi = 'http://api.walmartlabs.com/v1/search?query=' + req.body.query + '&apiKey=yq5uv9adz2wm8yxqttgd9tqp';
+
+
+// function walmart(req, res) {
+//  return public.search({ term: req.body.query}) //req.body.value
+//   .then(function (data) {
+//     console.log("+++++++++++++++++DA++++TA", data )
+//      return data;
+//   })
+//   .catch(function (err) {
+//   console.error("ERROR", err);
+//   });
+// }
+
+// module.exports = {
+//  walmartApi: publicApi,
+//  search: walmart
+// }
+
+
+// {query: "ipod"}
 
 //Response DATA => It can be modified:
 // {  

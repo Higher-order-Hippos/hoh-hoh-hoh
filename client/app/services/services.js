@@ -92,10 +92,10 @@ angular.module('hoh.services', [])
     .then(({ data }) => data);
 
   const addItemToList = (name, id) => $http({
-      method: 'POST',
-      url: '/api/item',
-      data: { name, id },
-    })
+    method: 'POST',
+    url: '/api/item',
+    data: { name, id },
+  })
       .then(({ data }) => data);
 
   const editItem = (name, item) => $http({
@@ -112,11 +112,30 @@ angular.module('hoh.services', [])
   })
     .then(({ data }) => data);
 
-  return { getAllItems, addItemToList, editItem, deleteItemFromList };
+  const callApiForItem = (name) => {
+    console.log("From within client/app/services/services.js: name", name)
+    return $http({
+    method: 'POST',
+    url: '/api/walmart/',
+    data: {name}
+  })
+  .then(({searchResults}) => searchResults);}
+
+  return { getAllItems, addItemToList, editItem, deleteItemFromList, callApiForItem };
 })
 
 /* Auth Factory */
 .factory('Auth', ($http, $location, $window) => {
+  let user = {};
+
+  const getSessionData = () => $http({
+    method: 'GET',
+    url: '/api/session'
+  })
+    .then(({ data: userData }) => {
+      user = userData;
+    });
+
   const signin = ({ username, password }) => $http({
     method: 'POST',
     url: '/api/users/signin',
@@ -138,5 +157,5 @@ angular.module('hoh.services', [])
     $location.path('/login');
   };
 
-  return { signin, signup, isAuth, signout };
+  return { signin, signup, isAuth, signout, getSessionData, user };
 });

@@ -6,8 +6,8 @@ const path = require('path');
 const walmart = require('./WalmartApi/apiController')
 const request = require('request');
 
-console.log(walmart);
-console.log("request", request)
+// console.log(walmart);
+// console.log("request", request)
 module.exports = (app, express) => {
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
@@ -45,14 +45,18 @@ module.exports = (app, express) => {
 
 app.post('/api/walmart', function(req, res) {
   console.log("REQ.BODY", req.body)
-  walmartApi.walmart(req)
-    .then(function (data) {
-      // console.log("+++++++++++++++++DA++++TA", data)
-      res.send(data);
-    })
-    .catch(function (err) {
-      console.error("ERROR", err);
-    });
-});
-
+  walmart.search(req.body.term, function(data) {
+    res.json(data);
+  });
+ });
 }
+
+  // walmartApi.walmart(req)
+  //   .then(function (data) {
+  //     // console.log("+++++++++++++++++DA++++TA", data)
+  //     res.send(data);
+  //   })
+  //   .catch(function (err) {
+  //     console.error("ERROR", err);
+  //   });
+

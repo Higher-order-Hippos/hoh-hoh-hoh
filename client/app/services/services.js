@@ -134,7 +134,8 @@ angular.module('hoh.services', [])
   })
     .then(({ data: userData }) => {
       user = userData;
-    });
+    })
+    .catch(() => signout());
 
   const signin = ({ username, password }) => $http({
     method: 'POST',

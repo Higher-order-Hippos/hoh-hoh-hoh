@@ -1,6 +1,7 @@
 const wishlistController = require('./wishlist/wishlistController');
 const itemController = require('./item/itemController');
 const userController = require('./user/userController');
+const sessionController = require('./session/sessionController');
 const bodyParser = require('body-parser');
 const path = require('path');
 
@@ -10,6 +11,8 @@ module.exports = (app, express) => {
   app.use(express.static(path.join(__dirname, '/../client')));
   app.use(express.static(path.join(__dirname, '/../client/app')));
   app.use(express.static(path.join(__dirname, '/../node_modules')));
+
+  app.get('/api/session', sessionController.sessions.getUser);
 
   // requests for home page, with auth check
   app.post('/api/users/signin', userController.users.signin);

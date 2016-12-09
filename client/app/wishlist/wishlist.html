@@ -78,7 +78,7 @@
           />
 
           <!-- Plus button calls addItem, passes in the name of the item and the current wishlist -->
-          <i class="fa fa-plus" aria-hidden="true" ng-click="addItem(data.itemName, wishlist)"></i>
+          <i class="fa fa-plus" aria-hidden="true" ng-click="addItem(data.itemName, wishlist); callApi(data.itemName, wishlist)"></i>
         </form>
 
         <!-- Displays items -->

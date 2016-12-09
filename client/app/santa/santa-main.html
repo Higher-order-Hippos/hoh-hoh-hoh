@@ -1,6 +1,7 @@
 <div class='container' ng-controller='SantaController'>
   <h1>Secret Santa</h1>
   <button>Add Room</button>
+
     <div id='create-room'>
       <form>
         <div>Room Name:
@@ -16,8 +17,10 @@
           <input type='text' placeholder='Enter Username' ng-model='newUser'></input>
           <button ng-click='addUserToRoom(newUser); newUser="";'>Add</button>
         </div>
+        <button ng-click=createRoom()>Create Room</button>
       </form>
     </div>
+
   <h2>Your Rooms</h2>
   <div id='current-rooms' ng-repeat='room in data.userData.rooms'>
     <!-- NG-REPEAT USER'S ROOMS HERE -->

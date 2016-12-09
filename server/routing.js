@@ -34,7 +34,7 @@ module.exports = (app, express) => {
 
 
   // requests for secret santa
-  app.post('/api/santa', santaController.createRoom);
+  app.post('/api/santa/:id', santaController.createRoom);
 
 
   //walmart api

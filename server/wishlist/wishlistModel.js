@@ -19,9 +19,20 @@ module.exports = {
       // and pass the result to the wishlist controller.
     },
 
+    getByUser(params, callback) {
+      const queryStr = 'SELECT name, id FROM wishlists WHERE user_id = ?';
+      db.query(queryStr, params, (err, results) => {
+        if (err) {
+          console.log('Error in server/wishlist/wishlistModels.js getByUser : ', err);
+        } else {
+          callback(results);
+        }
+      });
+    },
+
     addOne(params, callback) {
       //save query string in separate var to pass into database query, question marks denote params being passed in
-      const queryStr = 'INSERT INTO wishlists (name) VALUE (?)';
+      const queryStr = 'INSERT INTO wishlists (name, user_id) VALUE (?, ?)';
       db.query(queryStr, params, (err, results) => {
         if (err) {
           console.log('Error in server/wishlist/wishlistModel.js addOne : ', err);

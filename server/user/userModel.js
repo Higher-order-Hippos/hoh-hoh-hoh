@@ -16,7 +16,7 @@ module.exports = {
 
     getPassword(params, callback) {
       //save query string in separate var to pass into database query, question marks denote params being passed in
-      const queryStr = 'SELECT password FROM users WHERE username = ?';
+      const queryStr = 'SELECT id, password FROM users WHERE username = ?';
       db.query(queryStr, params, (err, results) => {
         if (err) {
           console.log('Error in server/userModel.js getPassword : ', err);

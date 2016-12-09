@@ -6,7 +6,6 @@ var formatUrl = function(query) {
 }
 
 var search = function(query, callback) {
-  query = query || setDefaultQuery();
   request({url: formatUrl(query)}, function(err, res, body) {
     if (!err && res.statusCode == 200) {
       callback(body); //It will not going to work without the callback
@@ -17,10 +16,15 @@ var search = function(query, callback) {
     }
   })
 }
-
-var modifiedResult = function(body) {
-  console.log('typeof body', typeof body);
+  //TO-DO
   // body = body.slice(0, 3);
+  // return body; //save only the itemId in the database
+  // db => column for item spec => store in an object
+  // A.S.A.M => just save the itemId and perform another API call
+  // return body;
+var modifiedResult = function(body) {
+  // if(body.hasOwnProperty())
+  console.log('typeof body', typeof body);
   return body.items.map(function(product) {
     console.log("PRODUCT", product)
     return {
@@ -28,11 +32,13 @@ var modifiedResult = function(body) {
       price: product.salePrice,
       description: product.longDescription,
       brandName: product.brandName,
+      thumbnailImage: product.thumbnailImage,
       mediumImage: product.mediumImage,
       largeImage: product.largeImage,
       productUrl: product.productUrl,
       rating: product.customerRating,
       ratingImage: product.customerRatingImage,
+
     }
   })
 }
@@ -40,7 +46,7 @@ var modifiedResult = function(body) {
 var setDefaultQuery = function() {
 
   var defaultResult = {
-      name: null,
+      name: 'Name',
       price: null,
       description: null,
       brandName: null,
@@ -53,17 +59,10 @@ var setDefaultQuery = function() {
    return defaultResult;
 }
 
-
-// var modifiedBody = modifiedResult(body);
-
-
 module.exports = {
   search: search,
   modifiedResult: modifiedResult, 
-  // modifiedBody: modifiedBody
 }
-
-
 
 
 // {query: "ipod"}

@@ -48,14 +48,36 @@ CREATE TABLE `wishlists` (
   PRIMARY KEY (`id`)
 );
 
+---TABLE FOR ROOMS
+DROP TABLE IF EXISTS `santarooms`;
+
+CREATE TABLE `santarooms` (
+  `id` INTEGER NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) NOT NULL DEFAULT 'Unnamed Room',
+  PRIMARY KEY (`id`)
+
+)
+
+--JOIN TABLE BETWEEN ROOMS AND users
+DROP TABLE IF EXISTS `users_rooms`;
+
+CREATE TABLE `users_rooms` (
+  `id` INTEGER NOT NULL AUTO_INCREMENT,
+  `user_id` INTEGER NOT NULL,
+  `room_id` INTEGER NOT NULL,
+   PRIMARY KEY (`id`)
+)
+
+
 -- ---
 -- Foreign Keys
 -- ---
 
 ALTER TABLE `items` ADD FOREIGN KEY (wishlists_id) REFERENCES `wishlists` (`id`);
 ALTER TABLE `wishlists` ADD FOREIGN KEY (user_id) REFERENCES `users` (`id`);
+ALTER TABLE `santarooms` ADD FOREIGN KEY (user_id) REFERENCES `users_rooms` (`user_id`);
+ALTER TABLE `users` ADD FOREIGN KEY (room_id) REFERENCES `users_rooms` (`room_id`);
 
--- ---
 -- Table Properties
 -- ---
 

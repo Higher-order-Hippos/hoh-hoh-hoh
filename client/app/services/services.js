@@ -117,6 +117,16 @@ angular.module('hoh.services', [])
 
 /* Auth Factory */
 .factory('Auth', ($http, $location, $window) => {
+  let user = {};
+
+  const getSessionData = () => $http({
+    method: 'GET',
+    url: '/api/session'
+  })
+    .then(({ data: userData }) => {
+      user = userData;
+    });
+
   const signin = ({ username, password }) => $http({
     method: 'POST',
     url: '/api/users/signin',
@@ -138,5 +148,5 @@ angular.module('hoh.services', [])
     $location.path('/login');
   };
 
-  return { signin, signup, isAuth, signout };
+  return { signin, signup, isAuth, signout, getSessionData, user };
 });

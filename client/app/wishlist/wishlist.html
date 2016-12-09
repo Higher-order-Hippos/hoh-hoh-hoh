@@ -84,7 +84,10 @@
         <!-- Displays items -->
         <div ng-repeat="item in data.items[wishlist.id] | filter:data.itemName">
           {{item.name}}
-
+          <div ng-repeat="result in data.searchResults | filter:data.searchResults.msrp">
+            <img src="{{result.thumbnailImage}}">, {{result.name}}, {{result.msrp}}, {{result.customerRating}}
+          </div>
+        </div>
           <!-- Pencil Glyph that toggles the display of <div ng-show='itemRemaning'> below -->
           <i class="fa fa-pencil-square-o" aria-hidden="true" ng-click='itemRenaming = !itemRenaming'></i>
 

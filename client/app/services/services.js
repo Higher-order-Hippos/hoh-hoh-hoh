@@ -112,12 +112,12 @@ angular.module('hoh.services', [])
   })
     .then(({ data }) => data);
 
-  const callApiForItem = (name) => {
-    console.log("From within client/app/services/services.js: name", name)
+  const callApiForItem = (query) => {
+    console.log("From within client/app/services/services.js: name", query)
     return $http({
     method: 'POST',
     url: '/api/walmart/',
-    data: {name}
+    data: {query}
   })
   .then(({searchResults}) => searchResults);}
 

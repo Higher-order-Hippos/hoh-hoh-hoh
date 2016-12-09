@@ -39,10 +39,11 @@ module.exports = (app, express) => {
   //walmart api
 
 app.post('/api/walmart', function(req, res) {
-  console.log("REQ.BODY", req.body)
+  // console.log("REQ.BODY", req.body)
   walmart.search(req.body.query, function(data) {
     // console.log("DATA", data)
     res.json(walmart.modifiedResult(JSON.parse(data)));
+    console.log("DATAAAA", data);
   });
  });
 

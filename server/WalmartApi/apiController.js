@@ -6,6 +6,7 @@ var formatUrl = function(query) {
 }
 
 var search = function(query, callback) {
+  query = query || setDefaultQuery();
   request({url: formatUrl(query)}, function(err, res, body) {
     if (!err && res.statusCode == 200) {
       callback(body); //It will not going to work without the callback
@@ -33,12 +34,33 @@ var modifiedResult = function(body) {
       rating: product.customerRating,
       ratingImage: product.customerRatingImage,
     }
-  });
+  })
 }
+
+var setDefaultQuery = function() {
+
+  var defaultResult = {
+      name: null,
+      price: null,
+      description: null,
+      brandName: null,
+      mediumImage: null,
+      largeImage: null,
+      productUrl: null,
+      rating: 0,
+      ratingImage: null
+  };
+   return defaultResult;
+}
+
+
+// var modifiedBody = modifiedResult(body);
+
 
 module.exports = {
   search: search,
-  modifiedResult: modifiedResult 
+  modifiedResult: modifiedResult, 
+  // modifiedBody: modifiedBody
 }
 
 

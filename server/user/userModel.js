@@ -25,5 +25,16 @@ module.exports = {
         }
       });
     },
+
+    getUser(params, callback) {
+      const queryStr = 'SELECT id, username, fullname FROM users WHERE id = ?';
+      db.query(queryStr, params, (err, results) => {
+        if (err) {
+          console.log('Error in server/userModel.js getUser : ', err);
+        } else {
+          callback(results);
+        }
+      });
+    },
   },
 };

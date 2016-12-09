@@ -40,14 +40,10 @@ module.exports = (app, express) => {
 
 app.post('/api/walmart', function(req, res) {
   console.log("REQ.BODY", req.body)
-  walmart.search(req.body.term)
-  .then(function(returnedData) {
-    console.log('returnedData', returnedData)
-    res.json(walmart.modifiedResult(returnedData));
-  })
-  .catch(function(error) {
-    res.json(error);
-  })
+  walmart.search(req.body.query, function(data) {
+    // console.log("DATA", data)
+    res.json(walmart.modifiedResult(JSON.parse(data)));
+  });
  });
 
   app.get('/api/walmart/', function(req, res){  

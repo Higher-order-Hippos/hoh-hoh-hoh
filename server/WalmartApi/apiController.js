@@ -1,8 +1,8 @@
 
 var request = require('request');
 
-var formatUrl = function(term) {
-  return 'http://api.walmartlabs.com/v1/search?query=' + term + '&apiKey=yq5uv9adz2wm8yxqttgd9tqp';
+var formatUrl = function(query) {
+  return 'http://api.walmartlabs.com/v1/search?query=' + query + '&apiKey=yq5uv9adz2wm8yxqttgd9tqp';
 }
 
 var search = function(query, callback) {
@@ -18,7 +18,9 @@ var search = function(query, callback) {
 }
 
 var modifiedResult = function(body) {
+  console.log('typeof body', typeof body);
   return body.items.map(function(product) {
+    console.log("PRODUCT", product)
     return {
       name: product.name,
       price: product.salePrice,
@@ -28,7 +30,7 @@ var modifiedResult = function(body) {
       largeImage: product.largeImage,
       productUrl: product.productUrl,
       rating: product.customerRating,
-      ratingImage: customerRatingImage,
+      ratingImage: product.customerRatingImage,
     }
   });
 }

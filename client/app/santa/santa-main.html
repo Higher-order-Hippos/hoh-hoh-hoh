@@ -1,24 +1,44 @@
 <div class='container' ng-controller='SantaController'>
-  <h1>Secret Santa Rooms</h1>
+  <h1>Secret Santa</h1>
   <button>Add Room</button>
     <div id='create-room'>
       <form>
         <div>Room Name:
           <div>
             <input type='text' placeholder='Enter Room Name' ng-model='data.roomName'></input>
+            <p>{{data.roomName}}</p>
           </div>
         </div>
         <div>Add Users:
           <div id='add-users' ng-repeat='user in data.roomUsers'>
-            <p>{{user}}</p>
-            <input type='text' placeholder='Enter Username' ng-model='addUser'></input>
-            <button ng-click='addUserToRoom()'>Add</button>
+            <div>{{user}}</div>
           </div>
+          <input type='text' placeholder='Enter Username' ng-model='newUser'></input>
+          <button ng-click='addUserToRoom(newUser); newUser=""';>Add</button>
         </div>
       </form>
     </div>
-  <ol>
+  <h2>Your Rooms</h2>
+  <div id='current-rooms' ng-repeat='room in data.rooms'>
     <!-- NG-REPEAT USER'S ROOMS HERE -->
-    <li>LIST ROOMS HERE</li>
-  </ol>
+    {{room}}
+  </div>
+
+<!-- TESTING -->
+
+  <!-- <fieldset  data-ng-repeat="choice in choices">
+      <select>
+         <option>Mobile</option>
+         <option>Office</option>
+         <option>Home</option>
+      </select>
+      <input type="text" ng-model="choice.name" name="" placeholder="Enter mobile number">
+      <button class="remove" ng-show="$last" ng-click="removeChoice()">-</button>
+   </fieldset>
+   <button class="addfields" ng-click="addNewChoice()">Add fields</button>
+
+   <div id="choicesDisplay">
+      {{ choices }}
+   </div> -->
+
 </div>

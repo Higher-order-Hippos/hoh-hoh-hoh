@@ -75,8 +75,8 @@ CREATE TABLE `users_rooms` (
 
 ALTER TABLE `items` ADD FOREIGN KEY (wishlists_id) REFERENCES `wishlists` (`id`);
 ALTER TABLE `wishlists` ADD FOREIGN KEY (user_id) REFERENCES `users` (`id`);
-ALTER TABLE `santarooms` ADD FOREIGN KEY (user_id) REFERENCES `users_rooms` (`user_id`);
-ALTER TABLE `users` ADD FOREIGN KEY (room_id) REFERENCES `users_rooms` (`room_id`);
+ALTER TABLE `users_rooms` ADD FOREIGN KEY (user_id) REFERENCES `users` (`id`);
+ALTER TABLE `users_rooms` ADD FOREIGN KEY (room_id) REFERENCES `rooms` (`id`);
 
 -- Table Properties
 -- ---

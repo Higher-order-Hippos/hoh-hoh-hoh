@@ -1,3 +1,4 @@
+const walmartId = process.env.API_KEY;
 const wishlistController = require('./wishlist/wishlistController');
 const itemController = require('./item/itemController');
 const userController = require('./user/userController');

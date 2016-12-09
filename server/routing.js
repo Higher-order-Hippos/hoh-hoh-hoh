@@ -21,7 +21,7 @@ module.exports = (app, express) => {
   app.post('/api/users/signin', userController.users.signin);
   app.post('/api/users/signup', userController.users.signup);
 
-  app.get('/api/wishlist', wishlistController.wishlists.get);
+  app.get('/api/wishlist', wishlistController.wishlists.getByUser);
   app.post('/api/wishlist', wishlistController.wishlists.post);
   app.post('/api/wishlist/rename', wishlistController.wishlists.rename);
   app.post('/api/wishlist/delete', wishlistController.wishlists.delete);

@@ -4,6 +4,8 @@ angular.module('hoh.santa', [])
   $scope.data = {};
   $scope.data.createRoom = {};
   $scope.data.createRoom.roomUsers = ['USER1', 'USER2'];
+
+  $scope.data.userData = {};
   $scope.data.userData.rooms = ['ROOM1', 'ROOM2'];
 
   $scope.addUserToRoom = function(user) {

@@ -1,11 +1,15 @@
 
 var request = require('request');
+var walmartId = process.env.API_KEY;
+console.log('apikey', walmartId);
 
 var formatUrl = function(query) {
-  return 'http://api.walmartlabs.com/v1/search?query=' + query + '&apiKey=yq5uv9adz2wm8yxqttgd9tqp';
+  return 'http://api.walmartlabs.com/v1/search?query=' + query + '&apiKey=' + walmartId;
 }
+console.log('url', formatUrl('ipod'));
 
 var search = function(query, callback) {
+  console.log('formatted', formatUrl(query));
   request({url: formatUrl(query)}, function(err, res, body) {
     if (!err && res.statusCode == 200) {
       callback(body); //It will not going to work without the callback
@@ -24,9 +28,9 @@ var search = function(query, callback) {
   // return body;
 var modifiedResult = function(body) {
   // if(body.hasOwnProperty())
-  console.log('typeof body', typeof body);
+  // console.log('typeof body', typeof body);
   return body.items.map(function(product) {
-    console.log("PRODUCT", product)
+    // console.log("PRODUCT", product)
     return {
       name: product.name,
       price: product.salePrice,

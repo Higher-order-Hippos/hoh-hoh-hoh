@@ -43,16 +43,16 @@ app.post('/api/walmart', function(req, res) {
   walmart.search(req.body.query, function(data) {
     // console.log("DATA", data)
     res.json(walmart.modifiedResult(JSON.parse(data)));
-    console.log("DATAAAA", data);
+    // console.log("DATAAAA", data);
   });
  });
 
   app.get('/api/walmart/', function(req, res){  
-    var publicApi = 'http://api.walmartlabs.com/v1/search?query=' + req.body.name + '&apiKey=yq5uv9adz2wm8yxqttgd9tqp';
+    var publicApi = 'http://api.walmartlabs.com/v1/search?query=' + req.body.name + '&apiKey=' + walmartId;
      request({url: publicApi}, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       // console.log("Body", body)
-      console.log("REQ", body)
+      // console.log("REQ", body)
       res.json(body);
       } 
     })

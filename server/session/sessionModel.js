@@ -27,7 +27,13 @@ module.exports = {
 
   getSessionUser(params, callback) {
     this.getSession(params, (results) => {
-      userModel.users.getUser(results[0].user_id, callback);
+      if (results.length >= 1) {
+        userModel.users.getUser(results[0].user_id, callback);
+      } else {
+        callback({
+          error: 'cannot get session'
+        });
+      }
     });
   },
 };

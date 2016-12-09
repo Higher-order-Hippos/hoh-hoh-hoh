@@ -112,7 +112,16 @@ angular.module('hoh.services', [])
   })
     .then(({ data }) => data);
 
-  return { getAllItems, addItemToList, editItem, deleteItemFromList };
+  const callApiForItem = (name) => {
+    console.log("From within client/app/services/services.js: name", name)
+    return $http({
+    method: 'POST',
+    url: '/api/walmart/',
+    data: {name}
+  })
+  .then(({searchResults}) => searchResults);}
+
+  return { getAllItems, addItemToList, editItem, deleteItemFromList, callApiForItem };
 })
 
 /* Auth Factory */

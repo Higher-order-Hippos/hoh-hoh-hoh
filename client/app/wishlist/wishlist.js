@@ -9,6 +9,7 @@ angular.module('hoh.wishlist', [])
 .controller('WishlistController', function ($scope, Wishlist, Item) {
   $scope.data = {};                                // Main data object to store wishlists and items
   $scope.data.items = {};                          // Items from wishlist are stored here.
+  $scope.data.searchResults = {};
 
   /*
    • Function: addList()
@@ -107,6 +108,15 @@ angular.module('hoh.wishlist', [])
         $scope.data.itemName = '';
       });
   };
+
+  $scope.callApi = (name, wishlist) => {
+    console.log("From within client/app/wishlist/wishlist.js: name, wishlist", name, wishlist)
+    Item.callApiForItem(name, wishlist.id)
+      .then((searchResults) => {
+        $scope.data.searchResults = searchResults;
+        $scope.getAllItems(wishlist);
+      })
+  }
 
   /*
    • Function: editItem(name, item, wishlist)

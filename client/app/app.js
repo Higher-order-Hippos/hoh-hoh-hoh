@@ -10,7 +10,7 @@ angular.module('hoh', [
   'ngRoute',
 ])
 
-.config(($routeProvider) => {
+.config(($routeProvider, $httpProvider) => {
   $routeProvider
     .when('/', {                                     // Routing requests made to '/' end point
       templateUrl: 'wishlist/wishlist.html',         // Render using wishlist.html
@@ -30,6 +30,8 @@ angular.module('hoh', [
       controller: 'SantaController'
     })
     .otherwise({ redirectTo: '/' });                 // All other request redirect to '/'
+
+  $httpProvider.interceptors.push('AttachTokens');
 })
 
 .factory('AttachTokens', ($window) => {

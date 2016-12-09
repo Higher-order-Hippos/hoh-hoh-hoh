@@ -48,27 +48,6 @@ CREATE TABLE `wishlists` (
   PRIMARY KEY (`id`)
 );
 
----TABLE FOR ROOMS
-DROP TABLE IF EXISTS `santarooms`;
-
-CREATE TABLE `santarooms` (
-  `id` INTEGER NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(100) NOT NULL DEFAULT 'Unnamed Room',
-  PRIMARY KEY (`id`)
-
-)
-
---JOIN TABLE BETWEEN ROOMS AND users
-DROP TABLE IF EXISTS `users_rooms`;
-
-CREATE TABLE `users_rooms` (
-  `id` INTEGER NOT NULL AUTO_INCREMENT,
-  `user_id` INTEGER NOT NULL,
-  `room_id` INTEGER NOT NULL,
-   PRIMARY KEY (`id`)
-)
-
-
 -- ---
 -- Table 'sessions'
 --
@@ -84,6 +63,33 @@ CREATE TABLE `sessions` (
 );
 
 -- ---
+-- Table 'rooms'
+--
+-- ---
+
+DROP TABLE IF EXISTS `rooms`;
+
+CREATE TABLE `rooms` (
+  `id` INTEGER NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) NULL DEFAULT 'Unnamed Room',
+  PRIMARY KEY (`id`)
+);
+
+-- ---
+-- Table 'users_rooms'
+--
+-- ---
+
+DROP TABLE IF EXISTS `users_rooms`;
+
+CREATE TABLE `users_rooms` (
+  `id` INTEGER NOT NULL AUTO_INCREMENT,
+  `user_id` INTEGER NULL DEFAULT NULL,
+  `room_id` INTEGER NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+-- ---
 -- Foreign Keys
 -- ---
 
@@ -92,12 +98,3 @@ ALTER TABLE `wishlists` ADD FOREIGN KEY (user_id) REFERENCES `users` (`id`);
 ALTER TABLE `sessions` ADD FOREIGN KEY (user_id) REFERENCES `users` (`id`);
 ALTER TABLE `users_rooms` ADD FOREIGN KEY (user_id) REFERENCES `users` (`id`);
 ALTER TABLE `users_rooms` ADD FOREIGN KEY (room_id) REFERENCES `rooms` (`id`);
-
---- ---
--- Table Properties
--- ---
-
--- ALTER TABLE `users` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE `items` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE `wishlists` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE `sessions` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;

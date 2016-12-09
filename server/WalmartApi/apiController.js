@@ -1,8 +1,8 @@
 
 var request = require('request');
 
-var formatUrl = function(term) {
-  return 'http://api.walmartlabs.com/v1/search?query=' + term + '&apiKey=yq5uv9adz2wm8yxqttgd9tqp';
+var formatUrl = function(query) {
+  return 'http://api.walmartlabs.com/v1/search?query=' + query + '&apiKey=yq5uv9adz2wm8yxqttgd9tqp';
 }
 
 var search = function(query, callback) {
@@ -16,36 +16,54 @@ var search = function(query, callback) {
     }
   })
 }
+  //TO-DO
+  // body = body.slice(0, 3);
+  // return body; //save only the itemId in the database
+  // db => column for item spec => store in an object
+  // A.S.A.M => just save the itemId and perform another API call
+  // return body;
+var modifiedResult = function(body) {
+  // if(body.hasOwnProperty())
+  console.log('typeof body', typeof body);
+  return body.items.map(function(product) {
+    console.log("PRODUCT", product)
+    return {
+      name: product.name,
+      price: product.salePrice,
+      description: product.longDescription,
+      brandName: product.brandName,
+      thumbnailImage: product.thumbnailImage,
+      mediumImage: product.mediumImage,
+      largeImage: product.largeImage,
+      productUrl: product.productUrl,
+      rating: product.customerRating,
+      ratingImage: product.customerRatingImage,
 
-module.exports = {
-  search: search
+    }
+  })
 }
 
-// var publicApi = 'http://api.walmartlabs.com/v1/search?query=' + req.body.query + '&apiKey=yq5uv9adz2wm8yxqttgd9tqp';
+var setDefaultQuery = function() {
 
+  var defaultResult = {
+      name: 'Name',
+      price: null,
+      description: null,
+      brandName: null,
+      mediumImage: null,
+      largeImage: null,
+      productUrl: null,
+      rating: 0,
+      ratingImage: null
+  };
+   return defaultResult;
+}
 
-//  var exportAPI = {
-//    walmart: 'http://api.walmartlabs.com/v1/search?query=',
-//    query: 'req.body.query',
-//    wholeLink: this.walmart + this.query + '&apiKey=yq5uv9adz2wm8yxqttgd9tqp'
-//  }
+module.exports = {
+  search: search,
+  modifiedResult: modifiedResult, 
+}
 
-// function walmart(req, res) {
-//  return public.search({ term: req.body.query}) //req.body.value
-//   .then(function (data) {
-//     console.log("+++++++++++++++++DA++++TA", data )
-//      return data;
-//   })
-//   .catch(function (err) {
-//   console.error("ERROR", err);
-//   });
-// }
-
-// module.exports = {
-//  walmartApi: publicApi,
-//  search: walmart,
-//  exportAPI: exportAPI
-// }
 
 // {query: "ipod"}
 

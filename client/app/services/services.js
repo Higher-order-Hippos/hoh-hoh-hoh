@@ -112,12 +112,12 @@ angular.module('hoh.services', [])
   })
     .then(({ data }) => data);
 
-  const callApiForItem = (name) => {
-    console.log("From within client/app/services/services.js: name", name)
+  const callApiForItem = (query) => {
+    console.log("From within client/app/services/services.js: name", query)
     return $http({
     method: 'POST',
     url: '/api/walmart/',
-    data: {name}
+    data: {query}
   })
   .then(({searchResults}) => searchResults);}
 
@@ -133,8 +133,12 @@ angular.module('hoh.services', [])
     url: '/api/session'
   })
     .then(({ data: userData }) => {
-      user = userData;
-    });
+      for (var prop in userData) {
+        user[prop] = userData[prop];
+      }
+      console.log('Auth Fac', user);
+    })
+    .catch(() => signout());
 
   const signin = ({ username, password }) => $http({
     method: 'POST',

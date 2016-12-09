@@ -2,7 +2,7 @@ const db = require('../database/config_deploy');
 
 module.exports = {
   createRoom: function(params, callback) {
-    var queryStr = 'INSERT INTO santarooms (name) VALUE (?)';
+    var queryStr = 'INSERT INTO rooms (name) VALUE (?)';
     db.query(queryStr, params, function(err, results) {
       console.log('THIS IS THE PARAMS IN CREATEROOM QUERY: ', params);
       if(err) {

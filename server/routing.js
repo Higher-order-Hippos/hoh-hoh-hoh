@@ -2,6 +2,7 @@ const wishlistController = require('./wishlist/wishlistController');
 const itemController = require('./item/itemController');
 const userController = require('./user/userController');
 const sessionController = require('./session/sessionController');
+const santaController = require('./santa/santaController');
 const bodyParser = require('body-parser');
 const path = require('path');
 const walmart = require('./WalmartApi/apiController')
@@ -33,7 +34,7 @@ module.exports = (app, express) => {
 
 
   // requests for secret santa
-  // app.get('/api/santa');
+  app.post('/api/santa', santaController.createRoom);
 
 
   //walmart api
@@ -47,14 +48,14 @@ app.post('/api/walmart', function(req, res) {
   });
  });
 
-  app.get('/api/walmart/', function(req, res){  
+  app.get('/api/walmart/', function(req, res){
     var publicApi = 'http://api.walmartlabs.com/v1/search?query=' + req.body.name + '&apiKey=yq5uv9adz2wm8yxqttgd9tqp';
      request({url: publicApi}, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       // console.log("Body", body)
       console.log("REQ", body)
       res.json(body);
-      } 
+      }
     })
   });
 };

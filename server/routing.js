@@ -58,7 +58,6 @@ module.exports = (app, express) => {
     request({url: publicApi}, function (error, response, body) {
       if (!error && response.statusCode === 200) {
   // console.log("Body", body)
-  // console.log("REQ", body)
         res.json(body);
       }
     });

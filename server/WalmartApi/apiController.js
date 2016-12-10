@@ -20,7 +20,6 @@ var search = function(query, callback) {
   });
 };
   //TO-DO
-  // body = body.slice(0, 3);
   // return body; //save only the itemId in the database
   // db => column for item spec => store in an object
   // A.S.A.M => just save the itemId and perform another API call
@@ -32,6 +31,7 @@ var modifiedResult = function(body) {
     // console.log("PRODUCT", product)
     return {
       name: product.name,
+      itemId: product.itemId,
       price: product.salePrice,
       description: product.longDescription,
       brandName: product.brandName,
@@ -75,6 +75,7 @@ module.exports = {
 //       {  
 //          "name":"Straight Talk Apple iPhone 5S 16GB 4G LTE Prepaid Smartphone",
 //          "salePrice":149,
+//          "itemId":123456,
 //          "categoryPath":"Cell Phones/Straight Talk Wireless/Straight Talk Cell Phones",
 //          "longDescription":"Straight Talk Apple iPhone 5S 16GB 4G LTE Prepaid Smartphone:4&quot; Retina displayA7 chip with M7 motion coprocessorTouch ID fingerprint sensorNew 8MP iSight camera with True Tone flash1080p HD video recordingFaceTime HD cameraUltrafast 4G LTE wirelessOver 900,000 apps on the App StoreiOS 7 ; the world's most advanced mobile OSiCloud ; your content on all your devicesResolution: 1136 x 640Storage: 16GBBluetooth 4.0 wireless technologyWireless data: 802.11a/b/g/n WiFi (802.11n 2.4GHz and 5GHz)Assisted GPS with GLONASSBuilt-in rechargeable lithium-ion batteryTalk time: Up to 10 hours on 3GStandby time: Up to 250 hoursInternet use: Up to 8 hours on 3G, up to 10 hours on LTE, up to 10 hours on WiFiVideo playback: Up to 10 hoursAudio playback: Up to 40 hoursWeight and dimensions:Height: 4.87&quot;Width: 2.31&quot;Depth: 0.30&quot;Weight: 3.95 ozWhat's in the Box:Apple iPhone 5SApple EarPods with remote and micLightning to USB CableUSB Power AdapterDocumentation",
 //          "brandName":"Apple",

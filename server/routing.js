@@ -3,6 +3,7 @@ const wishlistController = require('./wishlist/wishlistController');
 const itemController = require('./item/itemController');
 const userController = require('./user/userController');
 const sessionController = require('./session/sessionController');
+const santaController = require('./santa/santaController');
 const bodyParser = require('body-parser');
 const path = require('path');
 const walmart = require('./WalmartApi/apiController')
@@ -11,6 +12,7 @@ const request = require('request');
 module.exports = (app, express) => {
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
+  app.use(userController.middleware.user);
   app.use(express.static(path.join(__dirname, '/../client')));
   app.use(express.static(path.join(__dirname, '/../client/app')));
   app.use(express.static(path.join(__dirname, '/../node_modules')));
@@ -21,7 +23,7 @@ module.exports = (app, express) => {
   app.post('/api/users/signin', userController.users.signin);
   app.post('/api/users/signup', userController.users.signup);
 
-  app.get('/api/wishlist', wishlistController.wishlists.get);
+  app.get('/api/wishlist', wishlistController.wishlists.getByUser);
   app.post('/api/wishlist', wishlistController.wishlists.post);
   app.post('/api/wishlist/rename', wishlistController.wishlists.rename);
   app.post('/api/wishlist/delete', wishlistController.wishlists.delete);
@@ -34,7 +36,7 @@ module.exports = (app, express) => {
 
 
   // requests for secret santa
-  // app.get('/api/santa');
+  app.post('/api/santa/:id', santaController.createRoom);
 
 
   //walmart api
@@ -48,6 +50,7 @@ app.post('/api/walmart', function(req, res) {
   });
  });
 
+
   app.get('/api/walmart/', function(req, res){  
     var publicApi = 'http://api.walmartlabs.com/v1/search?query=' + req.body.name + '&apiKey=' + walmartId;
      request({url: publicApi}, function (error, response, body) {
@@ -55,7 +58,7 @@ app.post('/api/walmart', function(req, res) {
       // console.log("Body", body)
       // console.log("REQ", body)
       res.json(body);
-      } 
+      }
     })
   });
   app.post('/api/wishlist/item', itemController.items.post)

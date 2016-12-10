@@ -3,39 +3,39 @@ var walmartId = process.env.API_KEY;
 
 var searchId = function(itemId) {
   return 'http://api.walmartlabs.com/v1/items?ids=' + itemId + '&apiKey=' + walmartId;
-}
+};
 
 var searchItemId = function(itemId, callback) {
   console.log('ITEMID', searchId(itemId));
   request({url: searchId(itemId)}, function(err, res, body) {
-    if (!err && res.statusCode == 200) {
+    if (!err && res.statusCode === 200) {
       callback(body); 
     } else {
       callback({
         error: 'ERROR'
       });
     }
-  }
+  });
+};
 
 var itemIdResult = function(body) {
   return body.items.map(function(product) {
     return {
       name: product.name,
       price: product.salePrice,
-      description: product.longDescription,
+      description: product.shortDescription,
       thumbnailImage: product.thumbnailImage,
       productUrl: product.productUrl,
       rating: product.customerRating,
-      ratingImage: product.customerRatingImage,
-    }
+      ratingImage: product.customerRatingImage
+    };
   });
-}
-
+};
 
 module.exports = {
   searchItemId: searchItemId,
   itemIdResult: itemIdResult, 
-}
+};
 
 
 // {query: "ipod"}

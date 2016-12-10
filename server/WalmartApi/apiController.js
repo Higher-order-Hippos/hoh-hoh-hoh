@@ -1,25 +1,24 @@
 
 var request = require('request');
 var walmartId = process.env.API_KEY;
-console.log('apikey', walmartId);
 
 var formatUrl = function(query) {
   return 'http://api.walmartlabs.com/v1/search?query=' + query + '&apiKey=' + walmartId;
-}
+};
 console.log('url', formatUrl('ipod'));
 
 var search = function(query, callback) {
   console.log('formatted', formatUrl(query));
   request({url: formatUrl(query)}, function(err, res, body) {
-    if (!err && res.statusCode == 200) {
+    if (!err && res.statusCode === 200) {
       callback(body); //It will not going to work without the callback
     } else {
       callback({
         error: 'ERROR'
       });
     }
-  })
-}
+  });
+};
   //TO-DO
   // body = body.slice(0, 3);
   // return body; //save only the itemId in the database
@@ -41,32 +40,31 @@ var modifiedResult = function(body) {
       largeImage: product.largeImage,
       productUrl: product.productUrl,
       rating: product.customerRating,
-      ratingImage: product.customerRatingImage,
-
-    }
-  })
-}
+      ratingImage: product.customerRatingImage
+    };
+  });
+};
 
 var setDefaultQuery = function() {
 
   var defaultResult = {
-      name: 'Name',
-      price: null,
-      description: null,
-      brandName: null,
-      mediumImage: null,
-      largeImage: null,
-      productUrl: null,
-      rating: 0,
-      ratingImage: null
+    name: 'Name',
+    price: null,
+    description: null,
+    brandName: null,
+    mediumImage: null,
+    largeImage: null,
+    productUrl: null,
+    rating: 0,
+    ratingImage: null
   };
-   return defaultResult;
-}
+  return defaultResult;
+};
 
 module.exports = {
   search: search,
   modifiedResult: modifiedResult, 
-}
+};
 
 
 // {query: "ipod"}

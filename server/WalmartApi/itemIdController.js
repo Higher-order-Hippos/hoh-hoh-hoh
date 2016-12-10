@@ -1,17 +1,15 @@
-
 var request = require('request');
 var walmartId = process.env.API_KEY;
 
-var formatUrl = function(query) {
-  return 'http://api.walmartlabs.com/v1/search?query=' + query + '&apiKey=' + walmartId;
+var searchId = function(itemId) {
+  return 'http://api.walmartlabs.com/v1/items?ids=' + itemId + '&apiKey=' + walmartId;
 };
-console.log('url', formatUrl('ipod'));
 
-var search = function(query, callback) {
-  console.log('formatted', formatUrl(query));
-  request({url: formatUrl(query)}, function(err, res, body) {
+var searchItemId = function(itemId, callback) {
+  console.log('ITEMID', searchId(itemId));
+  request({url: searchId(itemId)}, function(err, res, body) {
     if (!err && res.statusCode === 200) {
-      callback(body); //It will not going to work without the callback
+      callback(body); 
     } else {
       callback({
         error: 'ERROR'
@@ -19,25 +17,15 @@ var search = function(query, callback) {
     }
   });
 };
-  //TO-DO
-  // return body; //save only the itemId in the database
-  // db => column for item spec => store in an object
-  // A.S.A.M => just save the itemId and perform another API call
-  // return body;
-var modifiedResult = function(body) {
-  // if(body.hasOwnProperty())
-  // console.log('typeof body', typeof body);
+
+var itemIdResult = function(body) {
   return body.items.map(function(product) {
-    // console.log("PRODUCT", product)
     return {
       name: product.name,
-      itemId: product.itemId,
       price: product.salePrice,
-      description: product.longDescription,
-      brandName: product.brandName,
+      itemId: product.itemId,
+      description: product.shortDescription,
       thumbnailImage: product.thumbnailImage,
-      mediumImage: product.mediumImage,
-      largeImage: product.largeImage,
       productUrl: product.productUrl,
       rating: product.customerRating,
       ratingImage: product.customerRatingImage
@@ -45,25 +33,9 @@ var modifiedResult = function(body) {
   });
 };
 
-var setDefaultQuery = function() {
-
-  var defaultResult = {
-    name: 'Name',
-    price: null,
-    description: null,
-    brandName: null,
-    mediumImage: null,
-    largeImage: null,
-    productUrl: null,
-    rating: 0,
-    ratingImage: null
-  };
-  return defaultResult;
-};
-
 module.exports = {
-  search: search,
-  modifiedResult: modifiedResult, 
+  searchItemId: searchItemId,
+  itemIdResult: itemIdResult, 
 };
 
 
@@ -75,7 +47,7 @@ module.exports = {
 //       {  
 //          "name":"Straight Talk Apple iPhone 5S 16GB 4G LTE Prepaid Smartphone",
 //          "salePrice":149,
-//          "itemId":123456,
+//			"itemId":123456,
 //          "categoryPath":"Cell Phones/Straight Talk Wireless/Straight Talk Cell Phones",
 //          "longDescription":"Straight Talk Apple iPhone 5S 16GB 4G LTE Prepaid Smartphone:4&quot; Retina displayA7 chip with M7 motion coprocessorTouch ID fingerprint sensorNew 8MP iSight camera with True Tone flash1080p HD video recordingFaceTime HD cameraUltrafast 4G LTE wirelessOver 900,000 apps on the App StoreiOS 7 ; the world's most advanced mobile OSiCloud ; your content on all your devicesResolution: 1136 x 640Storage: 16GBBluetooth 4.0 wireless technologyWireless data: 802.11a/b/g/n WiFi (802.11n 2.4GHz and 5GHz)Assisted GPS with GLONASSBuilt-in rechargeable lithium-ion batteryTalk time: Up to 10 hours on 3GStandby time: Up to 250 hoursInternet use: Up to 8 hours on 3G, up to 10 hours on LTE, up to 10 hours on WiFiVideo playback: Up to 10 hoursAudio playback: Up to 40 hoursWeight and dimensions:Height: 4.87&quot;Width: 2.31&quot;Depth: 0.30&quot;Weight: 3.95 ozWhat's in the Box:Apple iPhone 5SApple EarPods with remote and micLightning to USB CableUSB Power AdapterDocumentation",
 //          "brandName":"Apple",

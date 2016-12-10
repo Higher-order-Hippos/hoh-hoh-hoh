@@ -82,14 +82,11 @@
         </form>
 
         <!-- Displays items -->
-        <div ng-repeat="item in data.items[wishlist.id] | filter:data.itemName">
+        <div ng-repeat="item in data.items[wishlist.id]">
           {{item.name}}
-          <div ng-repeat="result in data.searchResults | filter:data.searchResults.msrp">
-            <img src="{{result.thumbnailImage}}">, {{result.name}}, {{result.msrp}}, {{result.customerRating}}
-          </div>
         </div>
-          <!-- Pencil Glyph that toggles the display of <div ng-show='itemRemaning'> below -->
           <i class="fa fa-pencil-square-o" aria-hidden="true" ng-click='itemRenaming = !itemRenaming'></i>
+          <!-- Pencil Glyph that toggles the display of <div ng-show='itemRemaning'> below -->
 
             <div ng-show='itemRenaming'>
               <!-- Input field to edit item name -->
@@ -111,6 +108,13 @@
 
           <!-- X Glyph, when clicked calls deletelItem and pass in the current wishlist and current item ID -->
           <i class="fa fa-times" aria-hidden="true" ng-click='deleteItem(wishlist, item.id)'></i>
+          <br>
+          <div ng-repeat="result in data.searchResults track by $index" class="productCard" ng-click="saveToDatabase($index)">
+            <img src="{{result.mediumImage}}">
+            {{result.name.substring(0, 70)}}
+            {{result.price}}
+            <img src="{{result.ratingImage}}">
+        </div>
 
         </div> <!-- Closing ng-repeat="item in data.items[wishlist.id]" -->
       </div> <!-- Closing <div ng-show="expand"> -->

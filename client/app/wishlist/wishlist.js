@@ -9,23 +9,7 @@ angular.module('hoh.wishlist', [])
 .controller('WishlistController', function ($scope, Wishlist, Item) {
   $scope.data = {};                                // Main data object to store wishlists and items
   $scope.data.items = {};                          // Items from wishlist are stored here.
-  $scope.data.searchResults = [
-    { "name": "Apple iPod touch 32GB, Assorted Colors",
-      "msrp": "299.99",
-      "thumbnailImage": "https://i5.walmartimages.com/asr/b073892b-49dc-4d26-80f1-56ea95f1349e_1.c840aba8a20953cd66a4317670b2bb45.jpeg?odnHeight=100&odnWidth=100&odnBg=FFFFFF",
-      "customerRating": "4.441",
-    },
-    { "name": "Apple iPod touch 64GB, Assorted Colors",
-      "msrp": "499.99",
-      "thumbnailImage": "https://i5.walmartimages.com/asr/b073892b-49dc-4d26-80f1-56ea95f1349e_1.c840aba8a20953cd66a4317670b2bb45.jpeg?odnHeight=100&odnWidth=100&odnBg=FFFFFF",
-      "customerRating": "4.441",
-    },
-    { "name": "Apple iPod touch 128GB, Assorted Colors",
-      "msrp": "599.99",
-      "thumbnailImage": "https://i5.walmartimages.com/asr/b073892b-49dc-4d26-80f1-56ea95f1349e_1.c840aba8a20953cd66a4317670b2bb45.jpeg?odnHeight=100&odnWidth=100&odnBg=FFFFFF",
-      "customerRating": "4.441",
-    }
-  ]
+  $scope.data.searchResults = [];
 
   /*
    • Function: addList()
@@ -129,9 +113,19 @@ angular.module('hoh.wishlist', [])
     console.log("From within client/app/wishlist/wishlist.js: name, wishlist", query, wishlist)
     Item.callApiForItem(query, wishlist.id)
       .then((searchResults) => {
-        // $scope.data.searchResults = searchResults;
+        console.log("searchResults", searchResults.data)
+        $scope.data.searchResults = searchResults.data.slice(0,5);
         $scope.getAllItems(wishlist);
       })
+  }
+
+  $scope.saveToDatabase = (index) => {
+    var itemForDataBase = $scope.data.searchResults[index]
+    Item.saveToDatabase(itemForDataBase)
+      .then(() => {
+        console.log("Added to db");
+      })
+
   }
 
   /*

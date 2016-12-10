@@ -19,9 +19,20 @@ module.exports = {
       // and pass the result to the wishlist controller.
     },
 
+    getByUser(params, callback) {
+      const queryStr = 'SELECT name, id FROM wishlists WHERE user_id = ?';
+      db.query(queryStr, params, (err, results) => {
+        if (err) {
+          console.log('Error in server/wishlist/wishlistModels.js getByUser : ', err);
+        } else {
+          callback(results);
+        }
+      });
+    },
+
     addOne(params, callback) {
       //save query string in separate var to pass into database query, question marks denote params being passed in
-      const queryStr = 'INSERT INTO wishlists (name) VALUE (?)';
+      const queryStr = 'INSERT INTO wishlists (name, user_id) VALUE (?, ?)';
       db.query(queryStr, params, (err, results) => {
         if (err) {
           console.log('Error in server/wishlist/wishlistModel.js addOne : ', err);
@@ -54,7 +65,7 @@ module.exports = {
       //stacked queries for deleting an entire wishlist. Items that the wishlist contains must be deleted before the wishlist is dropped
       //or else you'll have issues with wishlistIds referring to a non existent wishlist.
       //delete items first, then delete wishlist.
-      const queryStr = 'DELETE FROM items WHERE id_wishlists = ?';
+      const queryStr = 'DELETE FROM items WHERE wishlist_id = ?';
       const queryStr2 = 'DELETE FROM wishlists WHERE id = ?';
       db.query(queryStr, params, (err) => {
         if (err) {

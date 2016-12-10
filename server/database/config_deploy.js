@@ -1,12 +1,12 @@
 const mysql = require('mysql');
 
-const pw = process.env.key || require('./pw.js');  //pw stored on heroku as config var, contact HoH for access
+const DBconfig = require('./config.js') || {};
 
 const connection = mysql.createConnection({
-  host: 'mysqlcluster2.registeredsite.com',
-  user: 'hohohadmin',
-  password: pw,
-  database: 'hohohoh',
+  host: DBconfig.host || process.env.DBhost,
+  user: DBconfig.user || process.env.DBUser,
+  password: DBconfig.password || process.env.DBpass,
+  database: DBconfig.database || process.env.DB,
 });
 
 module.exports = connection;

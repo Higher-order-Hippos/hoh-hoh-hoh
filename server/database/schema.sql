@@ -1,115 +1,101 @@
--- phpMyAdmin SQL Dump
--- version 4.5.0.2
--- http://www.phpmyadmin.net
+-- ---
+-- Globals
+-- ---
+
+-- SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+-- SET FOREIGN_KEY_CHECKS=0;
+
+-- ---
+-- Table 'users'
 --
--- Host: 10.30.84.152:3306
--- Generation Time: Dec 05, 2016 at 10:00 PM
--- Server version: 5.6.32-78.1-56-log
--- PHP Version: 5.6.5
+-- ---
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `hohohoh`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `items`
---
-
-CREATE TABLE `items` (
-  `id` int(11) NOT NULL,
-  `id_wishlists` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
+DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `fullname` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id` INTEGER NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(100) NULL DEFAULT NULL,
+  `password` VARCHAR(100) NULL DEFAULT NULL,
+  `fullname` VARCHAR(100) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
 
--- --------------------------------------------------------
+-- ---
+-- Table 'items'
+--
+-- ---
 
+DROP TABLE IF EXISTS `items`;
+
+CREATE TABLE `items` (
+  `id` INTEGER NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) NULL DEFAULT NULL,
+  `itemId` INTEGER NULL DEFAULT NULL,
+  `wishlist_id` INTEGER NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+-- ---
+-- Table 'wishlists'
 --
--- Table structure for table `wishlists`
---
+-- ---
+
+DROP TABLE IF EXISTS `wishlists`;
 
 CREATE TABLE `wishlists` (
-  `id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `id_users` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id` INTEGER NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) NULL DEFAULT NULL,
+  `user_id` INTEGER NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
 
+-- ---
+-- Table 'sessions'
 --
-ALTER TABLE `items`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_wishlists` (`id_wishlists`);
+-- ---
 
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+DROP TABLE IF EXISTS `sessions`;
 
---
--- Indexes for table `wishlists`
---
-ALTER TABLE `wishlists`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_users` (`id_users`);
+CREATE TABLE `sessions` (
+  `id` INTEGER NOT NULL AUTO_INCREMENT,
+  `token` VARCHAR(100) NULL DEFAULT NULL,
+  `user_id` INTEGER NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
 
+-- ---
+-- Table 'rooms'
 --
--- AUTO_INCREMENT for dumped tables
---
+-- ---
 
---
--- AUTO_INCREMENT for table `items`
---
-ALTER TABLE `items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `wishlists`
---
-ALTER TABLE `wishlists`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
---
--- Constraints for dumped tables
---
+DROP TABLE IF EXISTS `rooms`;
 
---
--- Constraints for table `items`
---
-ALTER TABLE `items`
-  ADD CONSTRAINT `items_ibfk_1` FOREIGN KEY (`id_wishlists`) REFERENCES `wishlists` (`id`);
+CREATE TABLE `rooms` (
+  `id` INTEGER NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) NULL DEFAULT 'Unnamed Room',
+  PRIMARY KEY (`id`)
+);
 
+-- ---
+-- Table 'users_rooms'
 --
--- Constraints for table `wishlists`
---
-ALTER TABLE `wishlists`
-  ADD CONSTRAINT `wishlists_ibfk_1` FOREIGN KEY (`id_users`) REFERENCES `users` (`id`);
+-- ---
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+DROP TABLE IF EXISTS `users_rooms`;
+
+CREATE TABLE `users_rooms` (
+  `id` INTEGER NOT NULL AUTO_INCREMENT,
+  `user_id` INTEGER NULL DEFAULT NULL,
+  `room_id` INTEGER NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+-- ---
+-- Foreign Keys
+-- ---
+
+ALTER TABLE `items` ADD FOREIGN KEY (wishlist_id) REFERENCES `wishlists` (`id`);
+ALTER TABLE `wishlists` ADD FOREIGN KEY (user_id) REFERENCES `users` (`id`);
+ALTER TABLE `sessions` ADD FOREIGN KEY (user_id) REFERENCES `users` (`id`);
+ALTER TABLE `users_rooms` ADD FOREIGN KEY (user_id) REFERENCES `users` (`id`);
+ALTER TABLE `users_rooms` ADD FOREIGN KEY (room_id) REFERENCES `rooms` (`id`);

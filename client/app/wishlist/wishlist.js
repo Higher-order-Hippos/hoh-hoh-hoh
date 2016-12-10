@@ -119,7 +119,14 @@ angular.module('hoh.wishlist', [])
       })
   }
 
-  $scope.saveToDatabase()
+  $scope.saveToDatabase = (index) => {
+    var itemForDataBase = $scope.data.searchResults[index]
+    Item.saveToDatabase(itemForDataBase)
+      .then(() => {
+        console.log("Added to db");
+      })
+
+  }
 
   /*
    • Function: editItem(name, item, wishlist)

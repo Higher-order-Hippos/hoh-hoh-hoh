@@ -136,7 +136,6 @@ angular.module('hoh.services', [])
       for (var prop in userData) {
         user[prop] = userData[prop];
       }
-      console.log('Auth Fac', user);
     })
     .catch(() => signout());
 

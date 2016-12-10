@@ -49,4 +49,25 @@ module.exports = {
       }));
     },
   },
+
+  middleware: {
+    user(req, res, next) {
+      token = req.headers['x-access-token'];
+
+      if (token) {
+        sessionModel.getSessionUser(token, (results) => {
+          if (results.length === 1) {
+            req.user = results[0];
+            next();
+          } else {
+            req.user = false;
+            next();
+          }
+        });
+      } else {
+        req.user = false;
+        next();
+      }
+    }
+  }
 };

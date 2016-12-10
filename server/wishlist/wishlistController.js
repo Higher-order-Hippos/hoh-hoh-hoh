@@ -8,8 +8,19 @@ module.exports = {
       });
     },
 
-    post({ body: { name } }, res) {
-      const params = name;
+    getByUser({ user: { id } }, res) {
+      if (id) {
+        const params = id;
+        wishlistModel.wishlists.getByUser(params, (results) => {
+          res.json(results);
+        });
+      } else {
+        res.sendStatus(401);
+      }
+    },
+
+    post({ body: { name }, user: { id } }, res) {
+      const params = [name, id];
       wishlistModel.wishlists.addOne(params, () => {
         res.sendStatus(201);
       });

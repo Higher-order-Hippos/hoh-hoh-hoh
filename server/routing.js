@@ -11,6 +11,7 @@ const request = require('request');
 module.exports = (app, express) => {
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
+  app.use(userController.middleware.user);
   app.use(express.static(path.join(__dirname, '/../client')));
   app.use(express.static(path.join(__dirname, '/../client/app')));
   app.use(express.static(path.join(__dirname, '/../node_modules')));
@@ -21,7 +22,7 @@ module.exports = (app, express) => {
   app.post('/api/users/signin', userController.users.signin);
   app.post('/api/users/signup', userController.users.signup);
 
-  app.get('/api/wishlist', wishlistController.wishlists.get);
+  app.get('/api/wishlist', wishlistController.wishlists.getByUser);
   app.post('/api/wishlist', wishlistController.wishlists.post);
   app.post('/api/wishlist/rename', wishlistController.wishlists.rename);
   app.post('/api/wishlist/delete', wishlistController.wishlists.delete);

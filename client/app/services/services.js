@@ -119,7 +119,10 @@ angular.module('hoh.services', [])
     url: '/api/walmart/',
     data: {query}
   })
-  .then(({searchResults}) => searchResults);}
+  .then((searchResults) => {
+    console.log("searchResults", searchResults)
+    return searchResults
+  });}
 
   return { getAllItems, addItemToList, editItem, deleteItemFromList, callApiForItem };
 })

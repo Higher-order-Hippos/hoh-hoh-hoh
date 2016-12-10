@@ -1,4 +1,5 @@
 const userModel = require('./userModel');
+const sessionModel = require('../session/sessionModel');
 const jwt = require('jwt-simple');
 const bcrypt = require('bcrypt-nodejs');
 
@@ -40,10 +41,33 @@ module.exports = {
             res.sendStatus(401);
           } else {
             const token = jwt.encode(username, 'secret');
-            res.json({ token });
+            sessionModel.addOne([token, response.insertId], () => {
+              res.json({ token });
+            });
           }
         });
       }));
     },
   },
+
+  middleware: {
+    user(req, res, next) {
+      token = req.headers['x-access-token'];
+
+      if (token) {
+        sessionModel.getSessionUser(token, (results) => {
+          if (results.length === 1) {
+            req.user = results[0];
+            next();
+          } else {
+            req.user = false;
+            next();
+          }
+        });
+      } else {
+        req.user = false;
+        next();
+      }
+    }
+  }
 };

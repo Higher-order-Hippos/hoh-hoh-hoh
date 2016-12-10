@@ -109,7 +109,7 @@
           <!-- X Glyph, when clicked calls deletelItem and pass in the current wishlist and current item ID -->
           <i class="fa fa-times" aria-hidden="true" ng-click='deleteItem(wishlist, item.id)'></i>
           <br>
-          <div ng-repeat="result in data.searchResults track by $index | filter:result.price" class="productCard" ng-click="saveToDatabase($index)">
+          <div ng-repeat="result in data.searchResults track by $index" class="productCard" ng-click="saveToDatabase($index)">
             <img src="{{result.mediumImage}}">
             {{result.name.substring(0, 70)}}
             {{result.price}}

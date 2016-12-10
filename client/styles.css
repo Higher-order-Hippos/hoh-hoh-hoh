@@ -17,3 +17,12 @@ body {
 .fa fa-plus {
 
 }
+
+.productCard {
+  float: left;
+  margin: 10px;
+  border: solid black 2px;
+  width: 200px;
+  height: 270px;
+  padding: 10px;
+}

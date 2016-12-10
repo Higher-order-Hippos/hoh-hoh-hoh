@@ -1,3 +1,4 @@
+//First Commit!
 // Our main front-end JS file. //
 
 // Our angualr modules //
@@ -5,11 +6,12 @@
 angular.module('hoh', [
   'hoh.wishlist',                              // Re: wishlists and items
   'hoh.services',                              // All of our services/factories except AttachTokens
-  'hoh.auth',                                  // Re: Authentication
+  'hoh.auth',
+  'hoh.santa',                                // Re: Authentication
   'ngRoute',
 ])
 
-.config(($routeProvider) => {
+.config(($routeProvider, $httpProvider) => {
   $routeProvider
     .when('/', {                                     // Routing requests made to '/' end point
       templateUrl: 'wishlist/wishlist.html',         // Render using wishlist.html
@@ -24,7 +26,13 @@ angular.module('hoh', [
       templateUrl: 'login/login.html',               // Render using login.html
       controller: 'AuthController',                  // Use AuthController
     })
+    .when('/santa', {
+      templateUrl: 'santa/santa-main.html',
+      controller: 'SantaController'
+    })
     .otherwise({ redirectTo: '/' });                 // All other request redirect to '/'
+
+  $httpProvider.interceptors.push('AttachTokens');
 })
 
 .factory('AttachTokens', ($window) => {

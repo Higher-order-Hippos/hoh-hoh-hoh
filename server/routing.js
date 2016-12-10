@@ -58,4 +58,7 @@ app.post('/api/walmart', function(req, res) {
       } 
     })
   });
+  app.post('/api/wishlist/item', itemController.items.post)
+ 
+
 };
